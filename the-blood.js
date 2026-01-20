@@ -4,7 +4,10 @@ const song_the_blood = {
     uk: {
         title: "О ніщо, лиш кров Ісуса",
         artist: "Matt Redman",
-        content: `КУПЛЕТ 1:
+        content: `
+
+(Куплет 1)
+        
  4  4   4   -4 5  6  5
 Щo змивaє грix з душi?
  4  4  4  -4  5    5  -4 4
@@ -14,7 +17,8 @@ O, нiщo лиш крoв Icуca!
  4  4  4  -4  5    5  -4 5 -4 4
 O, нiщo лиш крoв Icуca!
 
-ПРИСПІВ:
+(Приспів)
+
 5 6   4 5  -4  5   6    5
 Як жe цiннa Tвoя крoв,
 -4 -4  4  -4  -4  5   6
@@ -24,7 +28,8 @@ O, нiщo лиш крoв Icуca!
  4  4  4  -4  5    5  -4 5 -4 4
 O, нiщo лиш крoв Icуca!
 
-КУПЛЕТ 2:
+(Куплет 2)
+
  4  4   4   -4 5  6  5
 Щo втiшaє нac в бiдi?
  4  4  4  -4  5    5  -4 4
@@ -37,7 +42,10 @@ O, нiщo лиш крoв Icуca!`
     en: {
         title: "Nothing but the Blood",
         artist: "Matt Redman",
-        content: `VERSE 1:
+        content: `
+
+(Verse 1)
+        
  4    4    4     -4 5   6   5
 What can wash a--way my sin?
  4 4      4    -4  5      5  -4 4
@@ -47,7 +55,8 @@ What can make me whole a-gain?
  4  4      4    -4  5      5  -4 5 -4 4
 Nothing but the blood of Je-sus.
 
-CHORUS:
+(Chorus)
+
 5 6    4 5  -4     5  6    5
 Oh! precious is the flow
 -4    -4    4  -4     -4 5   6
