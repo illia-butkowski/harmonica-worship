@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonica Worship | Pro Tabs</title>
+    <title>Harmonica Worship</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script src="altar.js"></script>
@@ -66,7 +66,7 @@
     let scrollInterval = null;
     let currentFontSize = 16;
 
-    // Реєстрація всіх об'єктів пісень
+    // ВАЖЛИВО: ці назви мають збігатися з першим рядком у файлах .js
     const songData = [
         song_altar,
         song_how_he_loves,
@@ -97,7 +97,7 @@
             html += `<div class="song-card">
                 <h2>${data.title}</h2>
                 <div class="artist">${data.artist}</div>
-                <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Оригінал (YouTube)</span>
+                <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Відео</span>
                 <div class="music-player" id="player-${song.id}">
                     <iframe width="100%" height="80" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -114,5 +114,16 @@
             document.getElementById('playBtn').innerText = "▶ АВТОПЛЕЙ";
         } else {
             document.getElementById('playBtn').innerText = "■ СТОП";
+            scrollInterval = setInterval(() => { window.scrollBy(0, 1); }, 50);
+        }
+    }
 
-            scrollInterval = setInterval(() => { window.scrollBy(0
+    function changeFontSize(delta) {
+        currentFontSize += delta;
+        render();
+    }
+
+    window.onload = () => setLang('uk');
+</script>
+</body>
+</html>
