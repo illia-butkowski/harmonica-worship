@@ -23,7 +23,7 @@ const song_altar = {
 (Приспів)
 4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 4
 В обійми Ісуса ти перед вівтарем прийди
-4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 4 5
+4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 45
 Бо кров'ю Своєю тобі прощення Він купив
 
 (Куплет 2)
@@ -59,44 +59,85 @@ const song_altar = {
     en: {
         title: "O Come to the Altar",
         artist: "Elevation Worship",
-        content: `Are you hurting and broken within?
+        content: ` 
+(Verse 1)
+
+5 5 5 -4 4 4 -3 3 5
+Are you hurting and broken within?
+5 5 5 -4 4 4 -3 3 5
 Overwhelmed by the weight of your sin?
+5 -5 4 4 -3
 Jesus is calling
+5 5 5 -4 4 4 -3 3 5
 Have you come to the end of yourself?
+5 5 5 -4 4 4 -3 3 5
 Do you thirst for a drink from the well?
+5 -5 4 4 -3
 Jesus is calling
+
+(Chorus)
+
+4 -4 5 4 -5 5 
 O come to the altar
+4 4 -4 5 -5 5 -4 4
 The Father's arms are open wide
+4 -4 5 4 -5 5 
 Forgiveness was bought with
+4 4 -4 5 -5 5 -4 45
 The precious blood of Jesus Christ
+
+(Verse 2)
+
+5 5 5 -4 4 4 -3 3 5
 Leave behind your regrets and mistakes
+5 5 5 -4 4 4 -3 3 5
 Come today, there's no reason to wait
+5 -5 4 4 -3
 Jesus is calling
+5 5 5 -4 4 4 -3 3 5
 Bring your sorrows and trade them for joy
+5 5 5 -4 4 4 -3 3 5
 From the ashes, a new life is born
+5 -5 4 4 -3
 Jesus is calling
+
+(Chorus)
+
+4 -4 5 4 -5 5 
 O come to the altar
+4 4 -4 5 -5 5 -4 4
 The Father's arms are open wide
+4 -4 5 4 -5 5 
 Forgiveness was bought with
+4 4 -4 5 -5 5 -4 45
 The precious blood of Jesus Christ
-Forgiveness was bought with
-The precious blood
+
+(Bridge)
+4 -4 5 -5 5 
 Oh, what a Savior
+4 -4 5 -5 5 4
 Isn't He wonderful?
+4 -4 5 6 4 -4 5 -5 5
 Sing hallelujah, Christ is risen
+4 -4 5 -5 5
 Bow down before Him
+4 -4 5 -5 5 4
 For He is Lord of all
 Sing hallelujah, Christ is risen
+4 -4 5 6 4 -4 5 -5 5
+
+(Chorus)
+
+4 -4 5 4 -5 5 
 O come to the altar
+4 4 -4 5 -5 5 -4 4
 The Father's arms are open wide
+4 -4 5 4 -5 5 
 Forgiveness was bought with
+4 4 -4 5 -5 5 -4 45
 The precious blood of Jesus Christ
-O come to the altar
-The Father's arms are open wide
-Forgiveness was bought with
-The precious blood of Jesus Christ
-The Father's arms are open wide`
     }
 };
+
 
 
