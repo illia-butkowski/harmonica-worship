@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonica Worship</title>
+    <title>Harmonica Worship | Tabs</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script src="altar.js"></script>
@@ -16,11 +16,40 @@
             --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.95);
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
-        header { padding: 15px; text-align: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); }
         
+        header { 
+            padding: 25px 15px; 
+            text-align: center; 
+            border-bottom: 1px solid var(--border); 
+            position: sticky; 
+            top: 0; 
+            background: var(--header-bg); 
+            z-index: 100; 
+            backdrop-filter: blur(10px); 
+        }
+
+        .site-title { 
+            font-size: 1.6rem; 
+            font-weight: 900; 
+            letter-spacing: -0.5px; 
+            margin: 0; 
+            color: var(--text);
+            text-transform: uppercase;
+        }
+        
+        /* Стиль для Псалма */
+        .site-slogan { 
+            font-size: 0.95rem; 
+            color: var(--accent); 
+            margin: 8px 0 20px 0; 
+            font-weight: 400;
+            font-style: italic; /* Курсив */
+            opacity: 0.9;
+        }
+
         .search-container {
             max-width: 500px;
-            margin: 10px auto 15px;
+            margin: 0 auto 15px;
             position: relative;
         }
         .search-input {
@@ -57,21 +86,24 @@
             background: var(--input-bg); padding: 25px; border-radius: 12px; 
             border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text);
         }
-        .chord { color: var(--accent); font-weight: 700; }
         .no-results { text-align: center; color: var(--muted); margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="site-title">Harmonica Worship</div>
+    <div id="slogan" class="site-slogan"></div>
+
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні або тексту..." oninput="render()">
+        <input type="text" id="searchInput" class="search-input" placeholder="..." oninput="render()">
         <span class="search-icon">🔍</span>
     </div>
+
     <div class="controls">
         <button class="btn active" id="btn-uk" onclick="setLang('uk')">UA</button>
         <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
-        <button class="btn" id="playBtn" onclick="toggleAutoscroll()" style="background: var(--accent); color: white; border: none;">▶ АВТОПЛЕЙ</button>
+        <button class="btn" id="playBtn" onclick="toggleAutoscroll()" style="background: var(--accent); color: white; border: none;">▶ AUTO</button>
         <button class="btn" onclick="changeFontSize(2)">A+</button>
         <button class="btn" onclick="changeFontSize(-2)">A-</button>
     </div>
@@ -84,12 +116,29 @@
     let scrollInterval = null;
     let currentFontSize = 16;
 
+    const translations = {
+        uk: {
+            slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3",
+            searchPlaceholder: "Пошук пісні або тексту...",
+            noResults: "Нічого не знайдено 🎶"
+        },
+        en: {
+            slogan: "“Sing to him a new song; play skillfully, and shout for joy.” — Psalm 33:3",
+            searchPlaceholder: "Search songs or lyrics...",
+            noResults: "Nothing found 🎶"
+        }
+    };
+
     const songData = [song_altar, song_how_he_loves, song_as_the_deer];
 
     function setLang(lang) {
         currentLang = lang;
         document.getElementById('btn-uk').className = 'btn' + (lang === 'uk' ? ' active' : '');
         document.getElementById('btn-en').className = 'btn' + (lang === 'en' ? ' active' : '');
+        
+        document.getElementById('slogan').innerText = translations[lang].slogan;
+        document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
+        
         render();
     }
 
@@ -104,12 +153,9 @@
         if (!wrapper) return;
         
         let html = '';
-        
-        // Фільтрація
         const filteredSongs = songData.filter(song => {
             const uk = song.uk;
             const en = song.en;
-            // Шукаємо всюди: в обох мовах назви, виконавця та контенту
             return uk.title.toLowerCase().includes(searchTerm) || 
                    uk.content.toLowerCase().includes(searchTerm) ||
                    en.title.toLowerCase().includes(searchTerm) ||
@@ -118,14 +164,14 @@
         });
 
         if (filteredSongs.length === 0) {
-            html = '<div class="no-results">Нічого не знайдено 🎶</div>';
+            html = `<div class="no-results">${translations[currentLang].noResults}</div>`;
         } else {
             filteredSongs.forEach(song => {
                 const data = song[currentLang];
                 html += `<div class="song-card">
                     <h2>${data.title}</h2>
                     <div class="artist">${data.artist}</div>
-                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Відео</span>
+                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video</span>
                     <div class="music-player" id="player-${song.id}">
                         <iframe width="100%" height="80" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
                     </div>
@@ -140,9 +186,9 @@
         if (scrollInterval) {
             clearInterval(scrollInterval);
             scrollInterval = null;
-            document.getElementById('playBtn').innerText = "▶ АВТОПЛЕЙ";
+            document.getElementById('playBtn').innerText = "▶ AUTO";
         } else {
-            document.getElementById('playBtn').innerText = "■ СТОП";
+            document.getElementById('playBtn').innerText = "■ STOP";
             scrollInterval = setInterval(() => { window.scrollBy(0, 1); }, 50);
         }
     }
@@ -156,4 +202,5 @@
 </script>
 </body>
 </html>
+
 
