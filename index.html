@@ -33,16 +33,9 @@
         .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: underline; margin-bottom: 10px; display: inline-block; }
         .music-player { display: none; margin-bottom: 20px; height: 80px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
         pre { 
-            font-family: 'Roboto Mono', monospace; 
-            font-size: 16px; 
-            line-height: 1.6; 
-            white-space: pre; 
-            background: var(--input-bg); 
-            padding: 25px; 
-            border-radius: 12px; 
-            border-left: 5px solid var(--accent); 
-            overflow-x: auto; 
-            color: var(--text);
+            font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; white-space: pre; 
+            background: var(--input-bg); padding: 25px; border-radius: 12px; 
+            border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text);
         }
         .chord { color: var(--accent); font-weight: 700; }
     </style>
@@ -66,12 +59,8 @@
     let scrollInterval = null;
     let currentFontSize = 16;
 
-    // ВАЖЛИВО: ці назви мають збігатися з першим рядком у файлах .js
-    const songData = [
-        song_altar,
-        song_how_he_loves,
-        song_as_the_deer
-    ];
+    // Реєструємо об'єкти пісень
+    const songData = [song_altar, song_how_he_loves, song_as_the_deer];
 
     function setLang(lang) {
         currentLang = lang;
@@ -82,15 +71,12 @@
 
     function togglePlayer(id) {
         const p = document.getElementById('player-' + id);
-        if (p) {
-            p.style.display = p.style.display === 'block' ? 'none' : 'block';
-        }
+        if (p) p.style.display = p.style.display === 'block' ? 'none' : 'block';
     }
 
     function render() {
         const wrapper = document.getElementById('wrapper');
         if (!wrapper) return;
-        
         let html = '';
         songData.forEach(song => {
             const data = song[currentLang];
