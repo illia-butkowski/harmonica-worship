@@ -37,14 +37,13 @@
             text-transform: uppercase;
         }
         
-        /* Стиль для Псалма */
         .site-slogan { 
             font-size: 0.95rem; 
             color: var(--accent); 
             margin: 8px 0 20px 0; 
             font-weight: 400;
-            font-style: italic; /* Курсив */
-            opacity: 0.9;
+            font-style: italic; 
+            line-height: 1.4;
         }
 
         .search-container {
@@ -72,6 +71,140 @@
             pointer-events: none;
         }
 
+        .controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.8rem; }
+        .btn.active { background: var(--text); color: var(--bg); }
+        
+        .container { max-width: 850px; margin: 20px auto; padding: 0 20px 150px; }
+        .song-card { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+        .song-card:last-child { border: none; }
+        
+        h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
+        .artist { color: var(--accent); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: underline; margin-bottom: 10px; display: inline-block; }
+        .music-player { display: none; margin-bottom: 20px; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+        
+        pre { 
+            font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; white-space: pre; 
+            background: var(--input-bg); padding: 25px; border-radius: 12px; 
+            border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text);
+        }
+        .no-results { text-align: center; color: var(--muted); margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="site-title">Harmonica Worship</div>
+    <div id="slogan" class="site-slogan"></div>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="..." oninput="render()">
+        <span class="search-icon">🔍</span>
+    </div>
+
+    <div class="controls">
+        <button class="btn active" id="btn-uk" onclick="setLang('uk')">UA</button>
+        <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="btn" id="playBtn" onclick="toggleAutoscroll()" style="background: var(--accent); color: white; border: none;">▶ AUTO</button>
+        <button class="btn" onclick="changeFontSize(2)">A+</button>
+        <button class="btn" onclick="changeFontSize(-2)">A-</button>
+    </div>
+</header>
+
+<div class="container" id="wrapper"></div>
+
+<script>
+    let currentLang = 'uk';
+    let scrollInterval = null;
+    let currentFontSize = 16;
+
+    const translations = {
+        uk: {
+            slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3",
+            searchPlaceholder: "Пошук пісні або тексту...",
+            noResults: "Нічого не знайдено 🎶"
+        },
+        en: {
+            slogan: "“Sing to him a new song; play skillfully, and shout for joy.” — Psalm 33:3",
+            searchPlaceholder: "Search songs or lyrics...",
+            noResults: "Nothing found 🎶"
+        }
+    };
+
+    // Масив пісень (переконайся, що файли .js завантажені на GitHub)
+    const songData = [song_altar, song_how_he_loves, song_as_the_deer];
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.getElementById('btn-uk').className = 'btn' + (lang === 'uk' ? ' active' : '');
+        document.getElementById('btn-en').className = 'btn' + (lang === 'en' ? ' active' : '');
+        
+        document.getElementById('slogan').innerText = translations[lang].slogan;
+        document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
+        
+        render();
+    }
+
+    function togglePlayer(id) {
+        const p = document.getElementById('player-' + id);
+        if (p) p.style.display = p.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function render() {
+        const wrapper = document.getElementById('wrapper');
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        if (!wrapper) return;
+        
+        let html = '';
+        const filteredSongs = songData.filter(song => {
+            const uk = song.uk;
+            const en = song.en;
+            return uk.title.toLowerCase().includes(searchTerm) || 
+                   uk.content.toLowerCase().includes(searchTerm) ||
+                   en.title.toLowerCase().includes(searchTerm) ||
+                   en.content.toLowerCase().includes(searchTerm);
+        });
+
+        if (filteredSongs.length === 0) {
+            html = `<div class="no-results">${translations[currentLang].noResults}</div>`;
+        } else {
+            filteredSongs.forEach(song => {
+                const data = song[currentLang];
+                html += `<div class="song-card">
+                    <h2>${data.title}</h2>
+                    <div class="artist">${data.artist}</div>
+                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video</span>
+                    <div class="music-player" id="player-${song.id}">
+                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
+                </div>`;
+            });
+        }
+        wrapper.innerHTML = html;
+    }
+
+    function toggleAutoscroll() {
+        if (scrollInterval) {
+            clearInterval(scrollInterval);
+            scrollInterval = null;
+            document.getElementById('playBtn').innerText = "▶ AUTO";
+        } else {
+            document.getElementById('playBtn').innerText = "■ STOP";
+            scrollInterval = setInterval(() => { window.scrollBy(0, 1); }, 50);
+        }
+    }
+
+    function changeFontSize(delta) {
+        currentFontSize += delta;
+        render();
+    }
+
+    window.onload = () => setLang('uk');
+</script>
+</body>
+</html>
         .controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
         .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.8rem; }
         .btn.active { background: var(--text); color: var(--bg); }
@@ -202,5 +335,6 @@
 </script>
 </body>
 </html>
+
 
 
