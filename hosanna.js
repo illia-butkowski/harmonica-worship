@@ -4,7 +4,10 @@ const song_hosanna = {
     uk: {
         title: "Осанна",
         artist: "Hillsong / Brooke Ligertwood",
-        content: `КУПЛЕТ 1:
+        content: `
+       
+        (Куплет 1)
+        
  4 4   -3    4   -5  -6 6
 Я бачу як Цар Слави, 
  4   4   4   -4   4  -5 6
@@ -18,7 +21,8 @@ const song_hosanna = {
  4  -6   5  -2      4  -6   5   -4
 Земля співа,       земля співа!
 
-ПРИСПІВ:
+(Приспів)
+
  5   6  -6     5   6  -6
 Осанна,       Осанна, 
  5   6  -5 5   -4  5  -4
@@ -28,7 +32,8 @@ const song_hosanna = {
  4  -6   6 -5 5  -5   6  5
 Осанна Богу  ввишніх!
 
-КУПЛЕТ 2:
+(Куплет 2)
+
  4 4   -3    4   -5  -6 6
 Я бачу покоління, 
  4   4 4 -4 4 -5 6
@@ -42,7 +47,8 @@ const song_hosanna = {
   4   -6  5   -2      4   -6  5   -4
 Вклониться все,    Вклониться все
 
-БРІДЖ:
+(Міст)
+
 -6  -6  -6 -6  -6   6 5 -4
 Серце Дух зціли, омий
  -5  -5 -5   5  -4   -4 5  -5   5   -2
@@ -60,7 +66,10 @@ const song_hosanna = {
     en: {
         title: "Hosanna",
         artist: "Hillsong United",
-        content: `VERSE 1:
+        content: `
+ 
+    (Verse 1)
+    
  4 4  -3   4   -5  -6 6
 I see the King of glory
  4  4   4  -4    4    -5  6
@@ -74,13 +83,15 @@ Washing over all our sin
  4  -6  5   -2      4  -6  5   -4
 The people sing,    the people sing
 
-CHORUS:
+(Chorus)
+
  5   6  -6     5   6  -6
 Hosanna,      Hosanna,
  5   6  -5 5  -4  5   4
 Hosanna in the highest!
 
-BRIDGE:
+(Bridge)
+
 -6   -6   -6   -6  -6    6 5  -4
 Heal my heart and make it clean
  -5 -5  -5  5  -4  -4 5   -5    5   -2
