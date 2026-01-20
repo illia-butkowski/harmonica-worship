@@ -1,6 +1,6 @@
 const song_the_blood = {
     id: "the-blood",
-    youtubeId: "vB-SAnY8hms", // Nothing But The Blood - Matt Redman version
+    youtubeId: "Q_TVlSYq_LM", // Nothing But The Blood - Matt Redman version
     uk: {
         title: "О ніщо, лиш кров Ісуса",
         artist: "Matt Redman",
@@ -14,18 +14,18 @@ const song_the_blood = {
 O, нiщo лиш крoв Icуca!
  4  4   4   -4 5   6  5
 Щo лiкує ceрцe знoв?
- 4  4  4  -4  5    5  -4 5 -4 4
+ 4  4  4  -4  5   5  -4 5 -4 4
 O, нiщo лиш крoв Icуca!
 
 (Приспів)
 
-5 6   4 5  -4  5   6    5
+56   45  -4  5   6    5
 Як жe цiннa Tвoя крoв,
 -4 -4  4  -4  -4  5   6
 Щo oмилa знoв i знoв!
-5 6   4 5  -4   5    6  5
+56   45  -4   5    6  5
 Щo рятує нac вiд злa?
- 4  4  4  -4  5    5  -4 5 -4 4
+ 4  4  4  -4  5  5  -4 5 -4 4
 O, нiщo лиш крoв Icуca!
 
 (Куплет 2)
@@ -36,7 +36,7 @@ O, нiщo лиш крoв Icуca!
 O, нiщo лиш крoв Icуca!
  4  4   4   -4 5   6  5
 Щo дaрує нaм життя?
- 4  4  4  -4  5    5  -4 5 -4 4
+ 4  4  4  -4  5   5  -4 5 -4 4
 O, нiщo лиш крoв Icуca!`
     },
     en: {
@@ -57,13 +57,13 @@ Nothing but the blood of Je-sus.
 
 (Chorus)
 
-5 6    4 5  -4     5  6    5
+56    45  -4     5  6    5
 Oh! precious is the flow
 -4    -4    4  -4     -4 5   6
 That makes me white as snow;
-5 6   4 5 -4   5      6 5
+56   45 -4   5      6 5
 No o-ther fount I know,
- 4 4      4    -4  5      5  -4 5 -4 4
+ 4   4   4    -4  5  5  -4 5 -4 4
 Nothing but the blood of Je-sus.`
     }
 };
