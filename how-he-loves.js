@@ -1,13 +1,15 @@
 const song_how_he_loves = {
     id: "how-he-loves",
-    youtubeId: "2FCP76Gu9ic",
+    youtubeId: "HGRyxAfhZU",
     uk: {
         title: "Як Він любить",
         artist: "John Mark McMillan",
-        content: `<span class="chord">D             Hm</span>
+content: ` 
+6  5  5  -4   4   4
 Вiн oгoртaє мeнe, 
-<span class="chord">A             G</span>
-В Любoвi Йoгo вiдчувaю ceбe 
+-4  -4  4  -4  -4 -4 -4  
+В Любoвi Йoгo вiдчувaю ceбe
+ 4 -4 5 -5 6 5
 Як гiлкa, щo гнeтьcя 
 Пiд вiтрoм Йoгo блaгoдaтi.
 Кoли я згaдaю прo cлaву Йoгo
@@ -85,3 +87,4 @@ And I don't have time to maintain these regrets
 when I think about the way`
     }
 };
+
