@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonica Worship</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-color: #ff9900; /* Колір акордів */
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #888888;
+            --tab-color: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .slogan {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .lang-switcher {
+            margin-top: 15px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active {
+            background-color: var(--text-main);
+            color: white;
+            border-color: var(--text-main);
+        }
+
+        /* Song Content */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .song-header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .song-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ccc;
+            text-transform: uppercase;
+            margin: 40px 0 20px 0;
+            border-bottom: 1px solid #fafafa;
+        }
+
+        /* THE SYSTEM: Tabs, Chords, Lyrics */
+        .line-group {
+            font-family: 'Roboto Mono', monospace;
+            margin-bottom: 25px;
+            white-space: pre; /* Зберігає пробіли для вирівнювання */
+            overflow-x: auto;
+        }
+
+        .tabs {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--tab-color);
+            margin-bottom: 2px;
+        }
+
+        .chords {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 2px;
+        }
+
+        .lyrics {
+            display: block;
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .tabs { font-size: 20px; }
+            .line-group { white-space: pre-wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="slogan" id="site-slogan">Співайте Йому пісню нову, грайте Йому гарно із покликом радости! (Псалом 32:3)</div>
+    <h2 style="margin:0; letter-spacing: 2px;">HARMONICA / WORSHIP</h2>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('uk')">UA</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+</header>
+
+<div class="container">
+    <div id="song-content">
+        </div>
+</div>
+
+<footer id="footer-text">
+    Зручна табулатура для діатонічної гармоніки!
+</footer>
+
+<script>
+    const translations = {
+        uk: {
+            slogan: "Співайте Йому пісню нову, грайте Йому гарно із покликом радости! (Псалом 32:3)",
+            footer: "Зручна табулатура для діатонічної гармоніки!",
+            title: "ПРИЙДИ ДО ВІВТАРЯ",
+            artist: "Elevation Worship | Тональність: C",
+            v1: "Куплет 1",
+            chorus: "Приспів",
+            bridge: "Міст",
+            lines: [
+                { t: "5  5  5  -4  4  4  -3  3  5", c: "C           F           C", l: "Маєш біль, маєш зламаний дух" },
+                { t: "5  5  5  -4  4  4  -3  3  5", c: "Am          F           C", l: "Тиск гріха уповільнює рух" },
+                { t: "5  -5  4  4  -3", c: "G", l: "Кличе Ісус нас" },
+                { t: "4  -4  5  4  -5  5  4  4  -4  5  -5  5  -4  4", c: "C           F           Am          F", l: "В обійми Ісуса ти перед вівтарем прийди" }
+            ]
+        },
+        en: {
+            slogan: "Sing to him a new song; play skillfully, and shout for joy. (Psalm 33:3)",
+            footer: "Convenient tabs for diatonic harmonica!",
+            title: "O COME TO THE ALTAR",
+            artist: "Elevation Worship | Key: C",
+            v1: "Verse 1",
+            chorus: "Chorus",
+            bridge: "Bridge",
+            lines: [
+                { t: "5  5  5  -4  4  4  -3  3  5", c: "C           F           C", l: "Are you hurt and broken within?" },
+                { t: "5  5  5  -4  4  4  -3  3  5", c: "Am          F           C", l: "Overwhelmed by the weight of sin?" },
+                { t: "5  -5  4  4  -3", c: "G", l: "Jesus is calling" },
+                { t: "4  -4  5  4  -5  5  4  4  -4  5  -5  5  -4  4", c: "C           F           Am          F", l: "O come to the altar, the Father's arms are open wide" }
+            ]
+        }
+    };
+
+    function setLang(lang) {
+        // Оновлення кнопок
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+        });
+
+        const data = translations[lang];
+        
+        // Оновлення статичних текстів
+        document.getElementById('site-slogan').innerText = data.slogan;
+        document.getElementById('footer-text').innerText = data.footer;
+
+        // Генерація контенту пісні
+        let html = `
+            <div class="song-header">
+                <h1>${data.title}</h1>
+                <div class="song-meta">${data.artist}</div>
+            </div>
+            
+            <div class="section-title">${data.v1}</div>
+            ${renderLine(data.lines[0])}
+            ${renderLine(data.lines[1])}
+            ${renderLine(data.lines[2])}
+
+            <div class="section-title">${data.chorus}</div>
+            ${renderLine(data.lines[3])}
+        `;
+        
+        document.getElementById('song-content').innerHTML = html;
+    }
+
+    function renderLine(line) {
+        return `
+            <div class="line-group">
+                <span class="tabs">${line.t}</span>
+                <span class="chords">${line.c}</span>
+                <span class="lyrics">${line.l}</span>
+            </div>
+        `;
+    }
+
+    // Ініціалізація українською
+    setLang('uk');
+</script>
+
+</body>
+</html>
