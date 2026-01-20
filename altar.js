@@ -4,10 +4,7 @@ const song_altar = {
     uk: {
         title: "Прийди до вівтаря",
         artist: "Elevation Worship",
-        content: `(Вступ таби)
-5 5 5 -4 4 4 -3 3 5
-5 5 5 -4 4 4 -3 3 5
-5 -5 4 4 -3
+        content: `
 
 (Куплет 1)
 5 5 5 -4 4 4 -3 3 5
@@ -77,3 +74,4 @@ O come to the altar, the Father's arms are open wide
 Forgiveness was bought with the blood of Christ`
     }
 };
+
