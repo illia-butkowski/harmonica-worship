@@ -59,19 +59,44 @@ const song_altar = {
     en: {
         title: "O Come to the Altar",
         artist: "Elevation Worship",
-        content: `(Verse 1)
-5 5 5 -4 4 4 -3 3 5
-Are you hurt and broken within?
-5 5 5 -4 4 4 -3 3 5
-Overwhelmed by the weight of sin?
-5 -5 4 4 -3
+        content: `Are you hurting and broken within?
+Overwhelmed by the weight of your sin?
 Jesus is calling
-
-(Chorus)
-4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 4
-O come to the altar, the Father's arms are open wide
-4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 45
-Forgiveness was bought with the blood of Christ`
+Have you come to the end of yourself?
+Do you thirst for a drink from the well?
+Jesus is calling
+O come to the altar
+The Father's arms are open wide
+Forgiveness was bought with
+The precious blood of Jesus Christ
+Leave behind your regrets and mistakes
+Come today, there's no reason to wait
+Jesus is calling
+Bring your sorrows and trade them for joy
+From the ashes, a new life is born
+Jesus is calling
+O come to the altar
+The Father's arms are open wide
+Forgiveness was bought with
+The precious blood of Jesus Christ
+Forgiveness was bought with
+The precious blood
+Oh, what a Savior
+Isn't He wonderful?
+Sing hallelujah, Christ is risen
+Bow down before Him
+For He is Lord of all
+Sing hallelujah, Christ is risen
+O come to the altar
+The Father's arms are open wide
+Forgiveness was bought with
+The precious blood of Jesus Christ
+O come to the altar
+The Father's arms are open wide
+Forgiveness was bought with
+The precious blood of Jesus Christ
+The Father's arms are open wide`
     }
 };
+
 
