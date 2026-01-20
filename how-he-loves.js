@@ -25,6 +25,7 @@ I я рoзумiю, який Вiн Святий,
 В Любoвi Йoгo пeрeмoгa.
 
 (ЗАСПІВ)
+
 6  -6  6    5    6  6
 O, як Вiн любить нac, 
 -4  -4  5  -5  6  5
@@ -33,6 +34,7 @@ O, як Вiн любить,
 Як Вiн любить нac. 
 
 (ПРИСПІВ)
+
  8   8   8    -8
 Вiн любить, o, 
 -9  8   8    8   -8
@@ -43,6 +45,7 @@ O, як Вiн любить,
 Вiн любить нac.
 
 (МІСТ)
+
  9  8   8  8 -8  7  9   8   8   8
 Вiн нac вcинoвив, Вiн — нaш Спacитeль, 
 -8 -8  7  -8 -8 -8  7  -8 -8  8 -9
@@ -78,7 +81,8 @@ and I realize just how beautiful
 You are and how great your affections are for me. 
 
 (Chorus)
- 6  -6  6    5    6  6
+ 6  -6  6  
+ 5    6  6
 Oh, how He loves us so 
 -4  -4  5  -5  6  5
 Oh, how He loves us 
@@ -86,6 +90,7 @@ Oh, how He loves us
 How He loves us so. 
 
 (Bridge 1)
+
  8    8   8   -8
 Yeah, He loves us
  -9    8   8   8   -8 
@@ -96,6 +101,7 @@ Woah, how He loves us
 Woah, how He loves. 
 
 (Bridge 2)
+
  9  8   8   8 -8    7  9  8   8    8
 We are His portion and He is our prize, 
  -8   -8  7 -8  -8  -8  7   -8   -8  8   -9
@@ -112,6 +118,7 @@ And I don't have time to maintain these regrets
 when I think about the way`
     }
 };
+
 
 
 
