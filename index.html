@@ -12,18 +12,38 @@
 
     <style>
         :root {
-            --bg: #ffffff; --text: #1a1a1a; --muted: #666; --accent: #ff9900;
-            --border: #eeeeee; --input-bg: #f9f9f9; --header-bg: rgba(255, 255, 255, 0.95);
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0f0f0f; --text: #e0e0e0; --muted: #999; --accent: #ffaa22;
-                --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.95);
-            }
+            --bg: #0f0f0f; --text: #e0e0e0; --muted: #999; --accent: #ffaa22;
+            --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.95);
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
         header { padding: 15px; text-align: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); }
-        .controls { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
+        
+        .search-container {
+            max-width: 500px;
+            margin: 10px auto 15px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            pointer-events: none;
+        }
+
+        .controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
         .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.8rem; }
         .btn.active { background: var(--text); color: var(--bg); }
         .container { max-width: 850px; margin: 20px auto; padding: 0 20px 150px; }
@@ -38,11 +58,16 @@
             border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text);
         }
         .chord { color: var(--accent); font-weight: 700; }
+        .no-results { text-align: center; color: var(--muted); margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні або тексту..." oninput="render()">
+        <span class="search-icon">🔍</span>
+    </div>
     <div class="controls">
         <button class="btn active" id="btn-uk" onclick="setLang('uk')">UA</button>
         <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
@@ -59,7 +84,6 @@
     let scrollInterval = null;
     let currentFontSize = 16;
 
-    // Реєструємо об'єкти пісень
     const songData = [song_altar, song_how_he_loves, song_as_the_deer];
 
     function setLang(lang) {
@@ -76,20 +100,39 @@
 
     function render() {
         const wrapper = document.getElementById('wrapper');
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         if (!wrapper) return;
+        
         let html = '';
-        songData.forEach(song => {
-            const data = song[currentLang];
-            html += `<div class="song-card">
-                <h2>${data.title}</h2>
-                <div class="artist">${data.artist}</div>
-                <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Відео</span>
-                <div class="music-player" id="player-${song.id}">
-                    <iframe width="100%" height="80" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
-            </div>`;
+        
+        // Фільтрація
+        const filteredSongs = songData.filter(song => {
+            const uk = song.uk;
+            const en = song.en;
+            // Шукаємо всюди: в обох мовах назви, виконавця та контенту
+            return uk.title.toLowerCase().includes(searchTerm) || 
+                   uk.content.toLowerCase().includes(searchTerm) ||
+                   en.title.toLowerCase().includes(searchTerm) ||
+                   en.content.toLowerCase().includes(searchTerm) ||
+                   uk.artist.toLowerCase().includes(searchTerm);
         });
+
+        if (filteredSongs.length === 0) {
+            html = '<div class="no-results">Нічого не знайдено 🎶</div>';
+        } else {
+            filteredSongs.forEach(song => {
+                const data = song[currentLang];
+                html += `<div class="song-card">
+                    <h2>${data.title}</h2>
+                    <div class="artist">${data.artist}</div>
+                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Відео</span>
+                    <div class="music-player" id="player-${song.id}">
+                        <iframe width="100%" height="80" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
+                </div>`;
+            });
+        }
         wrapper.innerHTML = html;
     }
 
@@ -113,3 +156,4 @@
 </script>
 </body>
 </html>
+
