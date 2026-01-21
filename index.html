@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonica Worship | Платформа</title>
+    
+    <title>Harmonica Worship | Християнські таби та метроном</title>
+    <meta name="description" content="Найкраща платформа для гри на губній гармоніці: таби християнських пісень, вбудований метроном, відео-уроки та спільнота.">
+    <meta name="keywords" content="губна гармоніка, таби, worship, християнські пісні, метроном онлайн, harmonica tabs">
+    <meta property="og:title" content="Harmonica Worship | Грай для Бога">
+    <meta property="og:description" content="Таби, відео та метроном в одному місці.">
+    <meta property="og:image" content="https://your-domain.com/preview.jpg"> <meta name="theme-color" content="#ff9500">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script src="altar.js"></script>
@@ -17,54 +24,75 @@
         :root { --bg: #0b0b0b; --card-bg: #161616; --text: #f0f0f0; --muted: #888; --accent: #ff9500; --border: #222; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
+        /* SIDEBAR */
         .sidebar { position: fixed; left: -300px; top: 0; width: 280px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1000; transition: 0.4s; padding: 25px; box-sizing: border-box; overflow-y: auto; }
         .sidebar.active { left: 0; }
         
-        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; transition: 0.6s; }
-        .hero.compact { height: 35vh; justify-content: flex-start; padding-top: 20px; }
+        /* HERO */
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; transition: 0.6s ease-in-out; }
+        .hero.compact { height: 40vh; justify-content: flex-end; padding-bottom: 40px; }
 
-        .search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 5px 15px; width: 100%; max-width: 600px; gap: 10px; }
+        /* SEARCH */
+        .search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 5px 15px; width: 100%; max-width: 600px; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .search-input { flex: 1; background: none; border: none; color: white; padding: 12px; font-size: 1.1rem; outline: none; }
 
-        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.2s; }
-        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; }
+        /* SONG CARDS */
+        .song-card { background: var(--card-bg); padding: 25px; border-radius: 20px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+        .song-card h3 { margin-top: 0; display: flex; justify-content: space-between; align-items: center; }
+        pre { font-family: 'Roboto Mono'; line-height: 1.7; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; font-size: 16px; color: #e0e0e0; }
 
-        .review-item { background: #1a1a1a; padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #333; }
-        .reply-box { margin-left: 20px; border-left: 2px solid var(--accent); padding-left: 10px; margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+        /* VIDEO STYLES */
+        .video-container { display: none; margin-top: 20px; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; border: 1px solid #333; }
+        .video-container iframe { width: 100%; height: 100%; border: none; }
+
+        .btn-action { background: #222; border: 1px solid #444; color: var(--text); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; margin-right: 5px; }
+        .btn-action:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* COMMUNITY */
+        .review-item { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #222; font-size: 0.9rem; }
+        .reply-box { margin-left: 20px; border-left: 2px solid var(--accent); padding-left: 12px; margin-top: 10px; color: var(--muted); }
         
-        .fab-btn { position: fixed; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(255,149,0,0.3); }
+        /* UI BUTTONS */
+        .fab-btn { position: fixed; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; font-size: 1.3rem; box-shadow: 0 5px 20px rgba(255,149,0,0.4); transition: 0.3s; }
+        .fab-btn:active { transform: scale(0.9); }
         #menuToggle { left: 20px; }
-        #chatToggle { right: 20px; background: #222; color: var(--accent); border: 1px solid var(--accent); }
+        #chatToggle { right: 20px; background: #1a1a1a; border: 1px solid var(--accent); color: var(--accent); }
+
+        .pulse { border-color: var(--accent) !important; box-shadow: 0 0 15px rgba(255,149,0,0.2); }
     </style>
 </head>
 <body>
 
 <div id="sidebar" class="sidebar">
-    <h2 style="color: var(--accent);">Налаштування</h2>
-    <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; text-align: center;">
-        <div id="bpmDisplay" style="font-size: 2rem; font-weight: 900; color: var(--accent);">90</div>
-        <input type="range" id="bpmSlider" min="40" max="220" value="90" style="width: 100%;" oninput="updateBPM(this.value)">
-        <button onclick="toggleMetronome()" style="width: 100%; background: var(--accent); border: none; padding: 10px; color: white; font-weight: bold; border-radius: 5px; margin-top: 10px;">START</button>
+    <h2 style="color: var(--accent); margin-top: 0;">Метроном</h2>
+    <div style="background: #1a1a1a; padding: 20px; border-radius: 15px; text-align: center;">
+        <div id="bpmDisplay" style="font-size: 2.5rem; font-weight: 900; color: var(--accent); margin-bottom: 5px;">90</div>
+        <div style="font-size: 0.7rem; color: var(--muted); margin-bottom: 15px; text-transform: uppercase;">Beats Per Minute</div>
+        <input type="range" id="bpmSlider" min="40" max="220" value="90" style="width: 100%; accent-color: var(--accent);" oninput="updateBPM(this.value)">
+        <button onclick="toggleMetronome()" id="metroBtn" style="width: 100%; background: var(--accent); border: none; padding: 12px; color: white; font-weight: 900; border-radius: 10px; margin-top: 20px; cursor: pointer;">START</button>
     </div>
-    <div id="communitySection" style="margin-top: 30px;">
-        <h3>Відгуки</h3>
-        <textarea id="reviewInput" placeholder="Напишіть відгук..." style="width: 100%; background: #222; border: 1px solid #444; color: white; padding: 8px; border-radius: 5px; height: 60px;"></textarea>
-        <button onclick="addReview()" style="width: 100%; padding: 8px; margin-top: 5px; cursor: pointer;">Надіслати</button>
-        <div id="reviewsList" style="margin-top: 15px;"></div>
+
+    <div id="communitySection" style="margin-top: 40px;">
+        <h3 style="font-size: 1.1rem;">Спільнота</h3>
+        <textarea id="reviewInput" placeholder="Ваш відгук або питання..." style="width: 100%; background: #222; border: 1px solid #333; color: white; padding: 12px; border-radius: 10px; height: 80px; font-family: inherit; outline: none;"></textarea>
+        <button onclick="addReview()" style="width: 100%; padding: 10px; margin-top: 10px; background: #333; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Надіслати</button>
+        <div id="reviewsList" style="margin-top: 20px;"></div>
     </div>
 </div>
 
 <div id="hero" class="hero">
-    <h1>Harmonica Worship</h1>
-    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 600px;"></p>
+    <h1 style="font-size: 3rem; margin: 0; letter-spacing: -1px;">Harmonica Worship</h1>
+    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 600px; margin: 20px 0; line-height: 1.6;"></p>
     <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні..." oninput="handleSearch()">
-        <button class="lang-btn active" id="btn-uk" onclick="setLang('uk')" style="background:none; border:1px solid #444; color:white; border-radius:5px; padding:5px 10px; cursor:pointer;">UA</button>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')" style="background:none; border:1px solid #444; color:white; border-radius:5px; padding:5px 10px; cursor:pointer;">EN</button>
+        <input type="text" id="searchInput" class="search-input" placeholder="Яку пісню шукаємо?" oninput="handleSearch()">
+        <div style="display: flex; gap: 5px; padding-right: 5px;">
+            <button id="btn-uk" onclick="setLang('uk')" class="btn-action">UA</button>
+            <button id="btn-en" onclick="setLang('en')" class="btn-action">EN</button>
+        </div>
     </div>
 </div>
 
-<div id="wrapper" style="max-width: 800px; margin: 0 auto; padding: 20px;"></div>
+<div id="wrapper" style="max-width: 800px; margin: 0 auto; padding: 0 20px 100px;"></div>
 
 <div id="menuToggle" class="fab-btn" onclick="toggleSidebar()">☰</div>
 <div id="chatToggle" class="fab-btn" onclick="toggleSidebar()">💬</div>
@@ -74,12 +102,11 @@
     let bpm = 90;
     let isPlaying = false;
     let metroInterval = null;
-    let fontSize = 16;
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     const trans = {
-        uk: { slogan: "«Співайте Йому нову пісню, грайте Йому гарно з погуком, бо слово Господнє пряме, і кожен Його чин — то правда!» — Псалом 32:3-4" },
-        en: { slogan: "“Sing to him a new song; play skillfully on the strings, with loud shouts. For the word of the Lord is upright, and all his work is done in faithfulness.” — Psalm 33:3-4" }
+        uk: { slogan: "«Співайте Йому нову пісню, грайте Йому гарно з погуком...» — Псалом 32:3" },
+        en: { slogan: "“Sing to him a new song; play skillfully...” — Psalm 33:3" }
     };
 
     function setLang(l) {
@@ -93,59 +120,81 @@
     function updateBPM(val) {
         bpm = parseInt(val);
         document.getElementById('bpmDisplay').innerText = bpm;
+        document.getElementById('bpmSlider').value = bpm;
         if (isPlaying) { stopMetro(); startMetro(); }
     }
 
     function toggleMetronome() { isPlaying ? stopMetro() : startMetro(); }
     function startMetro() {
         isPlaying = true;
+        document.getElementById('metroBtn').innerText = "STOP";
         if (audioCtx.state === 'suspended') audioCtx.resume();
         metroInterval = setInterval(() => {
             const osc = audioCtx.createOscillator();
             const g = audioCtx.createGain();
-            osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
             g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
             osc.connect(g); g.connect(audioCtx.destination);
             osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-            document.querySelectorAll('.song-card').forEach(c => {
-                c.style.borderColor = 'var(--accent)';
-                setTimeout(() => c.style.borderColor = 'var(--border)', 100);
+            
+            // Visual feedback
+            const cards = document.querySelectorAll('.song-card');
+            cards.forEach(c => {
+                c.classList.add('pulse');
+                setTimeout(() => c.classList.remove('pulse'), 100);
             });
         }, (60000 / bpm));
     }
-    function stopMetro() { isPlaying = false; clearInterval(metroInterval); }
+    function stopMetro() { 
+        isPlaying = false; 
+        document.getElementById('metroBtn').innerText = "START";
+        clearInterval(metroInterval); 
+    }
 
     function handleSearch() {
-        if (document.getElementById('searchInput').value.length > 0) document.getElementById('hero').classList.add('compact');
+        const input = document.getElementById('searchInput');
+        if (input.value.length > 0) document.getElementById('hero').classList.add('compact');
+        else document.getElementById('hero').classList.remove('compact');
         render();
     }
 
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
 
+    function toggleVideo(id) {
+        const v = document.getElementById('vid-' + id);
+        v.style.display = (v.style.display === 'block' ? 'none' : 'block');
+    }
+
     function render() {
         const wrapper = document.getElementById('wrapper');
         const term = document.getElementById('searchInput').value.toLowerCase();
-        const songs = [
-            typeof song_altar !== 'undefined' ? song_altar : null,
-            typeof song_how_he_loves !== 'undefined' ? song_how_he_loves : null,
-            typeof song_as_the_deer !== 'undefined' ? song_as_the_deer : null,
-            typeof song_hosanna !== 'undefined' ? song_hosanna : null,
-            typeof song_the_blood !== 'undefined' ? song_the_blood : null,
-            typeof song_reckless_love !== 'undefined' ? song_reckless_love : null
-        ].filter(s => s !== null);
-
+        const songList = ['altar', 'how_he_loves', 'as_the_deer', 'hosanna', 'the_blood', 'reckless_love'];
+        
         let html = '';
-        songs.filter(s => s[currentLang].title.toLowerCase().includes(term)).forEach(s => {
-            html += `<div class="song-card">
-                <h3>${s[currentLang].title} <small onclick="updateBPM(${s.bpm})" style="color:var(--accent); cursor:pointer;">⏱ ${s.bpm} BPM</small></h3>
-                <pre style="font-size:${fontSize}px">${s[currentLang].content}</pre>
-            </div>`;
+        songList.forEach(key => {
+            const s = window['song_' + key];
+            if (s && s[currentLang].title.toLowerCase().includes(term)) {
+                html += `
+                <div class="song-card">
+                    <h3>
+                        ${s[currentLang].title} 
+                        <div>
+                            <button class="btn-action" onclick="toggleVideo('${s.id}')">Відео</button>
+                            <span onclick="updateBPM(${s.bpm})" style="color:var(--accent); cursor:pointer; font-size:0.9rem;">⏱ ${s.bpm}</span>
+                        </div>
+                    </h3>
+                    <div id="vid-${s.id}" class="video-container">
+                        <iframe src="https://www.youtube.com/embed/${s.youtubeId}" allowfullscreen></iframe>
+                    </div>
+                    <pre>${s[currentLang].content}</pre>
+                </div>`;
+            }
         });
-        wrapper.innerHTML = html;
+        wrapper.innerHTML = html || '<p style="text-align:center; color:var(--muted);">Нічого не знайдено...</p>';
         loadReviews();
     }
 
-    // REVIEW SYSTEM
+    // COMMUNITY
     function addReview() {
         const txt = document.getElementById('reviewInput').value;
         if (!txt) return;
@@ -172,13 +221,16 @@
         list.innerHTML = reviews.map(r => `
             <div class="review-item">
                 <div>${r.text}</div>
-                <button onclick="addReply(${r.id})" style="font-size:0.7rem; margin-top:5px;">Відповісти</button>
+                <button onclick="addReply(${r.id})" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:0.7rem; padding:0; margin-top:5px;">Відповісти</button>
                 ${r.replies.map(rep => `<div class="reply-box">↳ ${rep}</div>`).join('')}
             </div>
         `).join('');
     }
 
-    window.onload = () => setLang('uk');
+    window.onload = () => {
+        setLang('uk');
+    };
 </script>
 </body>
 </html>
+
