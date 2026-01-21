@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Harmonica Worship | Християнські таби для губної гармоніки</title>
-    <meta name="description" content="Християнські пісні для губної гармоніки. Таби, метроном та відео-уроки в одному каталозі.">
-    <meta name="keywords" content="губна гармоніка, таби, worship, християнські пісні, метроном, worship harmonica, harmonica tabs, christian harmonica, worship harmonica tabs">
+    <title>Harmonica Worship | Християнські таби</title>
+    <meta name="description" content="Християнські пісні для губної гармоніки. Таби, метроном та відео-уроки.">
     <meta property="og:title" content="Harmonica Worship">
-    <meta property="og:description" content="Таби, метроном та відео для губної гармоніки в одному місці.">
     <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -19,24 +17,22 @@
     <script src="hosanna.js"></script>
     <script src="the-blood.js"></script>
     <script src="reckless-love.js"></script>
+    <script src="king-of-my-heart.js"></script>
 
     <style>
-        :root { --bg: #0b0b0b; --card-bg: #161616; --text: #f0f0f0; --muted: #888; --accent: #ff9500; --border: #222; }
+        :root { --bg: #0b0b0b; --card-bg: #161616; --text: #f0f0f0; --accent: #ff9500; --border: #222; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* SIDEBAR */
         .sidebar { position: fixed; left: -300px; top: 0; width: 280px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1000; transition: 0.4s; padding: 25px; box-sizing: border-box; overflow-y: auto; }
         .sidebar.active { left: 0; }
         
-        /* HERO */
         .hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; transition: 0.6s; }
         .hero.compact { min-height: 25vh; padding: 20px; }
 
         .search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 5px 15px; width: 100%; max-width: 600px; gap: 10px; margin-top: 20px; }
         .search-input { flex: 1; background: none; border: none; color: white; padding: 12px; font-size: 1.1rem; outline: none; }
 
-        /* SONG CARDS */
-        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.3s; position: relative; }
+        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.3s; }
         .song-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         
         .tempo-btn { background: #222; border: 1px solid var(--accent); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; font-weight: bold; }
@@ -47,7 +43,6 @@
         .video-container { display: none; margin-top: 15px; border-radius: 10px; overflow: hidden; aspect-ratio: 16/9; border: 1px solid #333; }
         .video-container iframe { width: 100%; height: 100%; border: none; }
 
-        /* UI ELEMENTS */
         .fab-btn { position: fixed; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(255,149,0,0.3); }
         #menuToggle { left: 20px; }
         #chatToggle { right: 20px; background: #222; color: var(--accent); border: 1px solid var(--accent); }
@@ -170,7 +165,7 @@
     function render() {
         const wrapper = document.getElementById('wrapper');
         const term = document.getElementById('searchInput').value.toLowerCase();
-        const names = ['song_altar', 'song_how_he_loves', 'song_as_the_deer', 'song_hosanna', 'song_the_blood', 'song_reckless_love'];
+        const names = ['song_altar', 'song_how_he_loves', 'song_as_the_deer', 'song_hosanna', 'song_the_blood', 'song_reckless_love', 'song_king_of_my_heart'];
         
         let songs = [];
         names.forEach(n => { if(window[n]) songs.push(window[n]); });
@@ -196,7 +191,6 @@
         loadReviews();
     }
 
-    // COMMUNITY
     function addReview() {
         const txt = document.getElementById('reviewInput').value;
         if (!txt) return;
@@ -211,16 +205,6 @@
         const list = document.getElementById('reviewsList');
         const reviews = JSON.parse(localStorage.getItem('hw_reviews') || '[]');
         list.innerHTML = reviews.map(r => `
-            <div class="review-item" style="background:#1a1a1a; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #333; font-size:0.9rem;">
-                ${r.text}
-            </div>
-        `).join('');
-    }
-
-  
-    };
-</script>
-</body>
-</html>
+            <div class="
 
 
