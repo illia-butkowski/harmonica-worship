@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonica Worship | Таби та Метроном</title>
     
-    <meta name="description" content="Християнські пісні для губної гармоніки: таби, метроном та відео.">
+    <title>Harmonica Worship | Християнські таби та метроном</title>
+    <meta name="description" content="Збірник християнських пісень для губної гармоніки. Таби, відео-уроки та онлайн метроном.">
+    <meta name="keywords" content="губна гармоніка, християнські пісні, таби, worship, метроном">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
@@ -20,28 +21,31 @@
         :root { --bg: #0b0b0b; --card-bg: #161616; --text: #f0f0f0; --accent: #ff9500; --border: #222; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
         
+        /* БІЧНА ПАНЕЛЬ */
         .sidebar { position: fixed; left: -300px; top: 0; width: 280px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1000; transition: 0.4s; padding: 25px; box-sizing: border-box; }
         .sidebar.active { left: 0; }
         
-        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; transition: 0.5s; box-sizing: border-box; }
-        .hero.compact { height: 40vh; }
+        /* ГОЛОВНИЙ БЛОК */
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; }
+        .hero.compact { height: auto; min-height: 40vh; padding-top: 50px; }
 
         .search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 5px 15px; width: 100%; max-width: 500px; gap: 10px; margin-top: 20px; }
         .search-input { flex: 1; background: none; border: none; color: white; padding: 10px; outline: none; font-size: 1rem; }
 
-        .catalog-trigger { background: #222; border: 1px solid #444; color: white; padding: 10px 25px; border-radius: 25px; margin-top: 20px; cursor: pointer; font-weight: bold; }
-        .catalog-trigger:hover { border-color: var(--accent); color: var(--accent); }
+        .catalog-btn { background: #222; border: 1px solid #444; color: white; padding: 12px 30px; border-radius: 30px; margin-top: 20px; cursor: pointer; font-weight: bold; }
 
-        .container { max-width: 800px; margin: 0 auto; padding-bottom: 100px; display: none; }
+        /* СПИСОК ПІСЕНЬ */
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px 100px; display: none; }
         .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); }
         
-        .tempo-btn { background: #222; border: 1px solid var(--accent); color: var(--accent); padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin: 10px 0; font-weight: bold; display: inline-block; }
+        .tempo-tag { display: inline-block; background: #222; border: 1px solid var(--accent); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin-top: 10px; font-weight: bold; }
         
-        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; font-size: 16px; color: #eee; }
+        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 20px; font-size: 16px; color: #eee; }
         
         .video-box { display: none; margin-top: 15px; border-radius: 10px; overflow: hidden; aspect-ratio: 16/9; }
         .video-box iframe { width: 100%; height: 100%; border: none; }
 
+        /* КНОПКИ */
         .fab { position: fixed; bottom: 20px; left: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; font-size: 1.4rem; }
         .ui-btn { width: 100%; padding: 12px; margin-bottom: 12px; background: #222; border: 1px solid #333; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; }
         .lang-btn { background: none; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
@@ -51,9 +55,9 @@
 <body>
 
 <div id="sidebar" class="sidebar">
-    <h2 id="metroTitle" style="color: var(--accent);">Метроном</h2>
-    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 15px;">
-        <div id="bpmDisp" style="font-size: 2.5rem; font-weight: 900; color: var(--accent);">90</div>
+    <h2 id="mTitle" style="color: var(--accent);">Метроном</h2>
+    <div style="background: #1a1a1a; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px;">
+        <div id="bpmDisp" style="font-size: 2.2rem; font-weight: 900; color: var(--accent);">90</div>
         <input type="range" id="bpmSlider" min="40" max="220" value="90" style="width: 100%; margin: 15px 0;" oninput="updateBPM(this.value)">
         <button onclick="toggleMetro()" id="mBtn" class="ui-btn" style="background: var(--accent); border: none;">START</button>
     </div>
@@ -61,16 +65,16 @@
 </div>
 
 <div id="hero" class="hero">
-    <h1 style="font-size: clamp(2rem, 8vw, 3.5rem); margin: 0;">Harmonica Worship</h1>
-    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 600px; margin-top: 10px; font-size: 0.9rem;"></p>
+    <h1>Harmonica Worship</h1>
+    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 600px; font-size: 0.9rem; margin-top: 10px;"></p>
     
     <div class="search-wrapper">
         <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні..." oninput="handleInput()">
         <button onclick="setL('uk')" class="lang-btn" id="uB">UA</button>
         <button onclick="setL('en')" class="lang-btn" id="eB">EN</button>
     </div>
-
-    <button id="showAllBtn" class="catalog-trigger" onclick="showCatalog()">📂 ВІДКРИТИ КАТАЛОГ</button>
+    
+    <button id="catBtn" class="catalog-btn" onclick="openCatalog()">ВІДКРИТИ КАТАЛОГ</button>
 </div>
 
 <div class="container" id="wrapper"></div>
@@ -85,44 +89,28 @@
     const aCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     const texts = {
-        uk: { 
-            slogan: "«Співайте Йому нову пісню, грайте Йому гарно з погуком...» — Пс. 32:3",
-            metro: "Метроном",
-            catalogBtn: "📂 ВІДКРИТИ КАТАЛОГ",
-            search: "Пошук пісні...",
-            scroll: "АВТОПРОКРУТКА"
-        },
-        en: { 
-            slogan: "“Sing to him a new song; play skillfully...” — Ps. 33:3",
-            metro: "Metronome",
-            catalogBtn: "📂 OPEN CATALOG",
-            search: "Search song...",
-            scroll: "AUTO SCROLL"
-        }
+        uk: { slogan: "«Співайте Йому нову пісню...» — Пс. 32:3", mLabel: "Метроном", btn: "ВІДКРИТИ КАТАЛОГ" },
+        en: { slogan: "“Sing to him a new song...” — Ps. 33:3", mLabel: "Metronome", btn: "OPEN CATALOG" }
     };
 
     function setL(l) { 
         lang = l; 
         document.getElementById('slogan').innerText = texts[l].slogan;
-        document.getElementById('metroTitle').innerText = texts[l].metro;
-        document.getElementById('showAllBtn').innerText = texts[l].catalogBtn;
-        document.getElementById('searchInput').placeholder = texts[l].search;
-        document.getElementById('sBtn').innerText = texts[l].scroll;
-        
+        document.getElementById('mTitle').innerText = texts[l].mLabel;
+        document.getElementById('catBtn').innerText = texts[l].btn;
         document.getElementById('uB').className = 'lang-btn' + (l==='uk'?' active':'');
         document.getElementById('eB').className = 'lang-btn' + (l==='en'?' active':'');
-        
-        if(document.getElementById('wrapper').style.display === 'block') render();
+        render(); 
     }
 
     function handleInput() {
-        if(document.getElementById('searchInput').value.length > 0) showCatalog();
+        if(document.getElementById('searchInput').value.length > 0) openCatalog();
     }
 
-    function showCatalog() {
+    function openCatalog() {
         document.getElementById('hero').classList.add('compact');
         document.getElementById('wrapper').style.display = 'block';
-        document.getElementById('showAllBtn').style.display = 'none';
+        document.getElementById('catBtn').style.display = 'none';
         render();
     }
 
@@ -142,4 +130,53 @@
             const g = aCtx.createGain();
             o.frequency.setValueAtTime(1000, aCtx.currentTime);
             g.gain.exponentialRampToValueAtTime(0.001, aCtx.currentTime + 0.05);
-            o.connect(g); g.connect(a
+            o.connect(g); g.connect(aCtx.destination);
+            o.start(); o.stop(aCtx.currentTime + 0.05);
+        }, (60000/bpm));
+    }
+    function stopM() { isM = false; clearInterval(mInt); document.getElementById('mBtn').innerText = "START"; }
+
+    function toggleScroll() {
+        if(sInt) { clearInterval(sInt); sInt = null; document.getElementById('sBtn').innerText = "AUTO SCROLL"; }
+        else {
+            sInt = setInterval(() => { window.scrollBy(0, 1); }, (60000 / bpm / 25));
+            document.getElementById('sBtn').innerText = "STOP";
+            toggleSide();
+        }
+    }
+
+    function toggleSide() { document.getElementById('sidebar').classList.toggle('active'); }
+    function toggleVid(id) { 
+        const v = document.getElementById('vid-'+id); 
+        v.style.display = (v.style.display === 'block') ? 'none' : 'block'; 
+    }
+
+    function render() {
+        const wrap = document.getElementById('wrapper');
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const names = ['song_altar', 'song_how_he_loves', 'song_as_the_deer', 'song_hosanna', 'song_the_blood', 'song_reckless_love'];
+        let songs = [];
+        names.forEach(n => { if(window[n]) songs.push(window[n]); });
+
+        let h = '';
+        songs.filter(s => s[lang].title.toLowerCase().includes(query)).forEach(s => {
+            h += `
+            <div class="song-card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                    <h2 style="margin:0;">${s[lang].title}</h2>
+                    <button onclick="toggleVid('${s.id}')" style="background:none; border:1px solid #444; color:gray; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:0.7rem;">Video</button>
+                </div>
+                <div class="tempo-tag" onclick="updateBPM(${s.bpm})">⏱ TEMPO: ${s.bpm} BPM</div>
+                <div id="vid-${s.id}" class="video-box">
+                    <iframe src="https://www.youtube.com/embed/${s.youtubeId}" allowfullscreen></iframe>
+                </div>
+                <pre>${s[lang].content}</pre>
+            </div>`;
+        });
+        wrap.innerHTML = h;
+    }
+
+    window.onload = () => { setL('uk'); };
+</script>
+</body>
+</html>
