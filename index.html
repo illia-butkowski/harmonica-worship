@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -13,6 +12,7 @@
     <script src="hosanna.js"></script>
     <script src="the-blood.js"></script>
     <script src="reckless-love.js"></script>
+    <script src="king-of-my-heart.js"></script>
 
     <style>
         :root {
@@ -20,43 +20,17 @@
             --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.95);
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
-        
-        /* SIDEBAR */
-        .sidebar {
-            position: fixed; left: -280px; top: 0; width: 260px; height: 100%;
-            background: #111; border-right: 1px solid var(--border);
-            z-index: 1001; transition: 0.3s; padding: 30px 20px; box-sizing: border-box;
-        }
+        .sidebar { position: fixed; left: -280px; top: 0; width: 260px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1001; transition: 0.3s; padding: 30px 20px; box-sizing: border-box; }
         .sidebar.active { left: 0; }
-        .sidebar-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; z-index: 1000;
-        }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; z-index: 1000; }
         .sidebar-overlay.active { display: block; }
-        
         .bpm-display { font-size: 2.5rem; font-weight: 900; color: var(--accent); text-align: center; margin: 10px 0; font-family: 'Roboto Mono'; }
         .metro-slider { width: 100%; accent-color: var(--accent); margin: 20px 0; }
         .metro-btn { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: 900; cursor: pointer; background: var(--accent); color: black; }
-
-        header { 
-            padding: 25px 15px; text-align: center; border-bottom: 1px solid var(--border); 
-            position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); 
-        }
-
-        .menu-btn { 
-            position: absolute; left: 15px; top: 22px; background: #222; border: 1px solid var(--border); 
-            color: var(--text); padding: 10px 15px; border-radius: 8px; cursor: pointer; 
-            display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700;
-        }
-
+        header { padding: 25px 15px; text-align: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); }
+        .menu-btn { position: absolute; left: 15px; top: 22px; background: #222; border: 1px solid var(--border); color: var(--text); padding: 10px 15px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; }
         .song-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 5px; }
-        .tempo-badge { 
-            background: rgba(255, 170, 34, 0.1); color: var(--accent); 
-            padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; 
-            font-weight: 800; border: 1px solid rgba(255, 170, 34, 0.3);
-            font-family: 'Roboto Mono';
-        }
-
+        .tempo-badge { background: rgba(255, 170, 34, 0.1); color: var(--accent); padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(255, 170, 34, 0.3); font-family: 'Roboto Mono'; }
         .site-title { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; margin: 0; color: var(--text); text-transform: uppercase; }
         .site-slogan { font-size: 0.95rem; color: var(--accent); margin: 8px 0 20px 0; font-weight: 400; font-style: italic; line-height: 1.4; }
         .search-container { max-width: 500px; margin: 0 auto 15px; position: relative; }
@@ -65,7 +39,6 @@
         .controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
         .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.8rem; }
         .btn.active { background: var(--text); color: var(--bg); }
-        
         .container { max-width: 850px; margin: 20px auto; padding: 0 20px 150px; }
         .song-card { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
         h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
@@ -79,7 +52,7 @@
 
 <div class="sidebar-overlay" id="overlay" onclick="toggleMetroSidebar()"></div>
 <div class="sidebar" id="sidebar">
-    <h3 id="metroTitle" style="margin:0;">МЕТРОНОМ</h3>
+    <h3 id="metroTitle">МЕТРОНОМ</h3>
     <div class="bpm-display"><span id="bpmVal">90</span> <small style="font-size: 1rem; color: var(--muted);">bpm</small></div>
     <input type="range" class="metro-slider" id="bpmSlider" min="40" max="220" value="90">
     <button class="metro-btn" id="startBtn" onclick="toggleMetronome()">START</button>
@@ -112,14 +85,14 @@
     let currentFontSize = 16;
     let tempo = 90;
 
-    // Мета-дані адаптовані під наш метроном
     const songMeta = {
         'altar': '70 BPM | 6/8',
         'how-he-loves': '75 BPM | 6/8',
         'as-the-deer': '52 BPM | 4/4',
         'hosanna': '154 BPM | 4/4',
         'the-blood': '77 BPM | 4/4',
-        'reckless-love': '83 BPM | 6/8'
+        'reckless-love': '83 BPM | 6/8',
+        'king-of-heart': '68 BPM | 4/4'
     };
 
     let audioCtx = null;
@@ -169,33 +142,17 @@
     }
 
     function startScroll() {
-        // Корекція швидкості скролу під темп
         const scrollSpeed = (60 / tempo) * 60; 
         scrollInterval = setInterval(() => { window.scrollBy(0, 1); }, scrollSpeed);
         document.getElementById('playBtn').innerText = "■ STOP";
     }
 
-    function stopScroll() {
-        clearInterval(scrollInterval);
-        scrollInterval = null;
-        document.getElementById('playBtn').innerText = "▶ AUTO";
-    }
-
+    function stopScroll() { clearInterval(scrollInterval); scrollInterval = null; document.getElementById('playBtn').innerText = "▶ AUTO"; }
     function toggleAutoscroll() { scrollInterval ? stopScroll() : startScroll(); }
 
     const translations = {
-        uk: {
-            slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3",
-            searchPlaceholder: "Пошук пісні...",
-            noResults: "Нічого не знайдено 🎶",
-            menu: "МЕТРОНОМ"
-        },
-        en: {
-            slogan: "“Sing to him a new song; play skillfully, and shout for joy.” — Psalm 33:3",
-            searchPlaceholder: "Search songs...",
-            noResults: "Nothing found 🎶",
-            menu: "METRONOME"
-        }
+        uk: { slogan: "«Співайте Йому пісню нову...» — Пс. 32:3", searchPlaceholder: "Пошук...", noResults: "Нічого не знайдено 🎶", menu: "МЕТРОНОМ" },
+        en: { slogan: "“Sing to him a new song...” — Ps. 33:3", searchPlaceholder: "Search...", noResults: "Nothing found 🎶", menu: "METRONOME" }
     };
 
     function setLang(lang) {
@@ -217,7 +174,6 @@
     function render() {
         const wrapper = document.getElementById('wrapper');
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        if (!wrapper) return;
         
         const allSongs = [];
         if (typeof song_altar !== 'undefined') allSongs.push(song_altar);
@@ -226,40 +182,35 @@
         if (typeof song_hosanna !== 'undefined') allSongs.push(song_hosanna);
         if (typeof song_the_blood !== 'undefined') allSongs.push(song_the_blood);
         if (typeof song_reckless_love !== 'undefined') allSongs.push(song_reckless_love);
+        if (typeof song_king_of_my_heart !== 'undefined') allSongs.push(song_king_of_my_heart);
 
         let html = '';
         const filteredSongs = allSongs.filter(song => {
-            const uk = song.uk; const en = song.en;
-            return uk.title.toLowerCase().includes(searchTerm) || 
-                   en.title.toLowerCase().includes(searchTerm);
+            return song[currentLang].title.toLowerCase().includes(searchTerm);
         });
 
-        if (filteredSongs.length === 0) {
-            html = `<div class="no-results">${translations[currentLang].noResults}</div>`;
-        } else {
-            filteredSongs.forEach(song => {
-                const data = song[currentLang];
-                const meta = songMeta[song.id] || '';
-                html += `<div class="song-card">
-                    <div class="song-title-row">
-                        <h2>${data.title}</h2>
-                        <span class="tempo-badge">${meta}</span>
-                    </div>
-                    <div class="artist">${data.artist}</div>
-                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video</span>
-                    <div class="music-player" id="player-${song.id}">
-                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
-                </div>`;
-            });
-        }
-        wrapper.innerHTML = html;
+        filteredSongs.forEach(song => {
+            const data = song[currentLang];
+            const meta = songMeta[song.id] || '';
+            html += `<div class="song-card">
+                <div class="song-title-row">
+                    <h2>${data.title}</h2>
+                    <span class="tempo-badge">${meta}</span>
+                </div>
+                <div class="artist">${data.artist}</div>
+                <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video</span>
+                <div class="music-player" id="player-${song.id}">
+                    <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
+            </div>`;
+        });
+        wrapper.innerHTML = html || `<div class="no-results">${translations[currentLang].noResults}</div>`;
     }
 
     function changeFontSize(delta) { currentFontSize += delta; render(); }
-
     window.onload = () => setLang('uk');
 </script>
 </body>
 </html>
+
