@@ -89,6 +89,10 @@ The people sing, the people sing
 Hosanna,    Hosanna,
  5   6  -5 5  -4  5   4
 Hosanna in the highest!
+5   6  -6   5   6  -6
+Hosanna,    Hosanna,
+4  -6   6 -5 5  -5   6  5
+Hosanna in the highest!
 
 (Bridge)
 
