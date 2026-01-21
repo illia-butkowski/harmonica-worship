@@ -4,7 +4,7 @@ const song_reckless_love = {
     uk: {
         title: "Неймовірна Любов",
         artist: "Cory Asbury / Bethel Music",
-        content: 
+        content: ` 
 
 (Куплет 1)
 
@@ -90,6 +90,6 @@ mountain You won't climb up, coming after me.
  7      7    7   7    7   -7
 There's no wall You won't kick down, 
 -7 -7 -7 -7 -6 -6 6 -5 5
-no lie You won't tear down, coming after me.
+no lie You won't tear down, coming after me. ` 
     }
 };
