@@ -4,22 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Harmonica Worship | Таби для губної гармоніки | Christian Tabs</title>
-    <meta name="description" content="Найбільша база християнських пісень для губної гармоніки. Таби, звуковий метроном, відео-уроки та спільнота.">
-    <meta name="keywords" content="губна гармоніка, таби, християнські пісні, worship harmonica, церковна музика, метроном онлайн">
-    <meta property="og:title" content="Harmonica Worship - Таби та Метроном">
-    <meta property="og:description" content="Грай професійно з вбудованим метрономом та відео-супроводом.">
-    <meta property="og:type" content="website">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MusicPlaylist",
-      "name": "Christian Harmonica Tabs",
-      "description": "Tabs for worship songs on harmonica",
-      "genre": "Christian"
-    }
-    </script>
+    <title>Harmonica Worship | Таби та Метроном</title>
+    <meta name="description" content="Християнські пісні для губної гармоніки з метрономом та відео.">
+    <meta name="keywords" content="губна гармоніка, таби, worship, християнська музика, метроном">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
@@ -34,70 +21,60 @@
         :root { --bg: #0b0b0b; --card-bg: #161616; --text: #f0f0f0; --muted: #888; --accent: #ff9500; --border: #222; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* SIDEBAR */
         .sidebar { position: fixed; left: -300px; top: 0; width: 280px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1000; transition: 0.4s; padding: 25px; box-sizing: border-box; overflow-y: auto; }
         .sidebar.active { left: 0; }
         
-        /* HERO SECTION */
-        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; transition: 0.6s; }
         .hero.compact { height: 35vh; justify-content: flex-start; padding-top: 40px; }
 
         .search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 5px 15px; width: 100%; max-width: 600px; gap: 10px; margin-top: 20px; }
         .search-input { flex: 1; background: none; border: none; color: white; padding: 12px; font-size: 1.1rem; outline: none; }
 
-        /* SONG CARDS */
-        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.2s; position: relative; }
-        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 20px; }
-        .video-container { display: none; margin-top: 15px; border-radius: 10px; overflow: hidden; background: #000; height: 200px; }
-
-        /* REVIEWS */
-        .review-item { background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333; font-size: 0.9rem; }
-        .reply-box { margin-left: 15px; border-left: 2px solid var(--accent); padding-left: 8px; margin-top: 5px; color: var(--muted); }
+        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.2s; }
+        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 20px; color: #ddd; }
         
-        /* UI BUTTONS */
-        .fab-btn { position: fixed; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(255,149,0,0.3); }
+        .video-container { display: none; margin-top: 15px; border-radius: 10px; overflow: hidden; background: #000; height: 215px; }
+        
+        .fab-btn { position: fixed; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(255,149,0,0.3); font-size: 1.3rem; }
         #menuToggle { left: 20px; }
         #chatToggle { right: 20px; background: #222; color: var(--accent); border: 1px solid var(--accent); }
-        .tool-btn { width: 100%; background: #222; border: 1px solid var(--border); color: white; padding: 10px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; font-weight: bold; }
+
+        .review-item { background: #1a1a1a; padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #333; font-size: 0.85rem; }
+        .reply { border-left: 2px solid var(--accent); margin-left: 10px; padding-left: 8px; margin-top: 5px; color: var(--muted); }
     </style>
 </head>
 <body>
 
 <div id="sidebar" class="sidebar">
-    <h2 style="color: var(--accent);">Налаштування</h2>
-    
-    <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; text-align: center;">
+    <h2 style="color: var(--accent);">Меню</h2>
+    <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
         <div id="bpmDisplay" style="font-size: 2rem; font-weight: 900; color: var(--accent);">90</div>
         <input type="range" id="bpmSlider" min="40" max="220" value="90" style="width: 100%;" oninput="updateBPM(this.value)">
-        <button onclick="toggleMetronome()" id="startStopBtn" style="width: 100%; background: var(--accent); border: none; padding: 10px; color: white; font-weight: bold; border-radius: 5px; margin-top: 10px; cursor: pointer;">START</button>
+        <button onclick="toggleMetronome()" id="startBtn" style="width:100%; margin-top:10px; padding:10px; background:var(--accent); border:none; border-radius:5px; color:white; font-weight:bold; cursor:pointer;">START</button>
     </div>
+    
+    <button onclick="toggleAutoscroll()" id="scrollBtn" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:white; border-radius:5px; cursor:pointer; margin-bottom:10px;">▶ AUTO SCROLL</button>
 
-    <div style="margin-top: 20px;">
-        <button class="tool-btn" id="scrollBtn" onclick="toggleAutoscroll()">▶ AUTO SCROLL</button>
-        <button class="tool-btn" onclick="changeFontSize(2)">A+ Шрифт</button>
-        <button class="tool-btn" onclick="changeFontSize(-2)">A- Шрифт</button>
-    </div>
-
-    <div id="communitySection" style="margin-top: 30px;">
-        <h3 style="font-size: 1rem;">Спільнота (Відгуки)</h3>
-        <textarea id="reviewInput" placeholder="Ваша думка..." style="width: 100%; background: #222; border: 1px solid #444; color: white; padding: 8px; border-radius: 5px; height: 50px;"></textarea>
-        <button onclick="addReview()" style="width: 100%; padding: 8px; margin-top: 5px; cursor: pointer; background: #333; color: white; border: none; border-radius: 5px;">Надіслати</button>
-        <div id="reviewsList" style="margin-top: 15px;"></div>
+    <div id="reviews">
+        <h3 style="font-size: 1rem;">Відгуки</h3>
+        <textarea id="revInp" style="width:100%; background:#222; border:1px solid #444; color:white; border-radius:5px; height:50px; padding:5px;"></textarea>
+        <button onclick="addReview()" style="width:100%; margin-top:5px; background:#333; color:white; border:none; padding:5px; border-radius:5px; cursor:pointer;">Надіслати</button>
+        <div id="revList" style="margin-top:15px;"></div>
     </div>
 </div>
 
 <div id="hero" class="hero">
     <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); margin: 0;">Harmonica Worship</h1>
-    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 700px; padding: 0 20px; line-height: 1.4;"></p>
+    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 700px; line-height: 1.4; margin-top: 15px;"></p>
     
     <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-input" placeholder="Назва пісні або текст..." oninput="handleSearch()">
-        <button class="lang-btn active" id="btn-uk" onclick="setLang('uk')">UA</button>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+        <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні..." oninput="handleSearch()">
+        <button onclick="setLang('uk')" id="ukBtn" style="background:none; border:1px solid #444; color:white; padding:5px 10px; border-radius:5px; cursor:pointer;">UA</button>
+        <button onclick="setLang('en')" id="enBtn" style="background:none; border:1px solid #444; color:white; padding:5px 10px; border-radius:5px; cursor:pointer; margin-left:5px;">EN</button>
     </div>
 </div>
 
-<div id="wrapper" style="max-width: 800px; margin: 0 auto; padding: 0 20px 100px;"></div>
+<div id="wrapper" style="max-width: 800px; margin: 0 auto; padding-bottom: 100px;"></div>
 
 <div id="menuToggle" class="fab-btn" onclick="toggleSidebar()">☰</div>
 <div id="chatToggle" class="fab-btn" onclick="toggleSidebar()">💬</div>
@@ -119,26 +96,25 @@
     function setLang(l) {
         currentLang = l;
         document.getElementById('slogan').innerText = trans[l].slogan;
-        document.getElementById('btn-uk').style.borderColor = (l === 'uk' ? 'var(--accent)' : '#444');
-        document.getElementById('btn-en').style.borderColor = (l === 'en' ? 'var(--accent)' : '#444');
+        document.getElementById('ukBtn').style.borderColor = (l === 'uk' ? 'var(--accent)' : '#444');
+        document.getElementById('enBtn').style.borderColor = (l === 'en' ? 'var(--accent)' : '#444');
         render();
     }
 
-    // --- METRONOME ---
-    function updateBPM(val) {
-        bpm = parseInt(val);
+    function updateBPM(v) {
+        bpm = parseInt(v);
         document.getElementById('bpmDisplay').innerText = bpm;
-        if (scrollInterval) { stopScroll(); startScroll(); }
         if (isPlaying) { stopMetro(); startMetro(); }
     }
 
     function toggleMetronome() { isPlaying ? stopMetro() : startMetro(); }
     function startMetro() {
-        isPlaying = true;
-        document.getElementById('startStopBtn').innerText = "STOP";
+        isPlaying = true; document.getElementById('startBtn').innerText = "STOP";
         if (audioCtx.state === 'suspended') audioCtx.resume();
         metroInterval = setInterval(() => {
             const osc = audioCtx.createOscillator();
             const g = audioCtx.createGain();
-            osc.frequency.setValueAtTime(1000, audioCtx.currentTime
-
+            osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            osc.connect(g); g.connect(audioCtx.destination);
+            osc.start();
