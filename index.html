@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmonica Worship | Таби та Метроном</title>
     
-    <meta name="description" content="Християнські пісні для губної гармоніки. Таби, метроном, автопрокрутка та відео-уроки.">
+    <meta name="description" content="Християнські пісні для губної гармоніки. Таби, метроном, автопрокрутка та відео.">
     <meta name="keywords" content="губна гармоніка, таби, worship, християнська музика, метроном">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -21,43 +21,40 @@
         :root { --bg: #0b0b0b; --card-bg: #161616; --text: #f0f0f0; --muted: #888; --accent: #ff9500; --border: #222; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.5; }
         
-        /* SIDEBAR */
-        .sidebar { position: fixed; left: -300px; top: 0; width: 280px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1000; transition: 0.4s; padding: 25px; box-sizing: border-box; overflow-y: auto; }
+        /* СУЙДЕБАР */
+        .sidebar { position: fixed; left: -300px; top: 0; width: 280px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1000; transition: 0.4s; padding: 25px; box-sizing: border-box; }
         .sidebar.active { left: 0; }
         
-        /* HERO */
-        .hero { min-height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
-        .hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); margin: 0; }
-        
+        /* ГЕРОЙ СЕКЦІЯ */
+        .hero { min-height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; transition: 0.6s; }
+        .hero.compact { min-height: 25vh; padding-top: 20px; }
+
         .search-wrapper { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 5px 15px; width: 100%; max-width: 500px; gap: 10px; margin-top: 20px; }
         .search-input { flex: 1; background: none; border: none; color: white; padding: 10px; outline: none; font-size: 1rem; }
 
-        /* SONG CARDS */
-        .container { max-width: 800px; margin: 0 auto; padding: 0 20px 100px; }
-        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.3s; }
-        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 20px; font-size: 16px; color: #eee; overflow-x: auto; }
+        /* КАРТКИ ПІСЕНЬ */
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px 120px; }
+        .song-card { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid var(--border); transition: 0.2s; }
+        pre { font-family: 'Roboto Mono'; line-height: 1.6; white-space: pre-wrap; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 20px; font-size: 16px; color: #eee; }
         
         .video-box { display: none; margin-top: 15px; border-radius: 10px; overflow: hidden; background: #000; aspect-ratio: 16/9; }
         .video-box iframe { width: 100%; height: 100%; border: none; }
 
-        /* CONTROLS */
+        /* КНОПКИ ТА КЕРУВАННЯ */
         .fab { position: fixed; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; font-size: 1.4rem; box-shadow: 0 4px 15px rgba(255,149,0,0.4); }
         #menuBtn { left: 20px; }
-        #chatBtn { right: 20px; background: #222; border: 1px solid var(--accent); color: var(--accent); }
         
-        .ui-btn { width: 100%; padding: 12px; margin-bottom: 12px; background: #222; border: 1px solid #333; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .ui-btn { width: 100%; padding: 12px; margin-bottom: 12px; background: #222; border: 1px solid #333; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .ui-btn:hover { background: #333; }
+        
         .lang-btn { background: none; border: 1px solid #444; color: white; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
         .lang-btn.active { border-color: var(--accent); color: var(--accent); }
-
-        /* REVIEWS */
-        .rev-card { background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333; font-size: 0.85rem; }
-        .reply { margin-left: 15px; border-left: 2px solid var(--accent); padding-left: 8px; margin-top: 6px; color: var(--muted); }
     </style>
 </head>
 <body>
 
 <div id="sidebar" class="sidebar">
-    <h2 style="color: var(--accent); margin-bottom: 20px;">Налаштування</h2>
+    <h2 style="color: var(--accent); margin-bottom: 25px;">Налаштування</h2>
     
     <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px; border: 1px solid var(--border);">
         <div id="bpmDisp" style="font-size: 2.2rem; font-weight: 900; color: var(--accent); font-family: 'Roboto Mono';">90</div>
@@ -66,49 +63,34 @@
     </div>
 
     <button onclick="toggleScroll()" id="sBtn" class="ui-btn">▶ AUTO SCROLL</button>
-
-    <div style="margin-top: 30px;">
-        <h3 style="font-size: 1rem; color: var(--accent);">Відгуки спільноти</h3>
-        <textarea id="revIn" placeholder="Напишіть щось..." style="width:100%; background:#000; border:1px solid #333; color:white; height:60px; border-radius:8px; padding:10px; box-sizing:border-box;"></textarea>
-        <button onclick="addRev()" class="ui-btn" style="margin-top:8px; font-size:0.8rem;">Надіслати</button>
-        <div id="revList" style="margin-top: 15px;"></div>
-    </div>
+    <button onclick="changeFontSize(2)" class="ui-btn">A+ Збільшити шрифт</button>
+    <button onclick="changeFontSize(-2)" class="ui-btn">A- Зменшити шрифт</button>
 </div>
 
-<div class="hero">
+<div id="hero" class="hero">
     <h1>Harmonica Worship</h1>
-    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 650px; font-size: 0.95rem; margin-top: 15px; line-height: 1.5; padding: 0 20px;"></p>
+    <p id="slogan" style="color: var(--accent); font-style: italic; max-width: 700px; font-size: 0.95rem; margin-top: 15px; line-height: 1.5; padding: 0 20px;"></p>
     
     <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні або тексту..." oninput="render()">
+        <input type="text" id="searchInput" class="search-input" placeholder="Пошук пісні..." oninput="handleSearch()">
         <button onclick="setL('uk')" class="lang-btn" id="uB">UA</button>
         <button onclick="setL('en')" class="lang-btn" id="eB">EN</button>
     </div>
 </div>
 
 <div class="container" id="wrapper">
-    </div>
+    <p id="statusMsg" style="text-align:center; color:var(--muted); margin-top:50px;">Завантаження бібліотеки пісень...</p>
+</div>
 
 <div id="menuBtn" class="fab" onclick="toggleSide()">☰</div>
-<div id="chatBtn" class="fab" onclick="toggleSide()">💬</div>
 
 <script>
-    // 1. БЕЗПЕЧНІ ДАНІ (якщо файли не завантажаться)
-    const backupSongs = [
-        {
-            id: 'altar',
-            bpm: 170,
-            youtubeId: '69p8kUe9q_0',
-            uk: { title: "The Altar", artist: "Elevation Rhythm", content: "+5 +6 -6 +6\nТут Твій вівтар..." },
-            en: { title: "The Altar", artist: "Elevation Rhythm", content: "+5 +6 -6 +6\nAt the altar..." }
-        }
-    ];
-
     let lang = 'uk';
     let bpm = 90;
     let isM = false;
     let mInt = null;
     let sInt = null;
+    let fontSize = 16;
     const aCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     const texts = {
@@ -127,7 +109,6 @@
     function updateBPM(v) { 
         bpm = parseInt(v); 
         document.getElementById('bpmDisp').innerText = bpm;
-        document.getElementById('bpmSlider').value = bpm;
         if(isM) { stopM(); startM(); }
         if(sInt) { stopS(); startS(); }
     }
@@ -143,75 +124,73 @@
             g.gain.exponentialRampToValueAtTime(0.001, aCtx.currentTime + 0.05);
             o.connect(g); g.connect(aCtx.destination);
             o.start(); o.stop(aCtx.currentTime + 0.05);
-            
-            // Візуальний відгук
-            const cards = document.querySelectorAll('.song-card');
-            cards.forEach(c => {
-                c.style.borderColor = 'var(--accent)';
-                setTimeout(() => c.style.borderColor = 'var(--border)', 100);
-            });
         }, (60000/bpm));
     }
     function stopM() { isM = false; clearInterval(mInt); document.getElementById('mBtn').innerText = "START METRO"; }
 
     function toggleScroll() { sInt ? stopS() : startS(); }
     function startS() {
-        const delay = (60000 / bpm / 25);
-        sInt = setInterval(() => { window.scrollBy(0, 1); }, delay);
+        sInt = setInterval(() => { window.scrollBy(0, 1); }, (60000 / bpm / 25));
         document.getElementById('sBtn').innerText = "■ STOP SCROLL";
         toggleSide();
     }
     function stopS() { clearInterval(sInt); sInt = null; document.getElementById('sBtn').innerText = "▶ AUTO SCROLL"; }
 
+    function changeFontSize(d) { fontSize += d; render(); }
     function toggleSide() { document.getElementById('sidebar').classList.toggle('active'); }
     function toggleVid(id) { 
         const v = document.getElementById('vid-'+id); 
         v.style.display = (window.getComputedStyle(v).display === 'none') ? 'block' : 'none'; 
     }
 
+    function handleSearch() {
+        if(document.getElementById('searchInput').value.length > 0) document.getElementById('hero').classList.add('compact');
+        render();
+    }
+
     function render() {
         const wrap = document.getElementById('wrapper');
         const query = document.getElementById('searchInput').value.toLowerCase();
         
-        // Збираємо пісні з усіх джерел
         const list = ['song_altar', 'song_how_he_loves', 'song_as_the_deer', 'song_hosanna', 'song_the_blood', 'song_reckless_love'];
         let songs = [];
-        
         list.forEach(name => { if(window[name]) songs.push(window[name]); });
-        if(songs.length === 0) songs = backupSongs; // Якщо нічого не завантажилось, беремо запасну
+
+        if(songs.length === 0) return; // Чекаємо завантаження
 
         let h = '';
         songs.filter(s => s[lang].title.toLowerCase().includes(query) || s[lang].content.toLowerCase().includes(query)).forEach(s => {
             h += `
             <div class="song-card">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap: 10px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                     <div>
-                        <h2 style="margin:0; font-size:1.5rem;">${s[lang].title}</h2>
+                        <h2 style="margin:0;">${s[lang].title}</h2>
                         <div style="color:var(--accent); font-weight:bold; font-size:0.85rem; margin-top:4px;">${s[lang].artist}</div>
                     </div>
-                    <button onclick="toggleVid('${s.id}')" style="background:#222; border:1px solid #444; color:white; font-size:0.75rem; cursor:pointer; padding:6px 10px; border-radius:6px; white-space:nowrap;">🎵 VIDEO</button>
+                    <button onclick="toggleVid('${s.id}')" style="background:#222; border:1px solid #444; color:white; font-size:0.75rem; cursor:pointer; padding:6px 10px; border-radius:6px;">🎵 VIDEO</button>
                 </div>
                 <div id="vid-${s.id}" class="video-box">
                     <iframe src="https://www.youtube.com/embed/${s.youtubeId}" allowfullscreen></iframe>
                 </div>
-                <pre>${s[lang].content}</pre>
-                <div style="margin-top:15px; border-top:1px solid #222; padding-top:15px; display:flex; gap:15px;">
-                    <span style="font-size:0.8rem; color:var(--accent); cursor:pointer; font-weight:bold;" onclick="updateBPM(${s.bpm})">⏱ TEMPO: ${s.bpm} BPM</span>
+                <pre style="font-size:${fontSize}px">${s[lang].content}</pre>
+                <div style="margin-top:15px; border-top:1px solid #222; padding-top:15px;">
+                    <span style="font-size:0.8rem; color:var(--accent); cursor:pointer; font-weight:bold;" onclick="updateBPM(${s.bpm})">⏱ ОРИГІНАЛЬНИЙ ТЕМП: ${s.bpm} BPM</span>
                 </div>
             </div>`;
         });
         wrap.innerHTML = h || '<p style="text-align:center; color:var(--muted); margin-top:50px;">Пісень не знайдено 🎶</p>';
-        loadRevs();
     }
 
-    // --- REVIEWS SYSTEM ---
-    function addRev() {
-        const t = document.getElementById('revIn').value; if(!t) return;
-        const r = JSON.parse(localStorage.getItem('hw_reviews') || '[]');
-        r.unshift({id: Date.now(), text: t, reps: []});
-        localStorage.setItem('hw_reviews', JSON.stringify(r));
-        document.getElementById('revIn').value = ''; loadRevs();
+    // Перевірка готовності файлів перед запуском
+    function init() {
+        if (window.song_altar || window.song_reckless_love) {
+            setL('uk');
+        } else {
+            setTimeout(init, 200);
+        }
     }
-    function addRep(id) {
-        const p =
 
+    window.onload = init;
+</script>
+</body>
+</html>
