@@ -2,7 +2,7 @@ const song_king_of_my_heart = {
     id: 'king-of-heart',
     youtubeId: 'V9S79S8N4_0',
     uk: {
-        title: 'Цар мого життя',
+        title: 'Ти благий',
         artist: 'BETHEL MUSIC',
         content: `
 
