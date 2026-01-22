@@ -87,7 +87,7 @@ The people sing, the people sing
 
 5   6  -6   5   6  -6
 Hosanna,    Hosanna,
- 5   6  -5 5  -4  5   4
+ 5   6  -5 5  -4  5  -4
 Hosanna in the highest!
 5   6  -6   5   6  -6
 Hosanna,    Hosanna,
