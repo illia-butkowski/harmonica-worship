@@ -3,78 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How He Loves - Harmonica Tabs | Як Він любить - Таби для гармоніки</title>
-    <meta name="description" content="Free harmonica tabs for How He Loves (John Mark McMillan / David Crowder). Master the 6/8 rhythm and high notes with our interactive metronome.">
-    
+    <title id="page-title">Як Він любить - Harmonica Tabs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #e0e0e0; background: #0f0f0f; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        h1 { color: #ffaa22; text-align: center; border-bottom: 2px solid #222; padding-bottom: 20px; font-size: 2.2rem; }
-        h2 { color: #ffaa22; font-size: 1.3rem; border-left: 3px solid #ffaa22; padding-left: 10px; margin-top: 25px; }
-        .btn-container { text-align: center; margin: 40px 0; }
-        .btn { background: #ffaa22; color: #000; padding: 18px 35px; text-decoration: none; border-radius: 50px; font-weight: 900; text-transform: uppercase; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,170,34,0.3); display: inline-block; }
-        .btn:hover { transform: scale(1.05); background: #fff; }
-        pre { background: #1a1a1a; padding: 15px; border-radius: 8px; font-family: 'Roboto Mono', monospace; font-size: 14px; color: #ffaa22; border: 1px solid #333; overflow-x: auto; }
-        .divider { border-top: 1px solid #222; margin: 40px 0; }
-        p { color: #bbb; }
-        @media (max-width: 700px) { .lang-grid { grid-template-columns: 1fr; } }
+        :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 140px; }
+        
+        .header-nav { background: var(--panel); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .btn-back { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .btn-lang { background: var(--primary); border: none; padding: 8px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; }
+
+        .logo-box { text-align: center; padding: 30px 20px; }
+        .logo-text { color: var(--primary); font-size: 1.5rem; font-weight: 900; margin: 0; text-transform: uppercase; }
+        #psalm-text { font-size: 0.85rem; font-style: italic; color: #888; margin-top: 8px; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        #song-title { font-size: 2.5rem; margin: 10px 0; text-align: center; color: #fff; }
+        #artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; line-height: 1.8; border-left: 6px solid var(--primary); margin-bottom: 40px; }
+
+        /* Посилання на інші пісні */
+        .other-songs { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; }
+        .other-songs h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 15px; }
+        .song-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .song-links a { color: #aaa; text-decoration: none; font-size: 0.85rem; background: #222; padding: 5px 12px; border-radius: 4px; transition: 0.2s; }
+        .song-links a:hover { background: var(--primary); color: #000; }
+
+        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 20px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 100; }
+        .bpm-display { font-size: 1.8rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; }
+        .btn-play { background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
-    <h1>How He Loves – John Mark McMillan</h1>
+    <nav class="header-nav">
+        <a href="../index.html" class="btn-back" id="nav-back">← КАТАЛОГ</a>
+        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
+    </nav>
 
-    <div class="btn-container">
-        <a href="https://illia-butkowski.github.io/harmonica-worship/#how-he-loves" class="btn">
-            Open Interactive Player & Metronome
-        </a>
+    <div class="logo-box">
+        <p class="logo-text">Harmonica Worship</p>
+        <p id="psalm-text">"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)</p>
     </div>
 
-    <div class="lang-grid">
-        <div class="lang-block">
-            <h2>🇺🇦 Особливості виконання (UA)</h2>
-            <p><strong>"Як Він любить"</strong> — це емоційна подорож у ритмі <strong>6/8</strong>. У цій пісні важливо контролювати дихання, оскільки мелодія охоплює широкий діапазон гармоніки.</p>
-            <p><strong>Порада:</strong> У частині "Міст" (Bridge) використовуються високі ноти <strong>(8, -9, 9)</strong>. Тримайте гармоніку глибоко в роті, щоб звук залишався повним і не переходив у писк.</p>
-            
-            <h2>Фрагмент табулатури</h2>
-            <pre>
-6  -6  6     5    6  6
-O, як Вiн лю-бить нac, 
--4  -4  5  -5  6  5
-O, як Вiн лю-бить, 
--4 -4  -4     5    4
-Як Вiн лю-бить нac.
-            </pre>
+    <div class="container">
+        <h1 id="song-title">Як Він любить</h1>
+        <p id="artist-name">John Mark McMillan</p>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/_HGRyxAfhZU" allowfullscreen></iframe>
         </div>
 
-        <div class="lang-block">
-            <h2>🇺🇸 Technical Tips (EN)</h2>
-            <p><strong>"How He Loves"</strong> is a contemporary classic with a distinct <strong>6/8 shuffle</strong> feel. At <strong>75 BPM</strong>, the song allows for deep, expressive playing.</p>
-            <p><strong>Focus:</strong> The Bridge 2 section requires precise jumps to high notes like <strong>9 and -8</strong>. Practice these transitions slowly using our interactive metronome to ensure accuracy.</p>
-            
-            <h2>Tablature Snippet</h2>
-            <pre>
-6  -6  6  
-5    6  6
+        <div class="tab-content" id="tab-data">
+            </div>
+
+        <div class="other-songs">
+            <h3 id="more-title">Інші пісні:</h3>
+            <div class="song-links">
+                <a href="altar.html">Altar</a>
+                <a href="as-the-deer.html">As the Deer</a>
+                <a href="hosanna.html">Hosanna</a>
+                <a href="reckless-love.html">Reckless Love</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="bpm-display">75 BPM</div>
+        <button class="btn-play" onclick="toggleMetronome()" id="metro-btn">START</button>
+    </div>
+
+    <script>
+        const songData = {
+            uk: {
+                title: "Як Він любить",
+                psalm: '"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)',
+                back: "← КАТАЛОГ",
+                more: "Інші пісні:",
+                content: `(Куплет 1)
+6  5  5  -4  4   4
+Вiн oгoртaє мeнe, 
+  6     5  5 5 -4  4   6  5 5  5
+В Любoвi Йoгo вiдчувaю ceбe 
+ -4 -4   4  -4  -4    -4   -4 4   -4   5 -5 6 5
+Як гiлкa, щo гнeтьcя пiд вiтрoм Йoгo блaгoдaтi.
+
+4  6   5 5  5  -4 4   6  5 5  -5 5  -4
+Кoли я згaдaю прo cлaву Йoгo
+ 4   4   -4 -4 4 -4   5 -5 5 -4
+Зникaє мiй бiль i тривoгa 
+-4 -4  -4 -4  -4 -4   5  5 5
+I я рoзумiю, який Вiн Святий, 
+-5 5 -4  4  4  4   4 4  4   4 4 -4
+В Любoвi Йoгo пeрeмoгa.
+
+(ЗАСПІВ)
+6  -6  6    5    6  6
+O, як Вiн любить нac, 
+-4  -4  5  -5  6  5
+O, як Вiн любить, 
+-4 -4  -4    5   4
+Як Вiн любить нac. 
+
+(ПРИСПІВ)
+ 8   8   8    -8
+Вiн любить, o, 
+-9  8   8    8   -8
+O, як Вiн любить,
+-9  8   8    8   -8
+O, як Вiн любить, 
+-9  8   8    8
+Вiн любить нac.
+
+(МІСТ)
+ 9  8   8  8 -8  7  9   8   8   8
+Вiн нac вcинoвив, Вiн — нaш Спacитeль, 
+-8 -8  7  -8 -8 -8  7  -8 -8  8 -9
+Бeзцiнний нaш Дaр, нaш Вiдкупитeль.
+ 7  -8  -8  8  -9  8   8  8 8 -8 7
+Йoгo блaгoдaть — oкeaн, в якoму ми тoнeм.
+ 7  9   8  8   8   -8  7  9   8   8 8
+Нeбo тaк нiжнo тoркнeтьcя зeмлi 
+-8  7  9  8  8   8  -8 7   7  7  -6 7 -6
+I ceрцe тaк швидкo зaб'єтьcя в мeнi.
+ 7 7 -8 -8 -8 -8 -8 -8 -8 -8 8
+I думaю я лиш прo тe, як cильнo 
+-9 8 -8  7 7  8  8
+Вiн любить нac.`
+            },
+            en: {
+                title: "How He Loves",
+                psalm: '"Sing to him a new song; play skillfully, and shout for joy." (Psalm 33:3)',
+                back: "← CATALOG",
+                more: "More songs:",
+                content: `(Verse 1)
+6  5  5  -4   4   4
+He is jealous for me 
+  6      5  5  5 -4  4   6  5 5  5   
+Love's like a hurricane, I am a tree
+ -4  -4  4  -4  -4   -4    -4  4   -4   5 -5 6 5
+Bending beneath the weight of His wind and mercy 
+
+(Chorus)
+ 6  -6  6  5    6  6
 Oh, how He loves us so 
 -4  -4  5  -5  6  5
 Oh, how He loves us 
--4  -4  -4    5    4
-How He loves us so.
-            </pre>
-        </div>
-    </div>
+-4  -4  -4   5   4
+How He loves us so. 
 
-    <div class="divider"></div>
+(Bridge 2)
+ 9  8   8   8 -8    7  9  8   8    8
+We are His portion and He is our prize, 
+ -8   -8  7 -8  -8  -8  7   -8   -8  8   -9
+Drawn to redemption by the grace in His eyes 
+ 7   -8   -8  8 -9 8    8    8  8 -8 7
+If grace is an ocean we're all sinking 
+ 7  9  8    8     8    -8  7   9  8  8    8
+So heaven meets earth like a unforeseen kiss
+-8  7   9 8    8    8 -8  7   7  7  -6  7  -6
+and my heart turns violently inside of my chest
+ 7  7  -8    -8   -8  -8  -8  -8   -8    -8  8  
+And I don't have time to maintain these regrets 
+ -9  8  -8    7 7   8   8
+when I think about the way`
+            }
+        };
 
-    <div style="text-align: center;">
-        <h2 style="border: none;">More Worship Lessons</h2>
-        <p>
-            <a href="altar.html">O Come to the Altar</a> • 
-            <a href="as-the-deer.html">As the Deer</a> • 
-            <a href="hosanna.html">Hosanna (Hillsong)</a>
-        </p>
-    </div>
+        let currentLang = 'uk';
 
+        function updateUI() {
+            const lang = songData[currentLang];
+            document.getElementById('song-title').innerText = lang.title;
+            document.getElementById('psalm-text').innerText = lang.psalm;
+            document.getElementById('nav-back').innerText = lang.back;
+            document.getElementById('more-title').innerText = lang.more;
+            document.getElementById('tab-data').innerText = lang.content;
+            document.getElementById('lang-toggle').innerText = currentLang === 'uk' ? 'EN' : 'UA';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'uk' ? 'en' : 'uk';
+            updateUI();
+        }
+
+        // Metronome logic
+        let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
+        const bpm = 75;
+
+        function playTick() {
+            let osc = audioCtx.createOscillator(); let envelope = audioCtx.createGain();
+            osc.frequency.value = 1000; envelope.gain.value = 1;
+            envelope.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.connect(envelope); envelope.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                playTick(); nextTickTime += 60 / bpm;
+            }
+            timerId = setTimeout(scheduler, 25);
+        }
+
+        function toggleMetronome() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('metro-btn');
+            if (isPlaying) { btn.innerText = 'STOP'; nextTickTime = audioCtx.currentTime; scheduler(); } 
+            else { btn.innerText = 'START'; clearTimeout(timerId); }
+        }
+
+        updateUI(); // Initial load
+    </script>
 </body>
 </html>
