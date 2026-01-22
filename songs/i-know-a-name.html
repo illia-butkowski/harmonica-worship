@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">I Know a Name - Harmonica Tabs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 140px; }
+        
+        .header-nav { background: var(--panel); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .btn-back { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .btn-lang { background: var(--primary); border: none; padding: 8px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+
+        .logo-box { text-align: center; padding: 30px 20px; }
+        .logo-text { color: var(--primary); font-size: 1.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        #song-title { font-size: 2.5rem; margin: 10px 0; text-align: center; color: #fff; font-weight: 900; }
+        #artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; text-transform: uppercase; font-size: 0.9rem; }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1rem; line-height: 1.7; border-left: 6px solid var(--primary); margin-bottom: 40px; color: #fff; overflow-x: auto; }
+
+        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 20px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
+        .bpm-display { font-size: 1.8rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; }
+        .btn-play { background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <nav class="header-nav">
+        <a href="../index.html" class="btn-back">← КАТАЛОГ</a>
+        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
+    </nav>
+
+    <div class="logo-box">
+        <p class="logo-text">Harmonica Worship</p>
+    </div>
+
+    <div class="container">
+        <h1 id="song-title">Я знаю Ім'я</h1>
+        <p id="artist-name">Elevation Worship</p>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/Q_TVlSYq_LM" allowfullscreen></iframe>
+        </div>
+
+        <div class="tab-content" id="tab-data">
+            </div>
+    </div>
+
+    <div class="controls">
+        <div class="bpm-display">86 BPM</div>
+        <button class="btn-play" onclick="toggleMetronome()" id="metro-btn">START</button>
+    </div>
+
+    <script>
+        const song_i_know_a_name = {
+            id: "i-know-a-name",
+            youtubeId: "Q_TVlSYq_LM",
+            bpm: 86,
+            uk: {
+                title: "Я знаю Ім'я",
+                artist: "Elevation Worship",
+                content: `(Куплет 1)
+  
+4 -4 4 5  4 -4 4 -5 5 -4 4 4
+Я знаю Ім'я, що руйнує хвилі всі
+4 -4 4 5  4 -4 4 -5 5 -4 4 4
+Я знаю Ім'я, що спроможне воскресить
+4 -4 4 5  4 -4 4 -5 5 -4 4 4
+Я знаю Ім'я, що спасає нас усіх 
+4 -4 4 -5 5 -4 4 4
+Воно гідне всій хвали!
+
+(Приспів)
+
+4 -4 4 5 5
+Я кличу Ісусе
+5 -4 4 5 -4 4 -5 -5
+Бо знаю, що Ти мій Цілитель
+-5 5 -4 -5 5 -4 6 6
+Воскрес і царюєш у силі 
+4 -4 5 -5 5 -4 -4
+Серед усіх царств земних
+
+4 -4 4 5 5
+Щоразу я кличу, Ісусе
+5 -4 4 5 -4 4 -5 -5
+Бо знаю, що Ти мій Спаситель, 
+-5 5 -4 -5 5 -4 6 6
+Достойний всій слави навіки 
+4 -4 5 -5 5 -4 -4
+Бо Ти на престолі один!
+4 -4 4 5 -4 4 4
+Щоразу я кличу Ісус!
+
+(Куплет 2)
+
+4 -4 4 5
+У мене є Цар
+4 -4 4 -5 5 -4 4 4
+Що царює над усім
+4 -4 4 5  4 -4 4 -5 5 -4 4 4
+Тримає ключі у святих руках Своїх
+4 -4 4 -5
+Він є вся Міць 
+4 -4 4 -5 5 -4 4 4
+Що руйнує стіни всі
+4 -4 4 -5 5 -4 4 4
+Він воскрес, наш Цар – живий!
+
+(Приспів)
+
+4 -4 4 5 5
+Я кличу Ісусе
+5 -4 4 5 -4 4 -5 -5
+Бо знаю, що Ти мій Цілитель
+-5 5 -4 -5 5 -4 6 6
+Воскрес і царюєш у силі 
+4 -4 5 -5 5 -4 -4
+Серед усіх царств земних
+
+4 -4 4 5 5
+Щоразу я кличу, Ісусе
+5 -4 4 5 -4 4 -5 -5
+Бо знаю, що Ти мій Спаситель, 
+-5 5 -4 -5 5 -4 6 6
+Достойний всій слави навіки 
+4 -4 5 -5 5 -4 -4
+Бо Ти на престолі один!
+4 -4 4 5 -4 4 4
+Щоразу я кличу Ісус!
+
+(Рефрен)
+
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+  4      4    -4     4    4
+Страх - зник! Гріх впав… геть! 
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+4    4   -4    4    4 
+Пек-ло! Трем-тить… все! 
+4 -4 5 -5 5 -4 4
+Щоразу, як кличу Ісус!
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+  4      4    -4     4    4
+Страх - зник! Гріх впав… геть! 
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+45  45   -67  67    45
+Пек-ло! Трем-тить… все! 
+
+(Міст 1 )
+
+5 -5 6  7 -6 6 -5
+Де ж тепер твоя перемога смерть?
+5 5 -5 6 7 -6 6 56
+І де ж твоя, могило, міць?
+5 -5 6 7 -7 -6 6
+Де ж тепер твоя перемога смерть?
+5 5 -5 6 7 -7 -6 67
+І де ж твоя, могило, міць?
+
+(МІст 2)
+
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5  5 -4 -5 5 -5 4
+Мертве ожива в Ім'я Ісуса!
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5  5 -4 -5 5 -5 4
+Мертве ожива в Ім'я Ісуса!
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5  5 -4 -5 5 -5 4
+Мертве ожива в Ім'я Ісуса!
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5 5 5 -4 4 5
+Мертве ожива! 
+5 5 -4 4 5  5 -4 -5 5 -5 4
+Мертве ожива в Ім'я Ісуса!
+
+(Приспів)
+
+4 -4 4 5 5
+Я кличу Ісусе
+5 -4 4 5 -4 4 -5 -5
+Бо знаю, що Ти мій Цілитель
+-5 5 -4 -5 5 -4 6 6
+Воскрес і царюєш у силі 
+4 -4 5 -5 5 -4 -4
+Серед усіх царств земних
+
+4 -4 4 5 5
+Щоразу я кличу, Ісусе
+5 -4 4 5 -4 4 -5 -5
+Бо знаю, що Ти мій Спаситель, 
+-5 5 -4 -5 5 -4 6 6
+Достойний всій слави навіки 
+4 -4 5 -5 5 -4 -4
+Бо Ти на престолі один!
+4 -4 4 5 -4 4 4
+Щоразу я кличу Ісус!
+
+(Рефрен)
+
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+  4      4    -4     4    4
+Страх - зник! Гріх впав… геть! 
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+4    4   -4    4    4 
+Пек-ло! Трем-тить… все! 
+4 -4 5 -5 5 -4 4
+Щоразу, як кличу Ісус!
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+  4      4    -4     4    4
+Страх - зник! Гріх впав… геть! 
+4 -4 5 -5 5 -4          
+Щоразу, як кличу Ісус! 
+45  45   -67  67    45
+Пек-ло! Трем-тить… все!`
+            },
+            en: {
+                title: "I Know a Name",
+                artist: "Elevation Worship",
+                content: `(Verse 1)
+        
+4 -4 4 5
+I know a Name
+4 -4 4 -5 5 -4 4 4
+That can silence roaring waves
+4 -4 4 5
+I know a Name
+4 -4 4 -5 5 -4 4 4
+That can empty out a grave
+4 -4 4 5
+I know a Name
+4 -4 4 -5 5 -4 4 4
+It’s the only Name that saves
+4 -4 4 -5 5 -4 4 4
+And it’s worthy of all praise
+
+(Chorus)
+
+4 -4 4 5 5
+I call You Jesus
+5 -4 4 5 -4 4 -5 -5
+I call You, I call You Healer
+-5 5 -4 -5 5 -4 6 6
+Risen and reigning in power
+4 -4 5 -5 5 -4 -4
+Something comes out of the grave
+
+4 -4   4 5 5
+Every time I call You Jesus
+5 -4 4 5 -4 4 -5 -5
+I call You, I call You Savior
+-5 5 -4 -5 5 -4 6 6
+Worthy of glory forever
+4 -4 5 -5 5 -4 -4
+Something comes out of the grave
+4 -4 4 5 -4 4 4
+Every time I call Your Name`
+            }
+        };
+
+        let currentLang = 'uk';
+        function updateUI() {
+            const data = song_i_know_a_name[currentLang];
+            document.getElementById('song-title').innerText = data.title;
+            document.getElementById('tab-data').innerText = data.content;
+            document.getElementById('lang-toggle').innerText = currentLang === 'uk' ? 'EN' : 'UA';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'uk' ? 'en' : 'uk';
+            updateUI();
+        }
+
+        let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
+        function playTick() {
+            let osc = audioCtx.createOscillator(); let envelope = audioCtx.createGain();
+            osc.frequency.value = 1000; envelope.gain.value = 1;
+            envelope.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.connect(envelope); envelope.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                playTick(); nextTickTime += 60 / 86;
+            }
+            timerId = setTimeout(scheduler, 25);
+        }
+        function toggleMetronome() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('metro-btn');
+            if (isPlaying) { btn.innerText = 'STOP'; nextTickTime = audioCtx.currentTime; scheduler(); } 
+            else { btn.innerText = 'START'; clearTimeout(timerId); }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
