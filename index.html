@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonica Worship | Tabs</title>
+    <title>Harmonica Worship | Tabs & Metronome</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script src="altar.js"></script>
@@ -21,6 +21,7 @@
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
         
+        /* SIDEBAR */
         .sidebar {
             position: fixed; left: -280px; top: 0; width: 260px; height: 100%;
             background: #111; border-right: 1px solid var(--border);
@@ -50,6 +51,7 @@
 
         .site-title { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; margin: 0; color: var(--text); text-transform: uppercase; }
         .site-slogan { font-size: 0.95rem; color: var(--accent); margin: 8px 0 20px 0; font-weight: 400; font-style: italic; line-height: 1.4; }
+        
         .search-container { max-width: 500px; margin: 0 auto 15px; position: relative; }
         .search-input { width: 100%; padding: 12px 40px 12px 15px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
         .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
@@ -61,17 +63,19 @@
         .container { max-width: 850px; margin: 20px auto; padding: 0 20px 150px; }
         .song-card { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
         .song-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 5px; }
+        h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
         .tempo-badge { background: rgba(255,170,34,0.1); color: var(--accent); padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(255,170,34,0.3); font-family: 'Roboto Mono'; }
         .artist { color: var(--accent); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
         .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: underline; margin-bottom: 10px; display: inline-block; }
         .music-player { display: none; margin-bottom: 20px; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
         pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; white-space: pre; background: var(--input-bg); padding: 25px; border-radius: 12px; border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text); }
 
-        /* ВИПРАВЛЕННЯ ДЛЯ МОБІЛОК */
+        /* Адаптація для мобільних */
         @media (max-width: 600px) {
-            .menu-btn { position: relative; left: 0; top: 0; width: 100%; margin-bottom: 15px; justify-content: center; }
             header { padding: 15px 10px; }
+            .menu-btn { position: relative; left: 0; top: 0; width: 100%; margin-bottom: 15px; justify-content: center; }
             .site-title { font-size: 1.3rem; }
+            pre { padding: 15px; font-size: 14px; }
         }
     </style>
 </head>
@@ -111,7 +115,7 @@
     let scrollInterval = null;
     let currentFontSize = 16;
     let tempo = 90;
-    let beatCounter = 0; // Лічильник долей
+    let beatCounter = 0;
 
     const songMeta = {
         'altar': '70 BPM | 6/8',
@@ -149,12 +153,22 @@
         } else {
             document.getElementById('startBtn').innerText = "START";
             clearTimeout(timerID);
+            stopScroll(); 
         }
     }
 
     function scheduler() {
         while (nextNoteTime < audioCtx.currentTime + 0.1) {
-            playClick(nextNoteTime, beatCounter % 4 === 0); // Сильна доля кожні 4 удари
+            playClick(nextNoteTime, beatCounter % 4 === 0);
+            
+            // СИНХРОНІЗОВАНИЙ СКРОЛ
+            if (scrollInterval) {
+                const delay = (nextNoteTime - audioCtx.currentTime) * 1000;
+                setTimeout(() => {
+                    if (scrollInterval) window.scrollBy(0, 8); // Крок скролу на кожну долю
+                }, delay);
+            }
+
             nextNoteTime += 60.0 / tempo;
             beatCounter++;
         }
@@ -164,27 +178,30 @@
     function playClick(time, isStrong) {
         const osc = audioCtx.createOscillator();
         const envelope = audioCtx.createGain();
-        
-        // Сильна доля (800Гц), слабка (400Гц)
-        osc.frequency.value = isStrong ? 800 : 400;
-        
+        osc.frequency.value = isStrong ? 1000 : 500; // Різна частота для долей
         envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.1);
         osc.connect(envelope); envelope.connect(audioCtx.destination);
         osc.start(time); osc.stop(time + 0.1);
     }
 
     function startScroll() {
-        const scrollSpeed = (60 / tempo) * 60; 
-        scrollInterval = setInterval(() => { window.scrollBy(0, 1); }, scrollSpeed);
+        if (!isPlaying) toggleMetronome(); 
+        scrollInterval = true; 
         document.getElementById('playBtn').innerText = "■ STOP";
     }
 
-    function stopScroll() { clearInterval(scrollInterval); scrollInterval = null; document.getElementById('playBtn').innerText = "▶ AUTO"; }
-    function toggleAutoscroll() { scrollInterval ? stopScroll() : startScroll(); }
+    function stopScroll() {
+        scrollInterval = null; 
+        document.getElementById('playBtn').innerText = "▶ AUTO";
+    }
+
+    function toggleAutoscroll() {
+        scrollInterval ? stopScroll() : startScroll();
+    }
 
     const translations = {
-        uk: { slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3»", searchPlaceholder: "Пошук пісні...", noResults: "Нічого не знайдено 🎶", menu: "МЕТРОНОМ" },
-        en: { slogan: "«Sing to him a new song; play skillfully, and shout for joy.» — Psalm 33:3", searchPlaceholder: "Search songs...", noResults: "Nothing found 🎶", menu: "METRONOME" }
+        uk: { slogan: "«Співайте Йому пісню нову...» — Пс. 32:3", searchPlaceholder: "Пошук пісні...", noResults: "Нічого не знайдено 🎶", menu: "МЕТРОНОМ" },
+        en: { slogan: "“Sing to him a new song...” — Ps. 33:3", searchPlaceholder: "Search songs...", noResults: "Nothing found 🎶", menu: "METRONOME" }
     };
 
     function setLang(lang) {
@@ -260,4 +277,3 @@
 </script>
 </body>
 </html>
-
