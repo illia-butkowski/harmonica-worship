@@ -3,71 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Come to the Altar - Harmonica Tabs & Metronome | Прийди до вівтаря</title>
+    <title id="page-title">O Come to the Altar - Harmonica Tabs</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 120px; }
-        .header-promo { background: var(--primary); color: #000; padding: 12px; text-align: center; font-weight: 900; text-decoration: none; display: block; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
-        .logo-box { text-align: center; padding: 25px 20px; background: #1a1a1a; border-bottom: 1px solid #333; }
-        .logo-text { color: var(--primary); font-size: 1.4rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .psalm { font-size: 0.8rem; font-style: italic; color: #888; margin-top: 5px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.4; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        h1 { font-size: 2.2rem; margin: 20px 0 5px 0; color: #fff; text-align: center; font-weight: 900; }
-        .artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 140px; }
+        
+        .header-nav { background: var(--panel); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .btn-back { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .btn-lang { background: var(--primary); border: none; padding: 8px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+
+        .logo-box { text-align: center; padding: 30px 20px; }
+        .logo-text { color: var(--primary); font-size: 1.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        #psalm-text { font-size: 0.85rem; font-style: italic; color: #888; margin-top: 8px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        #song-title { font-size: 2.5rem; margin: 10px 0; text-align: center; color: #fff; font-weight: 900; }
+        #artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; text-transform: uppercase; font-size: 0.9rem; }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .tab-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .tab-card { background: var(--panel); padding: 25px; border-radius: 12px; border-left: 5px solid var(--primary); }
-        .tab-content { white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1rem; line-height: 1.8; color: #fff; }
-        .lang-label { color: var(--primary); font-weight: 900; margin-bottom: 15px; display: block; text-transform: uppercase; font-size: 0.8rem; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 15px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 25px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
-        .bpm-display { font-size: 1.5rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; text-align: center; }
-        .btn-play { background: var(--primary); border: none; padding: 12px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1rem; transition: 0.2s; text-transform: uppercase; }
-        .btn-play:hover { transform: scale(1.05); background: #fff; }
-        @media (min-width: 850px) { .tab-section { grid-template-columns: 1fr 1fr; } }
+
+        .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; line-height: 1.8; border-left: 6px solid var(--primary); margin-bottom: 40px; color: #fff; }
+
+        .other-songs { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; }
+        .other-songs h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 15px; }
+        .song-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .song-links a { color: #aaa; text-decoration: none; font-size: 0.85rem; background: #222; padding: 6px 14px; border-radius: 4px; transition: 0.2s; }
+        .song-links a:hover { background: var(--primary); color: #000; }
+
+        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 20px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
+        .bpm-display { font-size: 1.8rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; }
+        .btn-play { background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; transition: 0.2s; }
     </style>
 </head>
 <body>
-    <a href="../index.html" class="header-promo">← До повного каталогу (Back to all tabs)</a>
+
+    <nav class="header-nav">
+        <a href="../index.html" class="btn-back" id="nav-back">← КАТАЛОГ</a>
+        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
+    </nav>
+
     <div class="logo-box">
         <p class="logo-text">Harmonica Worship</p>
-        <p class="psalm">"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)</p>
+        <p id="psalm-text">"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)</p>
     </div>
+
     <div class="container">
-        <h1>O Come to the Altar</h1>
-        <p class="artist-name">Elevation Worship</p>
+        <h1 id="song-title">Прийди до вівтаря</h1>
+        <p id="artist-name">Elevation Worship</p>
+
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/rYQ5yXCc_CA" allowfullscreen></iframe>
         </div>
-        <div class="tab-section">
-            <div class="tab-card">
-                <span class="lang-label">🇺🇦 Прийди до вівтаря</span>
-                <div class="tab-content">
-(Куплет 1)
+
+        <div class="tab-content" id="tab-data">
+            </div>
+
+        <div class="other-songs">
+            <h3 id="more-title">Інші пісні:</h3>
+            <div class="song-links">
+                <a href="hosanna.html">Hosanna</a>
+                <a href="how-he-loves.html">How He Loves</a>
+                <a href="as-the-deer.html">As the Deer</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div style="text-align: center;">
+            <div class="bpm-display">68 BPM</div>
+        </div>
+        <button class="btn-play" onclick="toggleMetronome()" id="metro-btn">START</button>
+    </div>
+
+    <script>
+        const songData = {
+            uk: {
+                title: "Прийди до вівтаря",
+                psalm: '"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)',
+                back: "← КАТАЛОГ",
+                more: "Інші пісні:",
+                content: `(Куплет 1)
 5 5 5 -4 4 4 -3 3 5
 Маєш біль, маєш зламаний дух
 5 5 5 -4 4 4 -3 3 5
 Тиск гріха уповільнює рух
 5 -5 4 4 -3
 Кличе Ісус нас
+5 5 5 -4 4 4 -3 3 5
+Порожнечу в душі маєш ти - 
+5 5 5 -4 4 4 -3 3 5
+Йди напийся живої води
+5 -5 4 4 -3
+Кличе Ісус нас
 
 (Приспів)
 4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 4
 В обійми Ісуса ти перед вівтарем прийди
-4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 45
+4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 4 5
 Бо кров'ю Своєю тобі прощення Він купив
+
+(Куплет 2)
+5 5 5 -4 4 4 -3 3 5
+Жалкування та сумнів лишай
+5 5 5 -4 4 4 -3 3 5
+Не чекай, до Христа поспішай
+5 -5 4 4 -3
+Кличе Ісус нас
 
 (Міст)
 4 -4 5 -5 5 4 -4 5 -5 5 4
 Він наш Спаситель, з мертвих воскрес навік
 4 -4 5 6 4 -4 5 -5 5
-Тож заспіваймо: Алілуя</div>
-            </div>
-            <div class="tab-card">
-                <span class="lang-label">🇺🇸 O Come to the Altar</span>
-                <div class="tab-content">
-(Verse 1)
+Тож заспіваймо: Алілуя`
+            },
+            en: {
+                title: "O Come to the Altar",
+                psalm: '"Sing to him a new song; play skillfully, and shout for joy." (Psalm 33:3)',
+                back: "← CATALOG",
+                more: "More songs:",
+                content: `(Verse 1)
 5 5 5 -4 4 4 -3 3 5
 Are you hurting and broken within?
 5 5 5 -4 4 4 -3 3 5
@@ -82,24 +138,40 @@ O come to the altar
 The Father's arms are open wide
 4 -4 5 4 -5 5 
 Forgiveness was bought with
-4 4 -4 5 -5 5 -4 45
+4 4 -4 5 -5 5 -4 4 5
 The precious blood of Jesus Christ
 
 (Bridge)
 4 -4 5 -5 5 
 Oh, what a Savior
+4 -4 5 -5 5 4
+Isn't He wonderful?
 4 -4 5 6 4 -4 5 -5 5
-Sing hallelujah, Christ is risen</div>
-            </div>
-        </div>
-    </div>
-    <div class="controls">
-        <div class="bpm-display">70 BPM</div>
-        <button class="btn-play" onclick="toggleMetronome()">Start Metronome</button>
-    </div>
-    <script>
+Sing hallelujah, Christ is risen`
+            }
+        };
+
+        let currentLang = 'uk';
+
+        function updateUI() {
+            const lang = songData[currentLang];
+            document.getElementById('song-title').innerText = lang.title;
+            document.getElementById('psalm-text').innerText = lang.psalm;
+            document.getElementById('nav-back').innerText = lang.back;
+            document.getElementById('more-title').innerText = lang.more;
+            document.getElementById('tab-data').innerText = lang.content;
+            document.getElementById('lang-toggle').innerText = currentLang === 'uk' ? 'EN' : 'UA';
+            document.getElementById('page-title').innerText = lang.title + " - Harmonica Tabs";
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'uk' ? 'en' : 'uk';
+            updateUI();
+        }
+
         let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
-        const bpm = 70; 
+        const bpm = 68;
+
         function playTick() {
             let osc = audioCtx.createOscillator(); let envelope = audioCtx.createGain();
             osc.frequency.value = 1000; envelope.gain.value = 1;
@@ -107,16 +179,31 @@ Sing hallelujah, Christ is risen</div>
             osc.connect(envelope); envelope.connect(audioCtx.destination);
             osc.start(); osc.stop(audioCtx.currentTime + 0.1);
         }
+
         function scheduler() {
-            while (nextTickTime < audioCtx.currentTime + 0.1) { playTick(); nextTickTime += 60 / bpm; }
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                playTick(); nextTickTime += 60 / bpm;
+            }
             timerId = setTimeout(scheduler, 25);
         }
+
         function toggleMetronome() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            isPlaying = !isPlaying; const btn = document.querySelector('.btn-play');
-            if (isPlaying) { btn.innerText = 'Stop'; nextTickTime = audioCtx.currentTime; scheduler(); } 
-            else { btn.innerText = 'Start Metronome'; clearTimeout(timerId); }
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('metro-btn');
+            if (isPlaying) { 
+                btn.innerText = 'STOP'; 
+                btn.style.background = '#fff';
+                nextTickTime = audioCtx.currentTime; 
+                scheduler(); 
+            } else { 
+                btn.innerText = 'START'; 
+                btn.style.background = '#ffaa22';
+                clearTimeout(timerId); 
+            }
         }
+
+        updateUI();
     </script>
 </body>
 </html>
