@@ -3,77 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Come to the Altar - Harmonica Tabs | Прийди до вівтаря - Таби для гармоніки</title>
-    <meta name="description" content="Free harmonica tabs for O Come to the Altar (Elevation Worship). Learn to play with metronome and autoscroll. / Таби для губної гармоніки на пісню Прийди до вівтаря.">
-    
+    <title>O Come to the Altar - Harmonica Tabs & Metronome | Прийди до вівтаря</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #e0e0e0; background: #0f0f0f; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        h1 { color: #ffaa22; text-align: center; border-bottom: 2px solid #222; padding-bottom: 20px; font-size: 2.2rem; }
-        h2 { color: #ffaa22; font-size: 1.3rem; border-left: 3px solid #ffaa22; padding-left: 10px; margin-top: 25px; }
-        .btn-container { text-align: center; margin: 40px 0; }
-        .btn { background: #ffaa22; color: #000; padding: 18px 35px; text-decoration: none; border-radius: 50px; font-weight: 900; text-transform: uppercase; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,170,34,0.3); display: inline-block; }
-        .btn:hover { transform: scale(1.05); background: #fff; }
-        pre { background: #1a1a1a; padding: 15px; border-radius: 8px; font-family: 'Roboto Mono', monospace; font-size: 14px; color: #ffaa22; border: 1px solid #333; overflow-x: auto; }
-        .divider { border-top: 1px solid #222; margin: 40px 0; }
-        p { color: #bbb; }
-        @media (max-width: 700px) { .lang-grid { grid-template-columns: 1fr; } }
+        :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 120px; }
+        .header-promo { background: var(--primary); color: #000; padding: 12px; text-align: center; font-weight: 900; text-decoration: none; display: block; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        .logo-box { text-align: center; padding: 25px 20px; background: #1a1a1a; border-bottom: 1px solid #333; }
+        .logo-text { color: var(--primary); font-size: 1.4rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .psalm { font-size: 0.8rem; font-style: italic; color: #888; margin-top: 5px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { font-size: 2.2rem; margin: 20px 0 5px 0; color: #fff; text-align: center; font-weight: 900; }
+        .artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .tab-section { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .tab-card { background: var(--panel); padding: 25px; border-radius: 12px; border-left: 5px solid var(--primary); }
+        .tab-content { white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1rem; line-height: 1.8; color: #fff; }
+        .lang-label { color: var(--primary); font-weight: 900; margin-bottom: 15px; display: block; text-transform: uppercase; font-size: 0.8rem; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 15px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 25px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
+        .bpm-display { font-size: 1.5rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; text-align: center; }
+        .btn-play { background: var(--primary); border: none; padding: 12px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1rem; transition: 0.2s; text-transform: uppercase; }
+        .btn-play:hover { transform: scale(1.05); background: #fff; }
+        @media (min-width: 850px) { .tab-section { grid-template-columns: 1fr 1fr; } }
     </style>
 </head>
 <body>
-
-    <h1>O Come to the Altar – Elevation Worship</h1>
-
-    <div class="btn-container">
-        <a href="https://illia-butkowski.github.io/harmonica-worship/#altar" class="btn">
-            Open Full Tabs & Metronome
-        </a>
+    <a href="../index.html" class="header-promo">← До повного каталогу (Back to all tabs)</a>
+    <div class="logo-box">
+        <p class="logo-text">Harmonica Worship</p>
+        <p class="psalm">"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)</p>
     </div>
-
-    <div class="lang-grid">
-        <div class="lang-block">
-            <h2>🇺🇦 Таби та поради (UA)</h2>
-            <p><strong>"Прийди до вівтаря"</strong> — неймовірна пісня прославу. Вона має особливий ритм <strong>6/8</strong>, що робить її мелодійною та "текучою" на губній гармоніці.</p>
-            <p><strong>Порада:</strong> Темп пісні — 70 BPM. Використовуйте наш метроном, щоб чітко тримати ритм 6/8. Зосередьтеся на плавному переході між нотами 5 та -4.</p>
-            
-            <h2>Фрагмент (Куплет)</h2>
-            <pre>
-5 5 5 -4 4 4 -3 3 5
-Ма-єш біль, ма-єш зла-ма-ний дух
-5 5 5 -4 4 4 -3 3 5
-Тиск грі-ха у-по-віль-ню-є рух
-5 -5 4 4 -3
-Кли-че І-сус нас
-            </pre>
+    <div class="container">
+        <h1>O Come to the Altar</h1>
+        <p class="artist-name">Elevation Worship</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/rYQ5yXCc_CA" allowfullscreen></iframe>
         </div>
-
-        <div class="lang-block">
-            <h2>🇺🇸 Tabs & Tips (EN)</h2>
-            <p><strong>"O Come to the Altar"</strong> by Elevation Worship is a beautiful piece for the 10-hole diatonic harmonica. The <strong>6/8 time signature</strong> provides a waltz-like feel.</p>
-            <p><strong>Tip:</strong> The tempo is set to 70 BPM. Our interactive player will help you sync your breath with the autoscroll feature for a better practice session.</p>
-            
-            <h2>Tablature Snippet</h2>
-            <pre>
+        <div class="tab-section">
+            <div class="tab-card">
+                <span class="lang-label">🇺🇦 Прийди до вівтаря</span>
+                <div class="tab-content">
+(Куплет 1)
 5 5 5 -4 4 4 -3 3 5
-Are you hurt-ing and bro-ken with-in?
+Маєш біль, маєш зламаний дух
 5 5 5 -4 4 4 -3 3 5
-O-ver-whelmed by the weight of your sin?
+Тиск гріха уповільнює рух
 5 -5 4 4 -3
-Je-sus is cal-ling
-            </pre>
+Кличе Ісус нас
+
+(Приспів)
+4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 4
+В обійми Ісуса ти перед вівтарем прийди
+4 -4 5 4 -5 5 4 4 -4 5 -5 5 -4 45
+Бо кров'ю Своєю тобі прощення Він купив
+
+(Міст)
+4 -4 5 -5 5 4 -4 5 -5 5 4
+Він наш Спаситель, з мертвих воскрес навік
+4 -4 5 6 4 -4 5 -5 5
+Тож заспіваймо: Алілуя</div>
+            </div>
+            <div class="tab-card">
+                <span class="lang-label">🇺🇸 O Come to the Altar</span>
+                <div class="tab-content">
+(Verse 1)
+5 5 5 -4 4 4 -3 3 5
+Are you hurting and broken within?
+5 5 5 -4 4 4 -3 3 5
+Overwhelmed by the weight of your sin?
+5 -5 4 4 -3
+Jesus is calling
+
+(Chorus)
+4 -4 5 4 -5 5 
+O come to the altar
+4 4 -4 5 -5 5 -4 4
+The Father's arms are open wide
+4 -4 5 4 -5 5 
+Forgiveness was bought with
+4 4 -4 5 -5 5 -4 45
+The precious blood of Jesus Christ
+
+(Bridge)
+4 -4 5 -5 5 
+Oh, what a Savior
+4 -4 5 6 4 -4 5 -5 5
+Sing hallelujah, Christ is risen</div>
+            </div>
         </div>
     </div>
-
-    <div class="divider"></div>
-
-    <div style="text-align: center;">
-        <h2 style="border: none;">Explore More Worship Tabs</h2>
-        <p>
-            <a href="hosanna.html">Hosanna (Hillsong)</a> • 
-            <a href="reckless-love.html">Reckless Love</a> • 
-            <a href="as-the-deer.html">As the Deer</a>
-        </p>
+    <div class="controls">
+        <div class="bpm-display">70 BPM</div>
+        <button class="btn-play" onclick="toggleMetronome()">Start Metronome</button>
     </div>
-
+    <script>
+        let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
+        const bpm = 70; 
+        function playTick() {
+            let osc = audioCtx.createOscillator(); let envelope = audioCtx.createGain();
+            osc.frequency.value = 1000; envelope.gain.value = 1;
+            envelope.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.connect(envelope); envelope.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) { playTick(); nextTickTime += 60 / bpm; }
+            timerId = setTimeout(scheduler, 25);
+        }
+        function toggleMetronome() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isPlaying = !isPlaying; const btn = document.querySelector('.btn-play');
+            if (isPlaying) { btn.innerText = 'Stop'; nextTickTime = audioCtx.currentTime; scheduler(); } 
+            else { btn.innerText = 'Start Metronome'; clearTimeout(timerId); }
+        }
+    </script>
 </body>
 </html>
