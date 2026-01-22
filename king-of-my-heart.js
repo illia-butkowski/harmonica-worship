@@ -121,7 +121,7 @@ You are good, good, oh
 
 (Bridge)
 
-4 -4 5 -4 4 -4 4 ...
+4 -4 5 -4 4 -4 4 -4 5 -4 4 -4 4 -4 5 -4 4 -4 4 -4 5
 You’re never gonna let, 
 never gonna let me down.`
     }
