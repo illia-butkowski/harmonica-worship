@@ -1,6 +1,6 @@
 const song_i_know_a_name = {
     id: "i-know-a-name",
-    youtubeId: "Q_TVlSYq_LM", // Elevation Worship - I Know A Name
+    youtubeId: "ITsG6xifLtS_KEfv", // Elevation Worship - I Know A Name
     bpm: 86,
     uk: {
         title: "Я знаю Ім'я",
