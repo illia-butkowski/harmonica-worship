@@ -1,6 +1,6 @@
 const song_king_of_my_heart = {
     id: 'king-of-heart',
-    youtubeId: 'V9S79S8N4_0',
+    youtubeId: 'pomqj7acJc4',
     uk: {
         title: 'Ти благий',
         artist: 'BETHEL MUSIC',
