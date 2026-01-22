@@ -3,26 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King of My Heart - Harmonica Tabs | Ти благий - Таби для гармоніки</title>
-    <meta name="description" content="Free harmonica tabs for King of My Heart (Bethel Music). Interactive metronome 68 BPM and autoscroll included. / Таби для губної гармоніки на пісню Ти благий.">
-    
+    <title id="page-title">King of My Heart - Harmonica Tabs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #e0e0e0; background: #0f0f0f; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        h1 { color: #ffaa22; text-align: center; border-bottom: 2px solid #222; padding-bottom: 20px; font-size: 2.2rem; }
-        h2 { color: #ffaa22; font-size: 1.3rem; border-left: 3px solid #ffaa22; padding-left: 10px; margin-top: 25px; }
-        .btn-container { text-align: center; margin: 40px 0; }
-        .btn { background: #ffaa22; color: #000; padding: 18px 35px; text-decoration: none; border-radius: 50px; font-weight: 900; text-transform: uppercase; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,170,34,0.3); display: inline-block; }
-        .btn:hover { transform: scale(1.05); background: #fff; }
-        pre { background: #1a1a1a; padding: 15px; border-radius: 8px; font-family: 'Roboto Mono', monospace; font-size: 14px; color: #ffaa22; border: 1px solid #333; overflow-x: auto; }
-        .divider { border-top: 1px solid #222; margin: 40px 0; }
-        p { color: #bbb; }
-        @media (max-width: 700px) { .lang-grid { grid-template-columns: 1fr; } }
+        :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 140px; }
+        
+        .header-nav { background: var(--panel); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .btn-back { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        .btn-lang { background: var(--primary); border: none; padding: 8px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+
+        .logo-box { text-align: center; padding: 30px 20px; }
+        .logo-text { color: var(--primary); font-size: 1.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        #psalm-text { font-size: 0.85rem; font-style: italic; color: #888; margin-top: 8px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        #song-title { font-size: 2.5rem; margin: 10px 0; text-align: center; color: #fff; font-weight: 900; }
+        #artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; text-transform: uppercase; font-size: 0.9rem; }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; line-height: 1.8; border-left: 6px solid var(--primary); margin-bottom: 40px; color: #fff; }
+
+        .other-songs { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; }
+        .other-songs h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 15px; }
+        .song-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .song-links a { color: #aaa; text-decoration: none; font-size: 0.85rem; background: #222; padding: 6px 14px; border-radius: 4px; transition: 0.2s; }
+        .song-links a:hover { background: var(--primary); color: #000; }
+
+        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 20px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
+        .bpm-display { font-size: 1.8rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; }
+        .btn-play { background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; transition: 0.2s; }
     </style>
 </head>
 <body>
 
-    <h1>King of My Heart – Bethel Music</h1>
+    <nav class="header-nav">
+        <a href="../index.html" class="btn-back" id="nav-back">← КАТАЛОГ</a>
+        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
+    </nav>
 
-    <div class="btn-container">
-        <a href="
+    <div class="logo-box">
+        <p class="logo-text">Harmonica Worship</p>
+        <p id="psalm-text">"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)</p>
+    </div>
+
+    <div class="container">
+        <h1 id="song-title">Ти благий</h1>
+        <p id="artist-name">BETHEL MUSIC</p>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/pomqj7acJc4" allowfullscreen></iframe>
+        </div>
+
+        <div class="tab-content" id="tab-data">
+            </div>
+
+        <div class="other-songs">
+            <h3 id="more-title">Інші пісні:</h3>
+            <div class="song-links">
+                <a href="altar.html">Altar</a>
+                <a href="how-he-loves.html">How He Loves</a>
+                <a href="as-the-deer.html">As the Deer</a>
+                <a href="hosanna.html">Hosanna</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div style="text-align: center;">
+            <div class="bpm-display">68 BPM</div>
+        </div>
+        <button class="btn-play" onclick="toggleMetronome()" id="metro-btn">START</button>
+    </div>
+
+    <script>
+        const songData = {
+            uk: {
+                title: "Ти благий",
+                psalm: '"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)',
+                back: "← КАТАЛОГ",
+                more: "Інші пісні:",
+                content: `(Куплет 1) 
+4 -4 5 -4 4 4
+Бoг - Tи Цaр мoгo життя, 
+6 7 -7 -7 7 -6 6
+Скeля - цe Tвoє Iм'я.
+6 -6 -6 6 -5 5
+Вoдa, яку я п'ю
+-5 5 -4 4 4
+O, Teбe xвaлю
+
+(Приспів)
+5 -4 4 4 -4 4
+Tи блaгий, Бoг, ooo
+5 -4 4 4 -4 4
+Tи блaгий, Бoг, ooo
+6 -6 7 7 -6 6 
+Tи блaгий, Бoг, ooo
+
+(Куплет 2)
+4 -4 5 -4 4 4
+Бoг - Tи Цaр мoгo життя
+6 7 -7 -7 7 -6 6
+Вiтeр Tи для кoрaбля
+6 -6 -6 6 -5 5
+Мoв якiр в штoрмi днiв
+-5 5 -4 4 4
+O, xвлa Toбi
+
+(Міст)
+4 -4 5 -4 4 -4 4 -4 5 -4 4 -4 4 -4 5 -4 4 -4 4 -4 5
+Нe бoюcь я дaлi йти, мoя рукa в Tвoїй руцi.`
+            },
+            en: {
+                title: "King of My Heart",
+                psalm: '"Sing to him a new song; play skillfully, and shout for joy." (Psalm 33:3)',
+                back: "← CATALOG",
+                more: "More songs:",
+                content: `(Verse 1)
+4 -4 5 -4 4 4
+Let the King of my heart
+6 7 -7 -7 7 -6 6
+Be the mountain where I run
+6 -6 -6 6 -5 5
+The fountain I drink from
+-5 5 -4 4 4
+Oh, He is my song.
+
+(Chorus)
+5 -4 4 4 -4 4
+You are good, good, oh
+5 -4 4 4 -4 4
+You are good, good, oh
+6 -6 7 7 -6 6 
+You are good, good, oh
+
+(Verse 2)
+4 -4 5 -4 4 4
+Let the King of my heart 
+6 7 -7 -7 7 -6 6
+Be the wind inside my sails
+6 -6 -6 6 -5 5
+The anchor in the waves
+-5 5 -4 4 4 
+Oh, He is my song.
+
+(Bridge)
+4 -4 5 -4 4 -4 4 -4 5 -4 4 -4 4 -4 5 -4 4 -4 4 -4 5
+You’re never gonna let, 
+never gonna let me down.`
+            }
+        };
+
+        let currentLang = 'uk';
+
+        function updateUI() {
+            const lang = songData[currentLang];
+            document.getElementById('song-title').innerText = lang.title;
+            document.getElementById('psalm-text').innerText = lang.psalm;
+            document.getElementById('nav-back').innerText = lang.back;
+            document.getElementById('more-title').innerText = lang.more;
+            document.getElementById('tab-data').innerText = lang.content;
+            document.getElementById('lang-toggle').innerText = currentLang === 'uk' ? 'EN' : 'UA';
+            document.getElementById('page-title').innerText = lang.title + " - Harmonica Tabs";
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'uk' ? 'en' : 'uk';
+            updateUI();
+        }
+
+        let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
+        const bpm = 68;
+
+        function playTick() {
+            let osc = audioCtx.createOscillator(); let envelope = audioCtx.createGain();
+            osc.frequency.value = 1000; envelope.gain.value = 1;
+            envelope.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.connect(envelope); envelope.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                playTick(); nextTickTime += 60 / bpm;
+            }
+            timerId = setTimeout(scheduler, 25);
+        }
+
+        function toggleMetronome() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('metro-btn');
+            if (isPlaying) { 
+                btn.innerText = 'STOP'; 
+                btn.style.background = '#fff';
+                nextTickTime = audioCtx.currentTime; 
+                scheduler(); 
+            } else { 
+                btn.innerText = 'START'; 
+                btn.style.background = '#ffaa22';
+                clearTimeout(timerId); 
+            }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
