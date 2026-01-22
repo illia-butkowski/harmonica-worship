@@ -13,8 +13,7 @@
     <script src="the-blood.js"></script>
     <script src="reckless-love.js"></script>
     <script src="king-of-my-heart.js"></script>
-
-    <style>
+    <script src="i-know-a-name.js"></script> <style>
         :root {
             --bg: #0f0f0f; --text: #e0e0e0; --muted: #999; --accent: #ffaa22;
             --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.95);
@@ -50,7 +49,7 @@
         }
 
         .site-title { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; margin: 0; color: var(--text); text-transform: uppercase; }
-        .site-slogan { font-size: 0.95rem; color: var(--accent); margin: 8px 0 20px 0; font-weight: 400; font-style: italic; line-height: 1.4; }
+        .site-slogan { font-size: 0.85rem; color: var(--accent); margin: 8px 0 20px 0; font-weight: 400; font-style: italic; line-height: 1.4; opacity: 0.8; }
         
         .search-container { max-width: 500px; margin: 0 auto 15px; position: relative; }
         .search-input { width: 100%; padding: 12px 40px 12px 15px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
@@ -69,13 +68,12 @@
         .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: underline; margin-bottom: 10px; display: inline-block; }
         .music-player { display: none; margin-bottom: 20px; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
         pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; white-space: pre; background: var(--input-bg); padding: 25px; border-radius: 12px; border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text); }
+        .chord { color: #55ff55; font-weight: bold; }
 
-        /* Адаптація для мобільних */
         @media (max-width: 600px) {
             header { padding: 15px 10px; }
             .menu-btn { position: relative; left: 0; top: 0; width: 100%; margin-bottom: 15px; justify-content: center; }
             .site-title { font-size: 1.3rem; }
-            pre { padding: 15px; font-size: 14px; }
         }
     </style>
 </head>
@@ -124,7 +122,8 @@
         'hosanna': '154 BPM | 4/4',
         'the-blood': '77 BPM | 4/4',
         'reckless-love': '83 BPM | 6/8',
-        'king-of-heart': '68 BPM | 4/4'
+        'king-of-heart': '68 BPM | 4/4',
+        'i-know-a-name': '86 BPM | 4/4'
     };
 
     let audioCtx = null;
@@ -160,15 +159,10 @@
     function scheduler() {
         while (nextNoteTime < audioCtx.currentTime + 0.1) {
             playClick(nextNoteTime, beatCounter % 4 === 0);
-            
-            // СИНХРОНІЗОВАНИЙ СКРОЛ
-            if (scrollInterval) {
+            if (scrollInterval && isPlaying) {
                 const delay = (nextNoteTime - audioCtx.currentTime) * 1000;
-                setTimeout(() => {
-                    if (scrollInterval) window.scrollBy(0, 8); // Крок скролу на кожну долю
-                }, delay);
+                setTimeout(() => { if (scrollInterval) window.scrollBy(0, 1); }, delay);
             }
-
             nextNoteTime += 60.0 / tempo;
             beatCounter++;
         }
@@ -178,25 +172,20 @@
     function playClick(time, isStrong) {
         const osc = audioCtx.createOscillator();
         const envelope = audioCtx.createGain();
-        osc.frequency.value = isStrong ? 1000 : 500; // Різна частота для долей
+        osc.frequency.value = isStrong ? 1000 : 500;
         envelope.gain.exponentialRampToValueAtTime(0.001, time + 0.1);
         osc.connect(envelope); envelope.connect(audioCtx.destination);
         osc.start(time); osc.stop(time + 0.1);
     }
 
-    function startScroll() {
-        if (!isPlaying) toggleMetronome(); 
-        scrollInterval = true; 
-        document.getElementById('playBtn').innerText = "■ STOP";
-    }
-
-    function stopScroll() {
-        scrollInterval = null; 
-        document.getElementById('playBtn').innerText = "▶ AUTO";
-    }
-
     function toggleAutoscroll() {
-        scrollInterval ? stopScroll() : startScroll();
+        if (!scrollInterval) {
+            scrollInterval = true;
+            document.getElementById('playBtn').innerText = "■ STOP";
+        } else {
+            scrollInterval = null;
+            document.getElementById('playBtn').innerText = "▶ AUTO";
+        }
     }
 
     const translations = {
@@ -223,58 +212,6 @@
     function render() {
         const wrapper = document.getElementById('wrapper');
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        if (!wrapper) return;
         
         const allSongs = [];
-        if (typeof song_altar !== 'undefined') allSongs.push(song_altar);
-        if (typeof song_how_he_loves !== 'undefined') allSongs.push(song_how_he_loves);
-        if (typeof song_as_the_deer !== 'undefined') allSongs.push(song_as_the_deer);
-        if (typeof song_hosanna !== 'undefined') allSongs.push(song_hosanna);
-        if (typeof song_the_blood !== 'undefined') allSongs.push(song_the_blood);
-        if (typeof song_reckless_love !== 'undefined') allSongs.push(song_reckless_love);
-        if (typeof song_king_of_my_heart !== 'undefined') allSongs.push(song_king_of_my_heart);
-
-        let html = '';
-        const filteredSongs = allSongs.filter(song => song[currentLang].title.toLowerCase().includes(searchTerm));
-
-        if (filteredSongs.length === 0) {
-            html = `<div class="no-results">${translations[currentLang].noResults}</div>`;
-        } else {
-            filteredSongs.forEach(song => {
-                const data = song[currentLang];
-                const meta = songMeta[song.id] || '';
-                html += `<div class="song-card">
-                    <div class="song-title-row"><h2>${data.title}</h2><span class="tempo-badge">${meta}</span></div>
-                    <div class="artist">${data.artist}</div>
-                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video</span>
-                    <div class="music-player" id="player-${song.id}">
-                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
-                </div>`;
-            });
-        }
-        wrapper.innerHTML = html;
-    }
-
-    function changeFontSize(delta) { currentFontSize += delta; render(); }
-
-    window.onload = () => {
-        setLang('uk');
-        const hash = window.location.hash.replace('#', '');
-        if (hash) {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = hash.replace(/-/g, ' ');
-            render(); 
-            if (songMeta[hash]) {
-                const bpm = parseInt(songMeta[hash]);
-                tempo = bpm;
-                document.getElementById('bpmSlider').value = bpm;
-                document.getElementById('bpmVal').innerText = bpm;
-            }
-        }
-    };
-</script>
-</body>
-</html>
-
+        // Динамічна
