@@ -5,166 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Passport - Harmonica Worship</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f0f0f'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='50' fill='%23ffaa22'>HW</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; --border: #333; }
+        :root { 
+            --primary: #ffaa22; 
+            --bg: #0a0a0a; 
+            --panel: #141414; 
+            --text: #ffffff; 
+            --muted: #888;
+            --border: #222; 
+        }
         
         body { 
             background: var(--bg); color: var(--text); 
-            font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 50px; 
+            font-family: 'Inter', sans-serif; margin: 0; 
             -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(circle at 50% -20%, #221a0f 0%, #0a0a0a 60%);
+            min-height: 100vh;
         }
         
-        /* Адаптивний хедер */
-        .header-nav { 
-            background: rgba(26, 26, 26, 0.95); 
-            padding: 12px 20px; 
+        /* Витончена Навігація */
+        .nav-glass { 
+            background: rgba(10, 10, 10, 0.8); 
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 25px;
             display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 1px solid var(--border); 
-            position: sticky; top: 0; z-index: 100;
-            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000;
         }
 
         .btn-back { 
-            color: var(--primary); text-decoration: none; 
-            font-weight: 700; font-size: 0.85rem; 
-            text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--muted); text-decoration: none; 
+            font-weight: 700; font-size: 0.75rem; 
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s;
+            display: flex; align-items: center; gap: 8px;
         }
+        .btn-back:hover { color: var(--primary); }
 
         .btn-lang { 
-            background: var(--primary); border: none; 
-            padding: 6px 12px; border-radius: 6px; 
+            background: transparent; border: 1px solid var(--border); 
+            color: var(--primary);
+            padding: 6px 14px; border-radius: 8px; 
             font-weight: 900; cursor: pointer; 
-            text-transform: uppercase; font-size: 0.75rem;
+            text-transform: uppercase; font-size: 0.7rem;
+            transition: 0.3s;
+        }
+        .btn-lang:hover { background: var(--primary); color: #000; }
+
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px 100px; }
+
+        /* Заголовок у стилі постеру */
+        .hero-title { 
+            font-size: clamp(2.5rem, 8vw, 4rem); 
+            font-weight: 900; text-transform: uppercase; 
+            letter-spacing: -2px; line-height: 0.9;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #fff 40%, #555 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .container { max-width: 750px; margin: 30px auto; padding: 0 15px; }
-
-        /* Картка контенту */
-        .content-card { 
-            background: var(--panel); 
-            padding: 40px; border-radius: 24px; 
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        
-        h1 { 
-            color: #fff; font-weight: 900; text-transform: uppercase; 
-            margin: 0 0 25px 0; font-size: 1.8rem; letter-spacing: -0.5px; 
-        }
-
-        p { margin-bottom: 20px; color: #bbb; line-height: 1.7; font-size: 1.05rem; }
+        /* Контентна частина */
+        .main-content { font-size: 1.15rem; line-height: 1.8; color: #ccc; }
+        .main-content p { margin-bottom: 25px; }
         .accent { color: var(--primary); font-weight: 700; }
         
-        /* Блок про метроном - "Почувайтеся як вдома" */
         .feature-note { 
-            background: rgba(255, 170, 34, 0.05); 
-            border-radius: 12px; padding: 20px; 
-            border: 1px solid rgba(255, 170, 34, 0.2); 
-            margin: 30px 0; color: #eee; 
-            font-style: italic; text-align: center;
+            background: #111; 
+            border-left: 4px solid var(--primary);
+            padding: 30px; border-radius: 0 16px 16px 0; 
+            margin: 50px 0; color: #fff; font-size: 1rem;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
         }
 
-        /* Блок підтримки */
-        .support-box { 
-            background: #111; padding: 30px; border-radius: 18px; 
-            margin-top: 40px; border: 1px solid var(--border); 
-            text-align: center; 
+        /* Блок Донату */
+        .support-card { 
+            background: linear-gradient(145deg, #181818, #111);
+            padding: 40px; border-radius: 24px; 
+            border: 1px solid var(--border); 
+            text-align: center; margin-top: 60px;
         }
         
-        .support-desc { font-size: 0.95rem; margin-bottom: 15px; color: #999; }
+        .support-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 25px; }
 
         .btn-donate { 
             background: var(--primary); color: #000; 
-            padding: 14px 30px; border-radius: 10px; 
+            padding: 16px 40px; border-radius: 12px; 
             text-decoration: none; font-weight: 900; 
-            display: inline-block; transition: 0.3s; 
-            text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
         }
-        .btn-donate:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,170,34,0.3); }
+        .btn-donate:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255,170,34,0.4); }
 
-        /* Контакти */
-        .contact-info { 
-            margin-top: 30px; padding-top: 25px; 
-            border-top: 1px solid var(--border); 
-            font-size: 0.9rem; color: #777; line-height: 1.5;
+        .contact-area { 
+            margin-top: 60px; border-top: 1px solid var(--border); 
+            padding-top: 30px; font-size: 0.85rem; color: var(--muted); 
+            font-family: 'Roboto Mono', monospace;
         }
-        .contact-info a { color: var(--primary); text-decoration: none; font-weight: 700; }
+        .contact-area a { color: var(--primary); text-decoration: none; font-weight: bold; }
 
-        /* Мобільна адаптація */
+        /* Мобільні викрутаси */
         @media (max-width: 600px) {
-            .container { margin: 15px auto; }
-            .content-card { padding: 25px; border-radius: 15px; }
-            h1 { font-size: 1.4rem; }
-            p { font-size: 0.95rem; }
-            .header-nav { padding: 10px 15px; }
+            .container { margin: 20px auto; }
+            .hero-title { letter-spacing: -1px; margin-bottom: 30px; }
+            .main-content { font-size: 1rem; }
+            .feature-note { padding: 20px; }
+            .support-card { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="header-nav">
-        <a href="index.html" class="btn-back" id="nav-back">← Catalog</a>
+    <nav class="nav-glass">
+        <a href="index.html" class="btn-back" id="nav-back"><span>←</span> Catalog</a>
         <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">UA</button>
     </nav>
 
     <div class="container">
-        <div class="content-card">
-            <h1 id="title">Project Passport</h1>
-            
-            <div id="main-text">
-                </div>
-
-            <div class="support-box">
-                <p id="support-desc" class="support-desc"></p>
-                <a href="https://donatello.to/HarmonicaWorshipSongs" target="_blank" class="btn-donate">Donatello</a>
+        <h1 class="hero-title" id="title">About<br>Project</h1>
+        
+        <div class="main-content" id="main-text">
             </div>
 
-            <div class="contact-info" id="contact-area">
-                </div>
+        <div class="support-card">
+            <p id="support-desc"></p>
+            <a href="https://donatello.to/HarmonicaWorshipSongs" target="_blank" class="btn-donate">Support via Donatello</a>
         </div>
+
+        <div class="contact-area" id="contact-area">
+            </div>
     </div>
 
     <script>
         const langData = {
             en: {
-                title: "About Project",
-                back: "← Catalog",
-                supportDesc: "This project runs on enthusiasm, but if you'd like to bless its development financially, you can do so here:",
-                contact: "Spotted a mistake? Have song suggestions or want to share your own arrangement? Reach out: ",
+                title: "About<br>Project",
+                back: "Catalog",
+                supportDesc: "This project runs on enthusiasm. If you'd like to support the development and maintenance of this resource financially:",
+                contact: "Spotted a mistake? Have song suggestions or want to share your own arrangement? Write me here:",
                 content: `
-                    <p>Hello! Here's a brief look at why this site exists and the person behind it.</p>
-                    <p>I’m a <span class="accent">Ukrainian student</span> and a member of an evangelical community. Music, especially Gospel and Modern Worship, has always been a way for me to connect and create.</p>
-                    <p><span class="accent">The Idea:</span> It all started with a simple need. I often saw people on Reddit or Facebook forums desperately asking for any harmonica parts. Not long ago, I felt a spark of inspiration and decided to fill this gap. I began writing parts <span class="accent">by ear</span> and publishing them here to help my brothers and sisters in Christ.</p>
-                    <div class="feature-note">Make yourself at home. Use the built-in metronome, toggle languages, and practice. This is a space built for our community.</div>
+                    <p>Hello! I am a <span class="accent">student from Ukraine</span> and a member of an evangelical community. I have a deep passion for music, especially Gospel and Modern Worship. But you know what's better than listening to music? <span class="accent">Creating it.</span></p>
+                    <p>A year ago, I faced a problem: a total lack of harmonica tabs for Christian songs. I often saw people on Reddit or Facebook forums desperately asking for any harmonica parts. </p>
+                    <p>I decided to act on that spark of inspiration. I started transcribing parts <span class="accent">by ear</span> and publishing them here to help my brothers and sisters in Christ praise the Lord through their instruments.</p>
+                    <div class="feature-note">
+                        <strong>Make yourself at home.</strong> Use the built-in metronome, adjust the font size, and practice. This space was built for our community.
+                    </div>
                 `
             },
             uk: {
-                title: "Про Проєкт",
-                back: "← Каталог",
-                supportDesc: "Проєкт тримається на ініціативі та бажанні допомоги, але якщо ви маєте можливість та бажання благословити його розвиток фінансово — це можна зробити тут:",
-                contact: "Знайшли помилку? Маєте пропозиції чи хочете опублікувати свою партію на сайті? Пишіть мені на пошту: ",
+                title: "Про<br>Проєкт",
+                back: "Каталог",
+                supportDesc: "Проєкт тримається на ініціативі. Якщо ви бажаєте фінансово підтримати розвиток та хостинг цього ресурсу:",
+                contact: "Знайшли помилку чи маєте пропозиції? Пишіть мені:",
                 content: `
-                    <p>Вітаю! Коротко про те, як з'явився цей сайт і для чого він потрібен.</p>
-                    <p>Я <span class="accent">студент з України</span> та парафіянин євангельської церкви. Я до нестями обожнюю слухати музику, а особливо ґоспел та сучасний воршіп. А знаєте, що краще за прослуховування музики? Авжеж, це її створення!</p>
-                    <p><span class="accent">Як з'явилася ідея:</span> Близько року тому я стикнувся з проблемою відсутності табулатур для християнської музики. Я чимало разів натикався на Reddit чи Facebook форумах на прохання скинути хоч якісь партії для гармоніки. Тож я почав підбирати партії <span class="accent">на слух</span> і викладати їх тут, щоб допомогти іншим.</p>
-                    <div class="feature-note">Почувайтеся як вдома. Користуйтеся вбудованим метрономом, перемикайте мови й тренуйтеся. Це місце створене для нашої спільноти.</div>
+                    <p>Вітаю! Я <span class="accent">студент з України</span> та парафіянин євангельської церкви. Я до нестями обожнюю музику, а особливо ґоспел та сучасний воршіп. А знаєте, що краще за прослуховування музики? <span class="accent">Її створення!</span></p>
+                    <p>Близько року тому я стикнувся з проблемою, повна відсутність сучасно християнської музики на гармоніцію. Чимало разів я натикався на Reddit чи Facebook форумах на прохання скинути хоч якісь партії для гармоніки.</p>
+                    <p>Тож я почав підбирати партії <span class="accent">на слух</span> і викладати їх тут, щоб допомогти братам та сестрам у Христі славити Господа через майстерну гру.</p>
+                    <div class="feature-note">
+                        <strong>Почувайтеся як вдома.</strong> Користуйтеся вбудованим метрономом, змінюйте розмір шрифту та тренуйтеся. Це місце створене для нашої спільноти.
+                    </div>
                 `
             }
         };
 
-        // English as default
         let currentLang = 'en';
 
         function updateUI() {
             const data = langData[currentLang];
-            document.getElementById('title').innerText = data.title;
-            document.getElementById('nav-back').innerText = data.back;
+            document.getElementById('title').innerHTML = data.title;
+            document.getElementById('nav-back').innerHTML = `<span>←</span> ${data.back}`;
             document.getElementById('support-desc').innerText = data.supportDesc;
             document.getElementById('main-text').innerHTML = data.content;
             document.getElementById('contact-area').innerHTML = data.contact + '<br><a href="mailto:butkowski.illia@gmail.com">butkowski.illia@gmail.com</a>';
             document.getElementById('lang-toggle').innerText = currentLang === 'en' ? 'UA' : 'EN';
-            document.getElementById('page-title').innerText = data.title + " - Harmonica Worship";
+            document.getElementById('page-title').innerText = (currentLang === 'en' ? "About Us" : "Про проєкт") + " - Harmonica Worship";
         }
 
         function toggleLanguage() {
@@ -172,7 +186,6 @@
             updateUI();
         }
 
-        // Initialize with English
         updateUI();
     </script>
 </body>
