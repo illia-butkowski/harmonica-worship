@@ -1,5 +1,5 @@
 const song_king_of_my_heart = {
-    id: 'king-of-heart',
+    id: 'king-of-my-heart',
     youtubeId: 'pomqj7acJc4',
     uk: {
         title: 'Ти благий',
