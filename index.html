@@ -24,18 +24,6 @@
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
         
-        .sidebar {
-            position: fixed; left: -280px; top: 0; width: 260px; height: 100%;
-            background: #111; border-right: 1px solid var(--border);
-            z-index: 1001; transition: 0.3s; padding: 30px 20px; box-sizing: border-box;
-        }
-        .sidebar.active { left: 0; }
-        .sidebar-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; z-index: 1000;
-        }
-        .sidebar-overlay.active { display: block; }
-        
         header { 
             padding: 15px; border-bottom: 1px solid var(--border); 
             position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); 
@@ -43,48 +31,59 @@
 
         .header-top { 
             display: flex; justify-content: space-between; align-items: center; 
-            max-width: 850px; margin: 0 auto 5px;
+            max-width: 850px; margin: 0 auto 5px; position: relative;
         }
 
+        /* Кнопки, що адаптуються */
         .menu-btn, .passport-btn { 
             background: #222; border: 1px solid var(--border); 
-            color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; 
-            font-size: 0.75rem; font-weight: 700; text-decoration: none;
+            color: var(--text); padding: 10px 15px; border-radius: 8px; cursor: pointer; 
+            font-size: 0.85rem; font-weight: 700; text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
         }
         .passport-btn { border-color: var(--accent); color: var(--accent); background: transparent; }
 
-        .site-title { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; text-align: center; flex-grow: 1; }
-        
-        /* СТИЛЬ СЛОГАНА */
-        .site-slogan { 
-            font-size: 0.85rem; color: var(--accent); text-align: center; 
-            margin: 5px auto 15px; font-weight: 400; font-style: italic; 
-            max-width: 600px; line-height: 1.2;
-        }
+        .site-title { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; text-align: center; flex-grow: 1; margin: 0 10px; }
+        .site-slogan { font-size: 0.9rem; color: var(--accent); text-align: center; margin: 5px auto 15px; font-weight: 400; font-style: italic; max-width: 600px; line-height: 1.4; }
 
         .search-container { max-width: 500px; margin: 0 auto 15px; position: relative; }
         .search-input { width: 100%; padding: 12px 40px 12px 15px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
         .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); }
         
-        .controls { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
-        .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.75rem; }
+        .controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.8rem; }
         .btn.active { background: var(--text); color: var(--bg); }
         
-        .container { max-width: 850px; margin: 10px auto; padding: 0 15px 150px; }
-        .song-card { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+        /* Картки пісень */
+        .container { max-width: 850px; margin: 20px auto; padding: 0 20px 150px; }
+        .song-card { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+        .song-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 5px; }
+        .song-link { color: inherit; text-decoration: none; transition: 0.2s; }
+        .song-link:hover { color: var(--accent); }
         
-        pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; background: var(--input-bg); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); overflow-x: auto; color: var(--text); }
+        h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
+        .tempo-badge { background: rgba(255,170,34,0.1); color: var(--accent); padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(255,170,34,0.3); font-family: 'Roboto Mono'; }
+        
+        pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; background: var(--input-bg); padding: 25px; border-radius: 12px; border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text); }
 
+        /* Мобільні виправлення */
+        @media (max-width: 600px) {
+            .header-top { margin-bottom: 10px; }
+            .site-title { font-size: 1.1rem; margin: 0 5px; }
+            .menu-btn, .passport-btn { padding: 6px 10px; font-size: 0.7rem; gap: 4px; }
+            .site-slogan { font-size: 0.75rem; padding: 0 10px; }
+            .btn { padding: 6px 10px; font-size: 0.7rem; }
+            h2 { font-size: 1.4rem; }
+        }
+
+        /* Бічна панель метронома */
+        .sidebar { position: fixed; left: -280px; top: 0; width: 260px; height: 100%; background: #111; border-right: 1px solid var(--border); z-index: 1001; transition: 0.3s; padding: 30px 20px; box-sizing: border-box; }
+        .sidebar.active { left: 0; }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; z-index: 1000; }
+        .sidebar-overlay.active { display: block; }
         .bpm-display { font-size: 2.5rem; font-weight: 900; color: var(--accent); text-align: center; margin: 10px 0; font-family: 'Roboto Mono'; }
         .metro-slider { width: 100%; accent-color: var(--accent); margin: 20px 0; }
         .metro-btn { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: 900; cursor: pointer; background: var(--accent); color: black; }
-
-        @media (max-width: 600px) {
-            .site-title { font-size: 1.1rem; }
-            .site-slogan { font-size: 0.7rem; margin-bottom: 10px; padding: 0 10px; }
-            .controls .btn { padding: 6px 10px; font-size: 0.65rem; }
-            pre { font-size: 14px; }
-        }
     </style>
 </head>
 <body>
@@ -100,7 +99,7 @@
 <header>
     <div class="header-top">
         <button class="menu-btn" onclick="toggleMetroSidebar()">
-            <span>☰</span> <span id="menuText">METRO</span>
+            <span>☰</span> <span id="menuText">METRONOME</span>
         </button>
         <div class="site-title">Harmonica Worship</div>
         <a href="about.html" class="passport-btn" id="passportBtn">PASSPORT</a>
@@ -115,7 +114,7 @@
 
     <div class="controls">
         <button class="btn" id="btn-uk" onclick="setLang('uk')">UA</button>
-        <button class="btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
         <button class="btn" id="playBtn" onclick="toggleAutoscroll()" style="background: var(--accent); color: black; border: none;">▶ AUTO</button>
         <button class="btn" onclick="changeFontSize(2)">A+</button>
         <button class="btn" onclick="changeFontSize(-2)">A-</button>
@@ -140,6 +139,23 @@
         'reckless-love': '83 BPM | 6/8',
         'king-of-my-heart': '68 BPM | 4/4',
         'i-know-a-name': '86 BPM | 4/4'
+    };
+
+    const translations = {
+        uk: { 
+            slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3", 
+            searchPlaceholder: "Пошук пісні...", 
+            noResults: "Нічого не знайдено 🎶", 
+            menu: "МЕТРОНОМ", 
+            passport: "ПРО НАС" 
+        },
+        en: { 
+            slogan: "«Sing to him a new song; play skillfully, and shout for joy.» — Psalm 33:3", 
+            searchPlaceholder: "Search songs...", 
+            noResults: "Nothing found 🎶", 
+            menu: "METRONOME", 
+            passport: "ABOUT US" 
+        }
     };
 
     let audioCtx = null;
@@ -200,18 +216,13 @@
     }
 
     function toggleAutoscroll() {
-        if (scrollInterval) { stopScroll(); } 
-        else { 
+        if (scrollInterval) stopScroll();
+        else {
             if (!isPlaying) toggleMetronome();
             scrollInterval = true;
             document.getElementById('playBtn').innerText = "■ STOP";
         }
     }
-
-    const translations = {
-        uk: { slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3", searchPlaceholder: "Пошук...", noResults: "Нічого не знайдено 🎶", menu: "METRO", passport: "PASSPORT" },
-        en: { slogan: "«Sing to him a new song; play skillfully, and shout for joy.» — Psalm 33:3", searchPlaceholder: "Search...", noResults: "Nothing found 🎶", menu: "METRO", passport: "PASSPORT" }
-    };
 
     function setLang(lang) {
         currentLang = lang;
@@ -220,6 +231,7 @@
         document.getElementById('slogan').innerText = translations[lang].slogan;
         document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('menuText').innerText = translations[lang].menu;
+        document.getElementById('metroTitle').innerText = translations[lang].menu;
         document.getElementById('passportBtn').innerText = translations[lang].passport;
         render();
     }
@@ -254,13 +266,13 @@
                 const data = song[currentLang];
                 const meta = songMeta[song.id] || '';
                 html += `<div class="song-card">
-                    <div style="display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;">
-                        <h2 style="font-size:1.5rem;"><a href="songs/${song.id}.html" style="color:inherit; text-decoration:none;">${data.title}</a></h2>
-                        <span style="color:var(--accent); font-size:0.7rem; font-weight:800; border:1px solid var(--accent); padding:2px 6px; border-radius:4px;">${meta}</span>
+                    <div class="song-title-row">
+                        <h2><a href="songs/${song.id}.html" class="song-link">${data.title}</a></h2>
+                        <span class="tempo-badge">${meta}</span>
                     </div>
-                    <div style="color:var(--accent); font-size:0.8rem; font-weight:700; text-transform:uppercase; margin:5px 0;">${data.artist}</div>
-                    <span onclick="togglePlayer('${song.id}')" style="color:var(--muted); font-size:0.8rem; cursor:pointer; text-decoration:underline;">🎵 Video</span>
-                    <div id="player-${song.id}" style="display:none; margin-top:10px;">
+                    <div class="artist" style="color:var(--accent); font-weight:700; margin-bottom:10px; text-transform:uppercase; font-size:0.8rem;">${data.artist}</div>
+                    <span class="player-toggle" onclick="togglePlayer('${song.id}')" style="color:var(--muted); cursor:pointer; font-size:0.8rem; text-decoration:underline;">🎵 Video</span>
+                    <div class="music-player" id="player-${song.id}" style="display:none; margin:15px 0; border:1px solid var(--border); border-radius:12px; overflow:hidden;">
                         <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
