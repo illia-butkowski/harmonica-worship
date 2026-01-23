@@ -25,7 +25,6 @@
         
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; }
 
-        /* Sidebar Metronome */
         .sidebar {
             position: fixed; left: -280px; top: 0; width: 260px; height: 100%;
             background: #111; border-right: 1px solid var(--border);
@@ -42,7 +41,6 @@
         .metro-slider { width: 100%; accent-color: var(--accent); margin: 20px 0; }
         .metro-btn { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: 900; cursor: pointer; background: var(--accent); color: black; }
 
-        /* Динамічний хедер (прогортається) */
         .hero-section { 
             padding: 40px 20px 20px; text-align: center; border-bottom: 1px solid var(--border);
             position: relative;
@@ -57,9 +55,8 @@
         .site-slogan { font-size: 0.9rem; color: var(--accent); margin: 15px auto; font-style: italic; max-width: 500px; line-height: 1.4; }
         
         .search-container { max-width: 500px; margin: 20px auto 0; position: relative; padding: 0 10px; }
-        .search-input { width: 100%; padding: 12px 40px 12px 20px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; }
+        .search-input { width: 100%; padding: 12px 40px 12px 20px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
 
-        /* Стабільна панель керування (Приклеєна) */
         .fixed-controls {
             position: fixed; bottom: 0; left: 0; width: 100%; 
             background: var(--sticky-bg); border-top: 1px solid var(--border);
@@ -230,8 +227,13 @@
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         
         const allSongs = [];
+        // Виправлено назви змінних: song_how_he_loves замість song-how-he-loves
         const songIds = ['altar', 'how_he_loves', 'as_the_deer', 'hosanna', 'the_blood', 'reckless_love', 'king_of_my_heart', 'i_know_a_name'];
-        songIds.forEach(id => { if (window['song_'+id]) allSongs.push(window['song_'+id]); });
+        
+        songIds.forEach(id => { 
+            const songVar = window['song_' + id];
+            if (songVar) allSongs.push(songVar); 
+        });
 
         let html = '';
         const filtered = allSongs.filter(s => s[currentLang].title.toLowerCase().includes(searchTerm));
@@ -241,10 +243,12 @@
         } else {
             filtered.forEach(song => {
                 const data = song[currentLang];
+                // Використовуємо ID з об'єкта пісні, замінюючи підкреслення на дефіси для метаданих
+                const metaKey = song.id.replace('_', '-');
                 html += `<div class="song-card">
                     <div class="song-title-row">
                         <h2>${data.title}</h2>
-                        <span class="tempo-badge">${songMeta[song.id] || ''}</span>
+                        <span class="tempo-badge">${songMeta[metaKey] || ''}</span>
                     </div>
                     <div class="artist">${data.artist}</div>
                     <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video Instruction</span>
@@ -258,7 +262,11 @@
         wrapper.innerHTML = html;
     }
 
-    function changeFontSize(delta) { currentFontSize += delta; render(); }
+    function changeFontSize(delta) { 
+        currentFontSize += delta; 
+        const pres = document.querySelectorAll('pre');
+        pres.forEach(pre => pre.style.fontSize = currentFontSize + 'px');
+    }
 
     window.onload = () => { setLang('en'); };
 </script>
