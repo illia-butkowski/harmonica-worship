@@ -67,7 +67,6 @@ O, xвaлa Toбi
         title: 'King of My Heart',
         artist: 'BETHEL MUSIC',
         content: `
-
 (Verse 1)
 
 4 -4 5 -4 4 4
