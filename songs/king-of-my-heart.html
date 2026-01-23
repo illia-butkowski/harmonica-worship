@@ -193,4 +193,38 @@ O, xвлa Toбi
             updateUI();
         }
 
-        let isPlaying = false; let audioCtx = null; let nextTickTime
+        let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
+        const bpm = 68;
+
+        function playTick() {
+            let osc = audioCtx.createOscillator(); let envelope = audioCtx.createGain();
+            osc.frequency.value = 1000; envelope.gain.value = 1;
+            envelope.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.connect(envelope); envelope.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                playTick(); nextTickTime += 60 / bpm;
+            }
+            timerId = setTimeout(scheduler, 25);
+        }
+
+        function toggleMetronome() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('metro-btn');
+            if (isPlaying) { 
+                btn.innerText = 'STOP'; btn.style.background = '#fff';
+                nextTickTime = audioCtx.currentTime; scheduler(); 
+            } else { 
+                btn.innerText = 'START'; btn.style.background = '#ffaa22';
+                clearTimeout(timerId); 
+            }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
