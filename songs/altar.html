@@ -33,7 +33,6 @@
 
         .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; line-height: 1.8; border-left: 6px solid var(--primary); margin-bottom: 40px; color: #fff; }
 
-        /* Стильні помаранчеві кнопочки рекомендацій */
         .rec-section { margin-top: 60px; padding: 20px 0; border-top: 1px solid #333; }
         .rec-title { font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--primary); font-size: 0.9rem; }
         .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -50,11 +49,6 @@
     </style>
 </head>
 <body>
-
-    <div style="display:none;">
-        <h1>O Come to the Altar (Прийди до вівтаря) - Elevation Worship</h1>
-        <p>Free harmonica tabs for the worship song O Come to the Altar. Таби для пісні Прийди до вівтаря на губній гармоніці.</p>
-    </div>
 
     <nav class="header-nav">
         <a href="../index.html" class="btn-back" id="nav-back">← CATALOG</a>
@@ -74,7 +68,63 @@
             <iframe src="https://www.youtube.com/embed/rYQ5yXCc_CA" allowfullscreen></iframe>
         </div>
 
-        <div class="tab-content" id="tab-data"></div>
+        <div class="tab-content" id="tab-data">
+           
+(Verse 1)
+
+5 5 5 -4 4 4 -3 3 5
+Are you hurting and broken within?
+5 5 5 -4 4 4 -3 3 5
+Overwhelmed by the weight of your sin?
+5 -5 4 4 -3
+Jesus is calling
+5 5 5 -4 4 4 -3 3 5
+Have you come to the end of yourself?
+5 5 5 -4 4 4 -3 3 5
+Do you thirst for a drink from the well?
+5 -5 4 4 -3
+Jesus is calling
+
+(Chorus)
+
+4 -4 5 4 -5 5 
+O come to the altar
+4 4 -4 5 -5 5 -4 4
+The Father's arms are open wide
+4 -4 5 4 -5 5 
+Forgiveness was bought with
+4 4 -4 5 -5 5 -4 45
+The precious blood of Jesus Christ
+
+(Verse 2)
+
+5 5 5 -4 4 4 -3 3 5
+Leave behind your regrets and mistakes
+5 5 5 -4 4 4 -3 3 5
+Come today, there's no reason to wait
+5 -5 4 4 -3
+Jesus is calling
+5 5 5 -4 4 4 -3 3 5
+Bring your sorrows and trade them for joy
+5 5 5 -4 4 4 -3 3 5
+From the ashes, a new life is born
+5 -5 4 4 -3
+Jesus is calling
+
+(Bridge)
+
+4 -4 5 -5 5 
+Oh, what a Savior
+4 -4 5 -5 5 4
+Isn't He wonderful?
+4 -4 5 6 4 -4 5 -5 5
+Sing hallelujah, Christ is risen
+4 -4 5 -5 5
+Bow down before Him
+4 -4 5 -5 5 4
+For He is Lord of all
+Sing hallelujah, Christ is risen
+4 -4 5 6 4 -4 5 -5 5</div>
 
         <div class="rec-section">
             <div class="rec-title" id="more-title">MORE SONGS:</div>
@@ -98,7 +148,9 @@
                 back: "← CATALOG",
                 more: "MORE SONGS:",
                 label: "Song",
-                content: `(Verse 1)
+                content: `
+(Verse 1)
+                
 
 5 5 5 -4 4 4 -3 3 5
 Are you hurting and broken within?
@@ -239,7 +291,7 @@ The precious blood of Jesus Christ`
             }
         };
 
-        let currentLang = 'en'; // АНГЛІЙСЬКА ПЕРША
+        let currentLang = 'en';
 
         function updateUI() {
             const lang = songData[currentLang];
@@ -257,7 +309,6 @@ The precious blood of Jesus Christ`
             updateUI();
         }
 
-        // Метроном
         let isPlaying = false; let audioCtx = null; let nextTickTime = 0; let timerId = null;
         const bpm = 68;
 
