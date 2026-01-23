@@ -23,69 +23,80 @@
             --border: #222; --input-bg: #1a1a1a; --sticky-bg: rgba(20, 20, 20, 0.95);
         }
         
-        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); padding-bottom: 100px; -webkit-font-smoothing: antialiased; }
 
+        /* Sidebar Metronome */
         .sidebar {
             position: fixed; left: -280px; top: 0; width: 260px; height: 100%;
             background: #111; border-right: 1px solid var(--border);
-            z-index: 2001; transition: 0.3s; padding: 30px 20px; box-sizing: border-box;
+            z-index: 2001; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 30px 20px; box-sizing: border-box;
         }
         .sidebar.active { left: 0; }
         .sidebar-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; z-index: 2000;
+            background: rgba(0,0,0,0.7); display: none; z-index: 2000; backdrop-filter: blur(4px);
         }
         .sidebar-overlay.active { display: block; }
         
         .bpm-display { font-size: 2.5rem; font-weight: 900; color: var(--accent); text-align: center; margin: 10px 0; font-family: 'Roboto Mono'; }
-        .metro-slider { width: 100%; accent-color: var(--accent); margin: 20px 0; }
-        .metro-btn { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: 900; cursor: pointer; background: var(--accent); color: black; }
+        .metro-slider { width: 100%; accent-color: var(--accent); margin: 20px 0; cursor: pointer; }
+        .metro-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; font-weight: 900; cursor: pointer; background: var(--accent); color: black; text-transform: uppercase; transition: 0.2s; }
+        .metro-btn:active { transform: scale(0.98); }
 
+        /* Header */
         .hero-section { 
-            padding: 40px 20px 20px; text-align: center; border-bottom: 1px solid var(--border);
-            position: relative;
+            padding: 50px 20px 30px; text-align: center; border-bottom: 1px solid var(--border);
+            position: relative; background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
         }
         .passport-btn { 
             position: absolute; right: 20px; top: 20px; border: 1px solid var(--accent); 
-            color: var(--accent); padding: 8px 15px; border-radius: 8px; text-decoration: none;
-            font-size: 0.75rem; font-weight: 700;
+            color: var(--accent); padding: 8px 16px; border-radius: 8px; text-decoration: none;
+            font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
         }
+        .passport-btn:hover { background: var(--accent); color: black; }
 
-        .site-title { font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin: 0; text-transform: uppercase; }
-        .site-slogan { font-size: 0.9rem; color: var(--accent); margin: 15px auto; font-style: italic; max-width: 500px; line-height: 1.4; }
+        .site-title { font-size: 2.2rem; font-weight: 900; letter-spacing: -1.5px; margin: 0; text-transform: uppercase; }
+        .site-slogan { font-size: 0.9rem; color: var(--accent); margin: 15px auto; font-style: italic; max-width: 500px; line-height: 1.5; opacity: 0.9; }
         
-        .search-container { max-width: 500px; margin: 20px auto 0; position: relative; padding: 0 10px; }
-        .search-input { width: 100%; padding: 12px 40px 12px 20px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
+        .search-container { max-width: 500px; margin: 25px auto 0; position: relative; padding: 0 10px; }
+        .search-input { width: 100%; padding: 14px 25px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; transition: 0.3s; box-sizing: border-box; }
+        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(255,170,34,0.1); }
 
+        /* Controls */
         .fixed-controls {
             position: fixed; bottom: 0; left: 0; width: 100%; 
             background: var(--sticky-bg); border-top: 1px solid var(--border);
-            padding: 12px 0; z-index: 1000; backdrop-filter: blur(10px);
-            display: flex; justify-content: center; align-items: center; gap: 10px;
+            padding: 15px 0; z-index: 1000; backdrop-filter: blur(12px);
+            display: flex; justify-content: center; align-items: center; gap: 12px;
         }
 
-        .btn { background: #222; border: 1px solid var(--border); color: var(--text); padding: 10px 15px; cursor: pointer; border-radius: 8px; font-weight: 700; font-size: 0.8rem; }
-        .btn.active { background: var(--text); color: var(--bg); }
-        .btn-main { background: var(--accent); color: black; border: none; min-width: 100px; }
+        .btn { background: #222; border: 1px solid var(--border); color: var(--text); padding: 10px 18px; cursor: pointer; border-radius: 10px; font-weight: 700; font-size: 0.75rem; transition: 0.2s; text-transform: uppercase; }
+        .btn.active { background: var(--accent); color: black; border-color: var(--accent); }
+        .btn-main { background: var(--accent); color: black; border: none; min-width: 110px; font-weight: 900; }
+        .btn:hover:not(.active) { border-color: var(--muted); }
 
-        .container { max-width: 850px; margin: 30px auto; padding: 0 20px; }
-        .song-card { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
-        .song-title-row { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px; }
+        /* Songs Layout */
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .song-card { margin-bottom: 60px; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .song-title-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 12px; gap: 10px; }
+        h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; color: #fff; }
+        .tempo-badge { background: rgba(255,170,34,0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; border: 1px solid rgba(255,170,34,0.2); font-family: 'Roboto Mono'; }
         
-        h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
-        .tempo-badge { background: rgba(255,170,34,0.1); color: var(--accent); padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(255,170,34,0.3); font-family: 'Roboto Mono'; }
-        .artist { color: var(--accent); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .artist { color: var(--accent); font-weight: 700; margin-bottom: 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; }
+        .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 15px; transition: 0.2s; }
+        .player-toggle:hover { color: #fff; }
         
-        .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: underline; display: block; margin-bottom: 10px; }
-        .music-player { display: none; margin-bottom: 20px; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+        .music-player { display: none; margin: 15px 0 25px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; white-space: pre; background: var(--input-bg); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); overflow-x: auto; color: var(--text); }
+        pre { font-family: 'Roboto Mono', monospace; line-height: 1.6; white-space: pre; background: #141414; padding: 25px; border-radius: 16px; border: 1px solid var(--border); border-left: 4px solid var(--accent); overflow-x: auto; color: #eee; }
 
         @media (max-width: 600px) {
-            .site-title { font-size: 1.5rem; }
-            .passport-btn { position: relative; display: inline-block; top: 0; right: 0; margin-bottom: 15px; }
-            .btn { padding: 8px 10px; font-size: 0.7rem; }
-            .fixed-controls { gap: 5px; padding: 10px 5px; }
+            .site-title { font-size: 1.6rem; }
+            .passport-btn { position: relative; display: inline-block; top: 0; right: 0; margin-bottom: 20px; }
+            .fixed-controls { gap: 6px; padding: 12px 5px; }
+            .btn { padding: 8px 12px; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -93,14 +104,14 @@
 
 <div class="sidebar-overlay" id="overlay" onclick="toggleMetroSidebar()"></div>
 <div class="sidebar" id="sidebar">
-    <h3 id="metroTitle">METRONOME</h3>
-    <div class="bpm-display"><span id="bpmVal">90</span> <small style="font-size: 1rem; color: var(--muted);">bpm</small></div>
+    <h3 id="metroTitle" style="letter-spacing: 2px; font-size: 1rem; margin-top: 0;">METRONOME</h3>
+    <div class="bpm-display"><span id="bpmVal">90</span> <small style="font-size: 0.8rem; color: var(--muted); font-weight: 400;">BPM</small></div>
     <input type="range" class="metro-slider" id="bpmSlider" min="40" max="220" value="90">
     <button class="metro-btn" id="startBtn" onclick="toggleMetronome()">START</button>
 </div>
 
 <div class="hero-section">
-    <a href="about.html" class="passport-btn" id="passportBtn">PASSPORT</a>
+    <a href="about.html" class="passport-btn" id="passportBtn">Passport</a>
     <div class="site-title">Harmonica Worship</div>
     <div id="slogan" class="site-slogan"></div>
     
@@ -112,14 +123,13 @@
 <div class="container" id="wrapper"></div>
 
 <div class="fixed-controls">
-    <button class="btn" onclick="toggleMetroSidebar()" id="menuText">METRONOME</button>
+    <button class="btn" onclick="toggleMetroSidebar()" id="menuText">Metronome</button>
     <button class="btn btn-main" id="playBtn" onclick="toggleAutoscroll()">▶ AUTO</button>
-    <div style="display: flex; gap: 2px;">
-        <button class="btn" id="btn-uk" onclick="setLang('uk')">UA</button>
-        <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
+    <div style="display: flex; gap: 4px; background: #111; padding: 4px; border-radius: 12px;">
+        <button class="btn" id="btn-uk" onclick="setLang('uk')" style="padding: 6px 10px;">UA</button>
+        <button class="btn" id="btn-en" onclick="setLang('en')" style="padding: 6px 10px;">EN</button>
     </div>
     <button class="btn" onclick="changeFontSize(2)">A+</button>
-    <button class="btn" onclick="changeFontSize(-2)">A-</button>
 </div>
 
 <script>
@@ -182,7 +192,8 @@
         const osc = audioCtx.createOscillator();
         const env = audioCtx.createGain();
         osc.frequency.value = isStrong ? 1000 : 500;
-        env.gain.exponentialRampToValueAtTime(0.001, time + 0.1);
+        env.gain.setTargetAtTime(0.3, time, 0.01);
+        env.gain.setTargetAtTime(0, time + 0.05, 0.015);
         osc.connect(env); env.connect(audioCtx.destination);
         osc.start(time); osc.stop(time + 0.1);
     }
@@ -201,14 +212,14 @@
     function toggleAutoscroll() { scrollInterval ? stopScroll() : startScroll(); }
 
     const translations = {
-        uk: { slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3", searchPlaceholder: "Шукати пісню...", noResults: "Пусто 🎶", menu: "МЕТРОНОМ", passport: "ПАСПОРТ" },
+        uk: { slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3", searchPlaceholder: "Пошук пісні...", noResults: "Нічого не знайдено 🎶", menu: "МЕТРОНОМ", passport: "ПАСПОРТ" },
         en: { slogan: "«Sing to him a new song; play skillfully, and shout for joy.» — Psalm 33:3", searchPlaceholder: "Search songs...", noResults: "Nothing found 🎶", menu: "METRONOME", passport: "PASSPORT" }
     };
 
     function setLang(lang) {
         currentLang = lang;
-        document.getElementById('btn-uk').className = 'btn' + (lang === 'uk' ? ' active' : '');
-        document.getElementById('btn-en').className = 'btn' + (lang === 'en' ? ' active' : '');
+        document.getElementById('btn-uk').classList.toggle('active', lang === 'uk');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         document.getElementById('slogan').innerText = translations[lang].slogan;
         document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('menuText').innerText = translations[lang].menu;
@@ -226,34 +237,33 @@
         const wrapper = document.getElementById('wrapper');
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         
+        // Магія збору пісень: ігноруємо дефіси та підкреслення
         const allSongs = [];
-        // Виправлено назви змінних: song_how_he_loves замість song-how-he-loves
-        const songIds = ['altar', 'how_he_loves', 'as_the_deer', 'hosanna', 'the_blood', 'reckless_love', 'king_of_my_heart', 'i_know_a_name'];
+        const songIds = ['altar', 'how-he-loves', 'as-the-deer', 'hosanna', 'the-blood', 'reckless-love', 'king-of-my-heart', 'i-know-a-name'];
         
-        songIds.forEach(id => { 
-            const songVar = window['song_' + id];
-            if (songVar) allSongs.push(songVar); 
+        songIds.forEach(id => {
+            // Перевіряємо три варіанти написання змінної в window
+            const song = window[`song-${id}`] || window[`song_${id}`] || window[`song${id}`];
+            if (song) allSongs.push(song);
         });
 
         let html = '';
         const filtered = allSongs.filter(s => s[currentLang].title.toLowerCase().includes(searchTerm));
 
         if (filtered.length === 0) {
-            html = `<div style="text-align:center; padding:50px; opacity:0.5;">${translations[currentLang].noResults}</div>`;
+            html = `<div style="text-align:center; padding:100px; opacity:0.3; font-size: 1.2rem;">${translations[currentLang].noResults}</div>`;
         } else {
             filtered.forEach(song => {
                 const data = song[currentLang];
-                // Використовуємо ID з об'єкта пісні, замінюючи підкреслення на дефіси для метаданих
-                const metaKey = song.id.replace('_', '-');
                 html += `<div class="song-card">
                     <div class="song-title-row">
                         <h2>${data.title}</h2>
-                        <span class="tempo-badge">${songMeta[metaKey] || ''}</span>
+                        <span class="tempo-badge">${songMeta[song.id] || ''}</span>
                     </div>
                     <div class="artist">${data.artist}</div>
-                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video Instruction</span>
+                    <div class="player-toggle" onclick="togglePlayer('${song.id}')">▶ Video Instruction</div>
                     <div class="music-player" id="player-${song.id}">
-                        <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
                 </div>`;
@@ -263,9 +273,8 @@
     }
 
     function changeFontSize(delta) { 
-        currentFontSize += delta; 
-        const pres = document.querySelectorAll('pre');
-        pres.forEach(pre => pre.style.fontSize = currentFontSize + 'px');
+        currentFontSize = currentFontSize > 24 ? 14 : currentFontSize + delta;
+        document.querySelectorAll('pre').forEach(p => p.style.fontSize = currentFontSize + 'px');
     }
 
     window.onload = () => { setLang('en'); };
