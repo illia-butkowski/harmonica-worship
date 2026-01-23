@@ -6,7 +6,6 @@
     <title>Harmonica Worship | Free Tabs & Metronome</title>
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f0f0f'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='50' fill='%23ffaa22'>HW</text></svg>">
-
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script src="altar.js"></script>
@@ -21,7 +20,7 @@
     <style>
         :root {
             --bg: #0f0f0f; --text: #e0e0e0; --muted: #999; --accent: #ffaa22;
-            --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.95);
+            --border: #222; --input-bg: #1a1a1a; --header-bg: rgba(15, 15, 15, 0.98);
         }
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
         
@@ -37,58 +36,54 @@
         }
         .sidebar-overlay.active { display: block; }
         
+        header { 
+            padding: 15px; border-bottom: 1px solid var(--border); 
+            position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); 
+        }
+
+        .header-top { 
+            display: flex; justify-content: space-between; align-items: center; 
+            max-width: 850px; margin: 0 auto 5px;
+        }
+
+        .menu-btn, .passport-btn { 
+            background: #222; border: 1px solid var(--border); 
+            color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; 
+            font-size: 0.75rem; font-weight: 700; text-decoration: none;
+        }
+        .passport-btn { border-color: var(--accent); color: var(--accent); background: transparent; }
+
+        .site-title { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; text-align: center; flex-grow: 1; }
+        
+        /* СТИЛЬ СЛОГАНА */
+        .site-slogan { 
+            font-size: 0.85rem; color: var(--accent); text-align: center; 
+            margin: 5px auto 15px; font-weight: 400; font-style: italic; 
+            max-width: 600px; line-height: 1.2;
+        }
+
+        .search-container { max-width: 500px; margin: 0 auto 15px; position: relative; }
+        .search-input { width: 100%; padding: 12px 40px 12px 15px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
+        .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+        
+        .controls { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+        .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.75rem; }
+        .btn.active { background: var(--text); color: var(--bg); }
+        
+        .container { max-width: 850px; margin: 10px auto; padding: 0 15px 150px; }
+        .song-card { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+        
+        pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; background: var(--input-bg); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); overflow-x: auto; color: var(--text); }
+
         .bpm-display { font-size: 2.5rem; font-weight: 900; color: var(--accent); text-align: center; margin: 10px 0; font-family: 'Roboto Mono'; }
         .metro-slider { width: 100%; accent-color: var(--accent); margin: 20px 0; }
         .metro-btn { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: 900; cursor: pointer; background: var(--accent); color: black; }
 
-        header { 
-            padding: 25px 15px; text-align: center; border-bottom: 1px solid var(--border); 
-            position: sticky; top: 0; background: var(--header-bg); z-index: 100; backdrop-filter: blur(10px); 
-        }
-
-        .menu-btn { 
-            position: absolute; left: 15px; top: 22px; background: #222; border: 1px solid var(--border); 
-            color: var(--text); padding: 10px 15px; border-radius: 8px; cursor: pointer; 
-            display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700;
-        }
-
-        /* Кнопка паспорта */
-        .passport-btn {
-            position: absolute; right: 15px; top: 22px; background: transparent; border: 1px solid var(--accent);
-            color: var(--accent); padding: 10px 15px; border-radius: 8px; cursor: pointer;
-            text-decoration: none; font-size: 0.85rem; font-weight: 700;
-        }
-
-        .site-title { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; margin: 0; color: var(--text); text-transform: uppercase; }
-        .site-slogan { font-size: 0.95rem; color: var(--accent); margin: 8px 0 20px 0; font-weight: 400; font-style: italic; line-height: 1.4; }
-        
-        .search-container { max-width: 500px; margin: 0 auto 15px; position: relative; }
-        .search-input { width: 100%; padding: 12px 40px 12px 15px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 50px; color: var(--text); font-size: 1rem; outline: none; box-sizing: border-box; }
-        .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
-        
-        .controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-        .btn { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; cursor: pointer; border-radius: 6px; font-weight: 700; font-size: 0.8rem; }
-        .btn.active { background: var(--text); color: var(--bg); }
-        
-        .container { max-width: 850px; margin: 20px auto; padding: 0 20px 150px; }
-        .song-card { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
-        .song-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 5px; }
-        
-        .song-link { color: inherit; text-decoration: none; }
-        .song-link:hover { color: var(--accent); }
-        
-        h2 { font-size: 1.8rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
-        .tempo-badge { background: rgba(255,170,34,0.1); color: var(--accent); padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(255,170,34,0.3); font-family: 'Roboto Mono'; }
-        .artist { color: var(--accent); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
-        .player-toggle { color: var(--muted); cursor: pointer; font-size: 0.8rem; text-decoration: underline; margin-bottom: 10px; display: inline-block; }
-        .music-player { display: none; margin-bottom: 20px; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-        pre { font-family: 'Roboto Mono', monospace; font-size: 16px; line-height: 1.6; white-space: pre; background: var(--input-bg); padding: 25px; border-radius: 12px; border-left: 5px solid var(--accent); overflow-x: auto; color: var(--text); }
-
         @media (max-width: 600px) {
-            header { padding: 15px 10px; }
-            .menu-btn, .passport-btn { position: relative; left: 0; top: 0; width: 100%; margin-bottom: 10px; justify-content: center; }
-            .site-title { font-size: 1.3rem; }
-            pre { padding: 15px; font-size: 14px; }
+            .site-title { font-size: 1.1rem; }
+            .site-slogan { font-size: 0.7rem; margin-bottom: 10px; padding: 0 10px; }
+            .controls .btn { padding: 6px 10px; font-size: 0.65rem; }
+            pre { font-size: 14px; }
         }
     </style>
 </head>
@@ -103,22 +98,25 @@
 </div>
 
 <header>
-    <button class="menu-btn" onclick="toggleMetroSidebar()">
-        <span>☰</span> <span id="menuText">METRONOME</span>
-    </button>
-    
-    <a href="about.html" class="passport-btn" id="passportBtn">PASSPORT</a>
+    <div class="header-top">
+        <button class="menu-btn" onclick="toggleMetroSidebar()">
+            <span>☰</span> <span id="menuText">METRO</span>
+        </button>
+        <div class="site-title">Harmonica Worship</div>
+        <a href="about.html" class="passport-btn" id="passportBtn">PASSPORT</a>
+    </div>
 
-    <div class="site-title">Harmonica Worship</div>
     <div id="slogan" class="site-slogan"></div>
+
     <div class="search-container">
         <input type="text" id="searchInput" class="search-input" placeholder="..." oninput="render()">
         <span class="search-icon">🔍</span>
     </div>
+
     <div class="controls">
         <button class="btn" id="btn-uk" onclick="setLang('uk')">UA</button>
         <button class="btn active" id="btn-en" onclick="setLang('en')">EN</button>
-        <button class="btn" id="playBtn" onclick="toggleAutoscroll()" style="background: var(--accent); color: white; border: none;">▶ AUTO</button>
+        <button class="btn" id="playBtn" onclick="toggleAutoscroll()" style="background: var(--accent); color: black; border: none;">▶ AUTO</button>
         <button class="btn" onclick="changeFontSize(2)">A+</button>
         <button class="btn" onclick="changeFontSize(-2)">A-</button>
     </div>
@@ -179,9 +177,7 @@
             playClick(nextNoteTime, beatCounter % 4 === 0);
             if (scrollInterval) {
                 const delay = (nextNoteTime - audioCtx.currentTime) * 1000;
-                setTimeout(() => {
-                    if (scrollInterval) window.scrollBy(0, 8);
-                }, delay);
+                setTimeout(() => { if (scrollInterval) window.scrollBy(0, 8); }, delay);
             }
             nextNoteTime += 60.0 / tempo;
             beatCounter++;
@@ -198,24 +194,23 @@
         osc.start(time); osc.stop(time + 0.1);
     }
 
-    function startScroll() {
-        if (!isPlaying) toggleMetronome(); 
-        scrollInterval = true; 
-        document.getElementById('playBtn').innerText = "■ STOP";
-    }
-
     function stopScroll() {
         scrollInterval = null; 
         document.getElementById('playBtn').innerText = "▶ AUTO";
     }
 
     function toggleAutoscroll() {
-        scrollInterval ? stopScroll() : startScroll();
+        if (scrollInterval) { stopScroll(); } 
+        else { 
+            if (!isPlaying) toggleMetronome();
+            scrollInterval = true;
+            document.getElementById('playBtn').innerText = "■ STOP";
+        }
     }
 
     const translations = {
-        uk: { slogan:"«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3", searchPlaceholder: "Пошук пісні...", noResults: "Нічого не знайдено 🎶", menu: "МЕТРОНОМ", passport: "ПАСПОРТ" },
-        en: { slogan:"«Sing to him a new song; play skillfully, and shout for joy.» — Psalm 33:3", searchPlaceholder: "Search songs...", noResults: "Nothing found 🎶", menu: "METRONOME", passport: "PASSPORT" }
+        uk: { slogan: "«Співайте Йому пісню нову, грайте Йому гарно з погуком!» — Псалом 32:3", searchPlaceholder: "Пошук...", noResults: "Нічого не знайдено 🎶", menu: "METRO", passport: "PASSPORT" },
+        en: { slogan: "«Sing to him a new song; play skillfully, and shout for joy.» — Psalm 33:3", searchPlaceholder: "Search...", noResults: "Nothing found 🎶", menu: "METRO", passport: "PASSPORT" }
     };
 
     function setLang(lang) {
@@ -225,7 +220,6 @@
         document.getElementById('slogan').innerText = translations[lang].slogan;
         document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('menuText').innerText = translations[lang].menu;
-        document.getElementById('metroTitle').innerText = translations[lang].menu;
         document.getElementById('passportBtn').innerText = translations[lang].passport;
         render();
     }
@@ -260,13 +254,13 @@
                 const data = song[currentLang];
                 const meta = songMeta[song.id] || '';
                 html += `<div class="song-card">
-                    <div class="song-title-row">
-                        <h2><a href="songs/${song.id}.html" class="song-link">${data.title}</a></h2>
-                        <span class="tempo-badge">${meta}</span>
+                    <div style="display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;">
+                        <h2 style="font-size:1.5rem;"><a href="songs/${song.id}.html" style="color:inherit; text-decoration:none;">${data.title}</a></h2>
+                        <span style="color:var(--accent); font-size:0.7rem; font-weight:800; border:1px solid var(--accent); padding:2px 6px; border-radius:4px;">${meta}</span>
                     </div>
-                    <div class="artist">${data.artist}</div>
-                    <span class="player-toggle" onclick="togglePlayer('${song.id}')">🎵 Video</span>
-                    <div class="music-player" id="player-${song.id}">
+                    <div style="color:var(--accent); font-size:0.8rem; font-weight:700; text-transform:uppercase; margin:5px 0;">${data.artist}</div>
+                    <span onclick="togglePlayer('${song.id}')" style="color:var(--muted); font-size:0.8rem; cursor:pointer; text-decoration:underline;">🎵 Video</span>
+                    <div id="player-${song.id}" style="display:none; margin-top:10px;">
                         <iframe width="100%" height="180" src="https://www.youtube.com/embed/${song.youtubeId}" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <pre style="font-size: ${currentFontSize}px">${data.content}</pre>
@@ -278,10 +272,7 @@
 
     function changeFontSize(delta) { currentFontSize += delta; render(); }
 
-    window.onload = () => {
-        setLang('en'); 
-    };
+    window.onload = () => { setLang('en'); };
 </script>
 </body>
 </html>
-
