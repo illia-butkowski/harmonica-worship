@@ -1,73 +1,86 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Як Він любить - Harmonica Tabs</title>
+    
+    <title>How He Loves Harmonica Tabs | John Mark McMillan</title>
+    <meta name="description" content="Free harmonica tabs for 'How He Loves' by John Mark McMillan. Worship harmonica tutorial with metronome. Таби для губної гармоніки - Як Він любить.">
+    <meta name="keywords" content="harmonica tabs, How He Loves, John Mark McMillan, Як Він любить, таби для гармоніки, worship harmonica">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f0f0f'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='50' fill='%23ffaa22'>HW</text></svg>">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
     <style>
         :root { --primary: #ffaa22; --bg: #0f0f0f; --panel: #1a1a1a; --text: #e0e0e0; }
         body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding-bottom: 140px; }
         
         .header-nav { background: var(--panel); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
         .btn-back { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        .btn-lang { background: var(--primary); border: none; padding: 8px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; }
+        .btn-lang { background: var(--primary); border: none; padding: 8px 15px; border-radius: 5px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
 
         .logo-box { text-align: center; padding: 30px 20px; }
-        .logo-text { color: var(--primary); font-size: 1.5rem; font-weight: 900; margin: 0; text-transform: uppercase; }
-        #psalm-text { font-size: 0.85rem; font-style: italic; color: #888; margin-top: 8px; }
+        .logo-text { color: var(--primary); font-size: 1.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        #psalm-text { font-size: 0.85rem; font-style: italic; color: #888; margin-top: 8px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.4; }
 
         .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-        #song-title { font-size: 2.5rem; margin: 10px 0; text-align: center; color: #fff; }
-        #artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; }
+        #song-title { font-size: 2.5rem; margin: 10px 0; text-align: center; color: #fff; font-weight: 900; }
+        #artist-name { text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 30px; text-transform: uppercase; font-size: 0.9rem; }
 
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; line-height: 1.8; border-left: 6px solid var(--primary); margin-bottom: 40px; }
+        .tab-content { background: var(--panel); padding: 30px; border-radius: 15px; white-space: pre-wrap; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; line-height: 1.8; border-left: 6px solid var(--primary); margin-bottom: 40px; color: #fff; }
 
-        /* Посилання на інші пісні */
-        .other-songs { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; }
-        .other-songs h3 { font-size: 0.9rem; color: #666; text-transform: uppercase; margin-bottom: 15px; }
-        .song-links { display: flex; gap: 10px; flex-wrap: wrap; }
-        .song-links a { color: #aaa; text-decoration: none; font-size: 0.85rem; background: #222; padding: 5px 12px; border-radius: 4px; transition: 0.2s; }
-        .song-links a:hover { background: var(--primary); color: #000; }
+        /* Помаранчеві рекомендації */
+        .rec-section { margin-top: 60px; padding: 20px 0; border-top: 1px solid #333; }
+        .rec-title { font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: var(--primary); font-size: 0.9rem; }
+        .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .rec-card { background: var(--panel); padding: 15px; border-radius: 10px; text-decoration: none; color: #fff; border: 1px solid #222; transition: 0.2s; }
+        .rec-card:hover { border-color: var(--primary); background: #222; }
+        .rec-card div { font-weight: 900; font-size: 1rem; margin-top: 4px; }
+        .rec-card span { color: var(--primary); font-size: 0.75rem; text-transform: uppercase; font-weight: bold; }
 
-        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 20px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 100; }
+        .controls { position: fixed; bottom: 0; width: 100%; background: #111; padding: 20px 0; border-top: 3px solid var(--primary); display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
         .bpm-display { font-size: 1.8rem; font-weight: 900; color: var(--primary); border: 2px solid var(--primary); padding: 5px 15px; border-radius: 8px; }
-        .btn-play { background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.1rem; }
+        .btn-play { background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; transition: 0.2s; }
+        
+        @media (max-width: 500px) { .rec-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+    <div style="display:none;">
+        <h1>How He Loves (Як Він любить) - Harmonica Tabs</h1>
+        <p>Learn to play How He Loves by John Mark McMillan on harmonica. Worship harmonica tabs and metronome. Таби для гармоніки Як Він любить.</p>
+    </div>
+
     <nav class="header-nav">
-        <a href="../index.html" class="btn-back" id="nav-back">← КАТАЛОГ</a>
-        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
+        <a href="../index.html" class="btn-back" id="nav-back">← CATALOG</a>
+        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">UA</button>
     </nav>
 
     <div class="logo-box">
         <p class="logo-text">Harmonica Worship</p>
-        <p id="psalm-text">"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)</p>
+        <p id="psalm-text">"Sing to him a new song; play skillfully, and shout for joy." (Psalm 33:3)</p>
     </div>
 
     <div class="container">
-        <h1 id="song-title">Як Він любить</h1>
+        <h1 id="song-title">How He Loves</h1>
         <p id="artist-name">John Mark McMillan</p>
 
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/_HGRyxAfhZU" allowfullscreen></iframe>
         </div>
 
-        <div class="tab-content" id="tab-data">
-            </div>
+        <div class="tab-content" id="tab-data"></div>
 
-        <div class="other-songs">
-            <h3 id="more-title">Інші пісні:</h3>
-            <div class="song-links">
-                <a href="altar.html">Altar</a>
-                <a href="as-the-deer.html">As the Deer</a>
-                <a href="hosanna.html">Hosanna</a>
-                <a href="reckless-love.html">Reckless Love</a>
+        <div class="rec-section">
+            <div class="rec-title" id="more-title">MORE SONGS:</div>
+            <div class="rec-grid">
+                <a href="reckless-love.html" class="rec-card"><span class="rec-label">Song</span><div>Reckless Love</div></a>
+                <a href="as-the-deer.html" class="rec-card"><span class="rec-label">Song</span><div>As the Deer</div></a>
             </div>
         </div>
     </div>
@@ -79,12 +92,55 @@
 
     <script>
         const songData = {
+            en: {
+                title: "How He Loves",
+                psalm: '"Sing to him a new song; play skillfully, and shout for joy." (Psalm 33:3)',
+                back: "← CATALOG",
+                more: "MORE SONGS:",
+                label: "Song",
+                content: `(Verse 1)
+                
+6  5  5  -4   4   4
+He is jealous for me 
+  6      5  5  5 -4  4   6  5 5  5   
+Love's like a hurricane, I am a tree
+ -4  -4  4  -4  -4   -4    -4  4   -4   5 -5 6 5
+Bending beneath the weight of His wind and mercy 
+
+(Chorus)
+
+ 6  -6  6  5    6  6
+Oh, how He loves us so 
+-4  -4  5  -5  6  5
+Oh, how He loves us 
+-4  -4  -4   5   4
+How He loves us so. 
+
+(Bridge 2)
+
+ 9  8   8   8 -8    7  9  8   8    8
+We are His portion and He is our prize, 
+ -8   -8  7 -8  -8  -8  7   -8   -8  8   -9
+Drawn to redemption by the grace in His eyes 
+ 7   -8   -8  8 -9 8    8    8  8 -8 7
+If grace is an ocean we're all sinking 
+ 7  9  8    8     8    -8  7   9  8  8    8
+So heaven meets earth like a unforeseen kiss
+-8  7   9 8    8    8 -8  7   7  7  -6  7  -6
+and my heart turns violently inside of my chest
+ 7  7  -8    -8   -8  -8  -8  -8   -8    -8  8  
+And I don't have time to maintain these regrets 
+ -9  8  -8    7 7   8   8
+when I think about the way`
+            },
             uk: {
                 title: "Як Він любить",
                 psalm: '"Співайте Йому пісню нову, грайте Йому гарно із покликом радості!" (Пс. 32:3)',
                 back: "← КАТАЛОГ",
-                more: "Інші пісні:",
+                more: "ІНШІ ПІСНІ:",
+                label: "Пісня",
                 content: `(Куплет 1)
+                
 6  5  5  -4  4   4
 Вiн oгoртaє мeнe, 
   6     5  5 5 -4  4   6  5 5  5
@@ -102,6 +158,7 @@ I я рoзумiю, який Вiн Святий,
 В Любoвi Йoгo пeрeмoгa.
 
 (ЗАСПІВ)
+
 6  -6  6    5    6  6
 O, як Вiн любить нac, 
 -4  -4  5  -5  6  5
@@ -110,6 +167,7 @@ O, як Вiн любить,
 Як Вiн любить нac. 
 
 (ПРИСПІВ)
+
  8   8   8    -8
 Вiн любить, o, 
 -9  8   8    8   -8
@@ -120,6 +178,7 @@ O, як Вiн любить,
 Вiн любить нac.
 
 (МІСТ)
+
  9  8   8  8 -8  7  9   8   8   8
 Вiн нac вcинoвив, Вiн — нaш Спacитeль, 
 -8 -8  7  -8 -8 -8  7  -8 -8  8 -9
@@ -134,47 +193,10 @@ I ceрцe тaк швидкo зaб'єтьcя в мeнi.
 I думaю я лиш прo тe, як cильнo 
 -9 8 -8  7 7  8  8
 Вiн любить нac.`
-            },
-            en: {
-                title: "How He Loves",
-                psalm: '"Sing to him a new song; play skillfully, and shout for joy." (Psalm 33:3)',
-                back: "← CATALOG",
-                more: "More songs:",
-                content: `(Verse 1)
-6  5  5  -4   4   4
-He is jealous for me 
-  6      5  5  5 -4  4   6  5 5  5   
-Love's like a hurricane, I am a tree
- -4  -4  4  -4  -4   -4    -4  4   -4   5 -5 6 5
-Bending beneath the weight of His wind and mercy 
-
-(Chorus)
- 6  -6  6  5    6  6
-Oh, how He loves us so 
--4  -4  5  -5  6  5
-Oh, how He loves us 
--4  -4  -4   5   4
-How He loves us so. 
-
-(Bridge 2)
- 9  8   8   8 -8    7  9  8   8    8
-We are His portion and He is our prize, 
- -8   -8  7 -8  -8  -8  7   -8   -8  8   -9
-Drawn to redemption by the grace in His eyes 
- 7   -8   -8  8 -9 8    8    8  8 -8 7
-If grace is an ocean we're all sinking 
- 7  9  8    8     8    -8  7   9  8  8    8
-So heaven meets earth like a unforeseen kiss
--8  7   9 8    8    8 -8  7   7  7  -6  7  -6
-and my heart turns violently inside of my chest
- 7  7  -8    -8   -8  -8  -8  -8   -8    -8  8  
-And I don't have time to maintain these regrets 
- -9  8  -8    7 7   8   8
-when I think about the way`
             }
         };
 
-        let currentLang = 'uk';
+        let currentLang = 'en'; // English by default
 
         function updateUI() {
             const lang = songData[currentLang];
@@ -183,11 +205,12 @@ when I think about the way`
             document.getElementById('nav-back').innerText = lang.back;
             document.getElementById('more-title').innerText = lang.more;
             document.getElementById('tab-data').innerText = lang.content;
-            document.getElementById('lang-toggle').innerText = currentLang === 'uk' ? 'EN' : 'UA';
+            document.getElementById('lang-toggle').innerText = currentLang === 'en' ? 'UA' : 'EN';
+            document.querySelectorAll('.rec-label').forEach(el => el.innerText = lang.label);
         }
 
         function toggleLanguage() {
-            currentLang = currentLang === 'uk' ? 'en' : 'uk';
+            currentLang = currentLang === 'en' ? 'uk' : 'en';
             updateUI();
         }
 
@@ -214,11 +237,16 @@ when I think about the way`
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             isPlaying = !isPlaying;
             const btn = document.getElementById('metro-btn');
-            if (isPlaying) { btn.innerText = 'STOP'; nextTickTime = audioCtx.currentTime; scheduler(); } 
-            else { btn.innerText = 'START'; clearTimeout(timerId); }
+            if (isPlaying) { 
+                btn.innerText = 'STOP'; btn.style.background = '#fff';
+                nextTickTime = audioCtx.currentTime; scheduler(); 
+            } else { 
+                btn.innerText = 'START'; btn.style.background = '#ffaa22';
+                clearTimeout(timerId); 
+            }
         }
 
-        updateUI(); // Initial load
+        updateUI();
     </script>
 </body>
 </html>
