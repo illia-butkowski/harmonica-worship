@@ -1,6 +1,6 @@
 const song_thats_the_power = {
     id: 'thats-the-power',
-    youtubeId: 'Qu-JP42ncoz0i4-4',
+    youtubeId: 'HwEXH-jIsgA',
     en: {
         title: 'That’s the Power',
         artist: 'HILLSONG WORSHIP',
